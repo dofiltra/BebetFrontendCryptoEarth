@@ -1,0 +1,252 @@
+@mixin h1-bold {
+  font-family: Arial, 'sans-serif';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 48px;
+  line-height: 55px;
+
+  color:  white;
+}
+
+@mixin h2-bold {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 48px;
+  line-height: 55px;
+
+  color:  white;
+}
+
+@mixin h3-bold {
+  font-family: Arial, 'sans-serif';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 28px;
+
+  color:  white;
+}
+
+@mixin h4-bold {
+  font-family: Arial, 'sans-serif';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 23px;
+
+  color:  white;
+}
+
+@mixin p1-bold {
+  font-family: Arial, 'sans-serif';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 37px;
+
+  color:  white;
+}
+
+@mixin p1-medium {
+  font-family: Arial, 'sans-serif';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 37px;
+
+  color:  white;
+}
+
+@mixin p1-regular {
+  font-family: Arial, 'sans-serif';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 37px;
+
+  color:  white;
+}
+
+@mixin p2-bold {
+  font-family: Arial, 'sans-serif';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 28px;
+
+  color:  white;
+}
+
+@mixin p2-medium {
+  font-family: Arial, 'sans-serif';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 28px;
+
+  color:  white;
+}
+
+@mixin p2-regular {
+  font-family: Arial, 'sans-serif';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 28px;
+
+  color:  white;
+}
+
+@mixin p3-bold {
+  font-family: Arial, 'sans-serif';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 23px;
+
+  color:  white;
+}
+
+@mixin p3-medium {
+  font-family: Arial, 'sans-serif';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 23px;
+
+  color:  white;
+}
+
+@mixin p3-regular {
+  font-family: Arial, 'sans-serif';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 23px;
+
+  color:  white;
+}
+
+@mixin p4-bold {
+  font-family: Arial, 'sans-serif';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 21px;
+
+  color:  white;
+}
+
+@mixin p4-medium {
+  font-family: Arial, 'sans-serif';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 21px;
+
+  color:  white;
+}
+
+@mixin p4-regular {
+  font-family: Arial, 'sans-serif';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
+
+  color:  white;
+}
+
+@mixin p5-bold {
+  font-family: Arial, 'sans-serif';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 18px;
+
+  color:  white;
+}
+
+@mixin p5-medium {
+  font-family: Arial, 'sans-serif';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 18px;
+
+  color:  white;
+}
+
+@mixin p5-regular {
+  font-family: Arial, 'sans-serif';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 18px;
+
+  color:  white;
+}
+
+@mixin p6-bold {
+  font-family: Arial, 'sans-serif';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+
+  color:  white;
+}
+
+@mixin p6-medium {
+  font-family: Arial, 'sans-serif';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+
+  color:  white;
+}
+
+@mixin p6-regular {
+  font-family: Arial, 'sans-serif';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+
+  color:  white;
+}
+
+@mixin p7-bold {
+  font-family: Arial, 'sans-serif';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 14px;
+
+  color:  white;
+}
+
+@mixin p7-medium {
+  font-family: Arial, 'sans-serif';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+
+  color:  white;
+}
+
+@mixin p7-regular {
+  font-family: Arial, 'sans-serif';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+
+  color:  white;
+}
+
+@mixin bg-color{
+  background-color: #1B1D25;
+}

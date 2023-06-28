@@ -1,0 +1,162 @@
+@import "/src/scss/mixins";
+
+.statistic {
+  width: 80%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+
+
+  &__title {
+    width: 100%;
+    padding-bottom: 24px;
+
+    p {
+      @include p2-bold;
+    }
+  }
+
+  &__graphics {
+    width: 100%;
+    height: 40%;
+  }
+
+  &__info {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 16px;
+
+    padding-top: 70px;
+
+    &-filters {
+      width: 100%;
+
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 16px;
+
+      .filter {
+        width: auto;
+        height: 32px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        padding: 0 12px;
+
+        background: #242731;
+        border-radius: 8px;
+
+        p {
+          @include p6-regular;
+        }
+      }
+
+
+    }
+
+    .item {
+      width: 100%;
+      height: 100%;
+
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 4px;
+
+      padding: 4px 8px;
+      box-sizing: border-box;
+
+      background: #2A2E39;
+      border-radius: 4px;
+
+      &--large {
+        width: 100%;
+      }
+
+      p {
+        @include p7-regular;
+        color: #E8EAED;
+      }
+
+      &__title {
+        display: flex;
+
+        p {
+          @include p7-regular;
+          color: #E8EAED;
+
+          opacity: 0.5;
+        }
+      }
+    }
+
+    &-container {
+      width: 100%;
+      height: 100%;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+
+      &-first, &-second, &-third, &-four, &-five {
+        width: 100%;
+        height: 60px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+      }
+
+    }
+  }
+}
+
+@media (min-width: 320px) and (max-width: 700px) {
+  .statistic {
+    width: 100%;
+
+    &__title {
+      padding-bottom: 0;
+      padding-top: 38px;
+    }
+
+    &__graphics {
+      height: 300px;
+
+      padding-top: 24px;
+    }
+
+    &__info {
+      &-filters {
+        width: 100%;
+
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 16px;
+
+        overflow: scroll;
+
+        .filter {
+          p {
+            white-space: nowrap;
+          }
+        }
+      }
+    }
+  }
+}

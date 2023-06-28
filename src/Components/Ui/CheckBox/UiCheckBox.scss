@@ -1,0 +1,42 @@
+@import "/src/scss/mixins";
+
+.ui-checkbox {
+  width: auto;
+  height: auto;
+  min-height: 18px;
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 8px;
+
+  &--error{
+    border: 1px solid red;
+  }
+
+  p {
+    @include p6-regular;
+  }
+
+  h1 {
+    @include p6-regular;
+    color: #DBDDE0;
+
+    opacity: 0.5;
+  }
+
+  &__container {
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (min-width: 320px) and (max-width: 700px) {
+  .ui-checkbox {
+    height: auto;
+
+  }
+}

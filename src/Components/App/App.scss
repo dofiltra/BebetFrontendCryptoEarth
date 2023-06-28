@@ -1,0 +1,286 @@
+@import "/src/scss/mixins";
+
+.bg {
+  position: absolute;
+  left: 0;
+  top: 0;
+
+  width: 100%;
+  height: 100%;
+
+  background: rgba(0, 0, 0, 0.6);
+
+  z-index: 15;
+}
+
+.mobile-app {
+  width: 100vw;
+  height: auto;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding: 16px;
+  box-sizing: border-box;
+
+  background: #12151E;
+}
+
+.mobile-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+
+  width: 100%;
+  height: auto;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  background: #242731;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+  border-radius: 8px;
+
+  z-index: 10;
+
+  p{
+    padding: 12px 0;
+    color: white;
+
+    width: 100%;
+    padding-left: 12px;
+    box-sizing: border-box;
+  }
+}
+
+.money-request{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 40%;
+  height: auto;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  gap: 8px;
+
+  padding: 24px;
+  box-sizing: border-box;
+
+  background: #1B1D25;
+  border-radius: 16px;
+
+  z-index: 15;
+
+  &__closeBtn {
+    position: absolute;
+    top: -20px;
+    right: -20px;
+
+    z-index: 20;
+  }
+
+  &__title {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    p {
+      @include p2-bold;
+      color: #DBDDE0;
+      padding-bottom: 24px;
+    }
+  }
+
+  span{
+    padding: 16px 0;
+    color: #DBDDE0;
+
+    opacity: 0.5;
+  }
+}
+
+@media (min-width: 320px) and (max-width: 700px) {
+  .money-request{
+    width: 90%;
+  }
+}
+
+.app {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+
+  padding: 12px 80px;
+  box-sizing: border-box;
+
+  background: #12151E;
+
+  .recharts-rectangle{
+    fill: transparent !important;
+  }
+
+  .setting {
+    width: 80%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+
+
+    &__title {
+      width: 100%;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      p {
+        @include p2-bold;
+      }
+
+      padding-bottom: 24px;
+    }
+
+    &__container {
+      width: 100%;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+
+    }
+  }
+
+  &-header {
+    position: relative;
+
+    width: 100%;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &__logo {
+      width: 70px;
+    }
+
+    &__container {
+      width: 35%;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      p {
+        @include p5-medium;
+        color: #E8EAED;
+        opacity: 0.8;
+
+      }
+
+      .selected {
+        color: #0085FF;
+      }
+    }
+
+    &__wrapper {
+      width: auto;
+      height: 100%;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+    }
+  }
+}
+
+.profile {
+  position: relative;
+  width: auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  &__balance {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 12px 16px;
+    box-sizing: border-box;
+
+    background: #242731;
+    border-radius: 8px;
+
+    p {
+      @include p5-regular;
+    }
+  }
+
+  &__avatar {
+
+  }
+
+  &__popup {
+    position: absolute;
+    top: 100%;
+    left: -172px;
+
+    width: 250px;
+    height: auto;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    background: #242731;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+    border-radius: 8px;
+
+    padding: 12px;
+    box-sizing: border-box;
+
+    z-index: 100;
+
+    &-buttons {
+      width: 100%;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    p {
+      width: 100%;
+      @include p6-regular;
+      text-align: left;
+      padding: 12px;
+    }
+  }
+}

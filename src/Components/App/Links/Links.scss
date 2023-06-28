@@ -1,0 +1,168 @@
+@import "/src/scss/mixins";
+
+.links {
+  width: 80%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+
+
+  &__title {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    p {
+      @include p2-bold;
+    }
+
+    padding-bottom: 24px;
+  }
+
+  &__container {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    &-header {
+      width: 100%;
+
+      display: grid;
+      grid-template-columns: 25% 25% 25% 25%;
+
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(238, 238, 238, .1);
+
+
+      p {
+        @include p7-regular;
+        color: #FFFFFF;
+
+        opacity: 0.5;
+      }
+    }
+  }
+
+  &__item {
+    width: 100%;
+    height: auto;
+
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgb(238, 238, 238, 0.1);;
+
+    p {
+      word-wrap: break-word;
+      @include p7-regular;
+      padding-top: 16px;
+    }
+  }
+
+  &-popup {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 40%;
+    height: auto;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 24px;
+    box-sizing: border-box;
+
+    background: #1B1D25;
+    border-radius: 16px;
+
+    z-index: 15;
+
+    &__closeBtn {
+      position: absolute;
+      top: -20px;
+      right: -20px;
+
+      z-index: 20;
+    }
+
+    &__title {
+      width: 100%;
+
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+
+      p {
+        @include p2-bold;
+        color: #DBDDE0;
+        padding-bottom: 24px;
+      }
+    }
+
+    textarea {
+      width: 100%;
+      height: auto;
+      min-height: 100px;
+
+      padding: 16px 12px;
+      box-sizing: border-box;
+
+      background: #2D303C;
+      border-radius: 8px;
+      border: none;
+
+      margin-bottom: 24px;
+
+      font-family: 'Arial', 'sans-serif';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 18px;
+
+      color: #DBDDE0;
+
+      &::placeholder {
+        color: #DBDDE0;
+      }
+    }
+
+  }
+}
+
+@media (min-width: 320px) and (max-width: 700px) {
+  .links {
+    width: 100%;
+
+    padding-top: 36px;
+
+    min-height: 86vh;
+
+    &__container {
+      overflow: scroll;
+    }
+
+    &__item{
+      height: auto;
+      word-wrap: normal;
+      p{
+        word-wrap: break-word;
+        width: 100%;
+      }
+    }
+  }
+}
