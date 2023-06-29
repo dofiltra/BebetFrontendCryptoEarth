@@ -59,7 +59,7 @@ const Links: React.FC<IStatisticProps> = ({user, getRefUrls, refLinks}) => {
         <div className={'links'}>
             {showPopup && popup()}
             <div className={'links__title'}>
-                <p>Мои ссылки</p>
+                <p>Ссылки</p>
 
                 <UiButton title={'Создать ссылку'} handleClick={() => setShowPopup(true)} disabled={false}/>
             </div>

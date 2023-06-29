@@ -197,7 +197,12 @@
         @include p5-medium;
         color: #E8EAED;
         opacity: 0.8;
+        cursor: pointer;
+        transition: 0.2s;
+      }
 
+      p:hover{
+        color: #a0c2e0;
       }
 
       .selected {
@@ -236,6 +241,7 @@
 
     background: #242731;
     border-radius: 8px;
+    cursor: pointer;
 
     p {
       @include p5-regular;
@@ -243,13 +249,15 @@
   }
 
   &__avatar {
-
+    display: flex;
+    cursor: pointer;
   }
 
   &__popup {
     position: absolute;
     top: 100%;
     left: -172px;
+    margin-top: 8px;
 
     width: 250px;
     height: auto;
@@ -274,6 +282,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      margin-bottom: 12px;
     }
 
     p {
@@ -281,6 +290,10 @@
       @include p6-regular;
       text-align: left;
       padding: 12px;
+      transition: 0.2s;
+    }
+    p:hover{
+      color: #30323c;
     }
   }
 }

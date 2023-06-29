@@ -55,10 +55,14 @@
 
         background: #242731;
         border-radius: 8px;
+        transition: 0.2s;
 
         p {
           @include p6-regular;
         }
+      }
+      .filter:hover{
+        background: #3e4251;
       }
 
 

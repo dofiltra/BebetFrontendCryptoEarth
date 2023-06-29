@@ -304,7 +304,7 @@ const Auth: React.FC<IAppProps> = ({showAuth, setLogged, setShowAuth, setProfile
                         }}
                         title={'Способ связи'}
                         value={communicationType}
-                        items={['email', 'telegram', 'whatsup']}
+                        items={['Email', 'Telegram', 'WhatsApp']}
                         error={error === 'communicationType'}
                     />
                     <UiInput onChange={(props) => setLink(props)} placeHolder={'Введите ссылку'} value={link} told/>
@@ -333,7 +333,7 @@ const Auth: React.FC<IAppProps> = ({showAuth, setLogged, setShowAuth, setProfile
                         error={error === 'password'}
 
                     />
-                    <UiInput onChange={(props) => setTraffic(props)} placeHolder={'Источние трафика'}
+                    <UiInput onChange={(props) => setTraffic(props)} placeHolder={'Источник трафика'}
                              value={traffic}
                              told
                     />
@@ -418,7 +418,7 @@ const Auth: React.FC<IAppProps> = ({showAuth, setLogged, setShowAuth, setProfile
                             }}
                             title={'Способ связи'}
                             value={communicationType}
-                            items={['email', 'telegram', 'whatsup']}
+                            items={['Email', 'Telegram', 'WhatsApp']}
                             error={error === 'communicationType'}
                         />
                         <UiInput onChange={(props) => setLink(props)}
@@ -455,7 +455,7 @@ const Auth: React.FC<IAppProps> = ({showAuth, setLogged, setShowAuth, setProfile
                         />
                     </div>
                     <UiInput onChange={(props) => setTraffic(props)}
-                             placeHolder={'Источние трафика'}
+                             placeHolder={'Источник трафика'}
                              value={traffic}
                              told
                     />

@@ -45,7 +45,7 @@ const Referral: React.FC<IStatisticProps> = ({referent}) => {
         <div className={'referral'}>
             {showPopup && popup()}
             <div className={'referral__title'}>
-                <p>Мои рефералы</p>
+                <p>Рефералы</p>
             </div>
             <div className={'referral__container'}>
                 <div className={'referral__container-header'}>

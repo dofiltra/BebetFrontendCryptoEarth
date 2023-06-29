@@ -36,6 +36,10 @@ function App() {
         setShowProfile(false)
     }
 
+    const getSupport = () => {
+        window.location.replace("https://t.me/ansigame")
+    }
+
     const logOut = () => {
         localStorage.setItem('reconnect', '')
         window.location.reload()
@@ -215,14 +219,13 @@ function App() {
                                setCurrentPage('links')
                                setMenuOpen(false)
                            }}
-                        >Мои
-                            ссылки</p>
+                        >Ссылки</p>
                         <p className={currentPage === 'referral' ? 'selected' : ''}
                            onClick={() => {
                                setCurrentPage('referral')
                                setMenuOpen(false)
                            }}
-                        >Мои рефералы</p>
+                        >Рефералы</p>
                     </div>}
                     <div className="app-header__wrapper">
                         <div className="app-header__menu">
@@ -295,6 +298,7 @@ function App() {
                                         setMenuOpen(false)
                                     }}>Выводы</p>
                                     <p onClick={settingShow}>Настройки</p>
+                                    <p onClick={getSupport}>Поддержка</p>
                                     <p onClick={logOut}>Выйти</p>
                                 </div>
                             }
@@ -351,10 +355,9 @@ function App() {
                         <p className={currentPage === 'statistic' ? 'selected' : ''}
                            onClick={() => setCurrentPage('statistic')}>Статистика</p>
                         <p className={currentPage === 'links' ? 'selected' : ''}
-                           onClick={() => setCurrentPage('links')}>Мои
-                            ссылки</p>
+                           onClick={() => setCurrentPage('links')}>Ссылки</p>
                         <p className={currentPage === 'referral' ? 'selected' : ''}
-                           onClick={() => setCurrentPage('referral')}>Мои рефералы</p>
+                           onClick={() => setCurrentPage('referral')}>Рефералы</p>
                     </div>
                 }
                 {logged ?
@@ -388,6 +391,7 @@ function App() {
                                     setShowProfile(false)
                                 }}>Выводы</p>
                                 <p onClick={settingShow}>Настройки</p>
+                                <p onClick={getSupport}>Поддержка</p>
                                 <p onClick={logOut}>Выйти</p>
                             </div>
                         }

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/golden-wool-admin.iml" filepath="$PROJECT_DIR$/.idea/golden-wool-admin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/bebet.iml" filepath="$PROJECT_DIR$/.idea/bebet.iml" />
     </modules>
   </component>
 </project>
