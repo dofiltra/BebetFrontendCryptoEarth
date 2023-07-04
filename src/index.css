@@ -7,11 +7,11 @@ body, p, h1, h2 {
     -moz-osx-font-smoothing: grayscale;
 }
 
+body{
+    background: #12151E;
+}
+
 code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
-}
-
-.recharts-rectangle, .recharts-tooltip-cursor {
-    fill: transparent !important;
 }

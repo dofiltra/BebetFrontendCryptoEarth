@@ -43,6 +43,8 @@
       justify-content: flex-start;
       gap: 16px;
 
+      display: none !important; // #TODO: Временное решение
+
       .filter {
         width: auto;
         height: 32px;
@@ -56,13 +58,15 @@
         background: #242731;
         border-radius: 8px;
         transition: 0.2s;
+        cursor: pointer;
+
+        &:hover{
+          background: #3e4251;
+        }
 
         p {
           @include p6-regular;
         }
-      }
-      .filter:hover{
-        background: #3e4251;
       }
 
 

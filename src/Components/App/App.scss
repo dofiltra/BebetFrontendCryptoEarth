@@ -117,10 +117,13 @@
   }
 }
 
-.app {
-  position: relative;
+.app-main-page{
   width: 100vw;
   height: 100vh;
+}
+
+.app {
+  position: relative;
 
   display: flex;
   flex-direction: column;
@@ -131,10 +134,6 @@
   box-sizing: border-box;
 
   background: #12151E;
-
-  .recharts-rectangle{
-    fill: transparent !important;
-  }
 
   .setting {
     width: 80%;
@@ -291,9 +290,10 @@
       text-align: left;
       padding: 12px;
       transition: 0.2s;
+      cursor: pointer;
     }
     p:hover{
-      color: #30323c;
+      background: #30323c;
     }
   }
 }

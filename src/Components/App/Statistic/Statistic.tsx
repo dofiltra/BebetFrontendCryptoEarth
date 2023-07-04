@@ -17,7 +17,7 @@ const Statistic: React.FC<IStatisticProps> = ({data, fullStatistic}) => {
         setLData(data)
     }, [data])
 
-    const months: string[] = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec']
+    const months: string[] = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь']
 
     interface DataEntry {
         date: string;
@@ -71,7 +71,7 @@ const Statistic: React.FC<IStatisticProps> = ({data, fullStatistic}) => {
     return (
         <div className={'statistic'}>
             <div className={'statistic__title'}>
-                <p>Дашборд</p>
+                <p>Статистика</p>
             </div>
             <div className={'statistic__graphics'} ref={chartRef}>
                 <BarChart
@@ -91,7 +91,7 @@ const Statistic: React.FC<IStatisticProps> = ({data, fullStatistic}) => {
                     <Tooltip/>
                     <Legend/>
                     <Bar dataKey="Регистрации" fill="#F14336"/>
-                    <Bar dataKey="Переходы" fill="#E8EAED"/>
+                    <Bar dataKey="Переходы" fill="#a358e8"/>
                     <Bar dataKey="Депозит" fill="#0085FF"/>
                     <Bar dataKey="Сумма депозита" fill="#28B446"/>
                     <Bar dataKey="Первые депозиты" fill="#FDB12F"/>
