@@ -37,7 +37,7 @@ function App() {
     }
 
     const getSupport = () => {
-        window.location.replace("https://t.me/ansigame")
+        window.location.replace("https://t.me/supportBebet")
     }
 
     const logOut = () => {
@@ -219,13 +219,13 @@ function App() {
                                setCurrentPage('links')
                                setMenuOpen(false)
                            }}
-                        >Ссылки</p>
+                        >Мои ссылки</p>
                         <p className={currentPage === 'referral' ? 'selected' : ''}
                            onClick={() => {
                                setCurrentPage('referral')
                                setMenuOpen(false)
                            }}
-                        >Рефералы</p>
+                        >Мои рефералы</p>
                     </div>}
                     <div className="app-header__wrapper">
                         <div className="app-header__menu">
@@ -354,9 +354,9 @@ function App() {
                         <p className={currentPage === 'statistic' ? 'selected' : ''}
                            onClick={() => setCurrentPage('statistic')}>Статистика</p>
                         <p className={currentPage === 'links' ? 'selected' : ''}
-                           onClick={() => setCurrentPage('links')}>Ссылки</p>
+                           onClick={() => setCurrentPage('links')}>Мои ссылки</p>
                         <p className={currentPage === 'referral' ? 'selected' : ''}
-                           onClick={() => setCurrentPage('referral')}>Рефералы</p>
+                           onClick={() => setCurrentPage('referral')}>Мои рефералы</p>
                     </div>
                 }
                 {logged ?
