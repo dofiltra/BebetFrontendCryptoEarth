@@ -37,7 +37,7 @@ function App() {
     }
 
     const getSupport = () => {
-        window.location.replace("https://t.me/supportBebet")
+        window.location.replace("https://t.me/BebetSupport")
     }
 
     const logOut = () => {
