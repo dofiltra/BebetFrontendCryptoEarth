@@ -1,6 +1,6 @@
 import './Statistic.scss';
 import React, {useEffect, useRef, useState} from "react";
-import {Bar, BarChart, CartesianGrid, Legend, Tooltip, XAxis, YAxis} from "recharts";
+import {Bar, BarChart, Legend, Tooltip, XAxis, YAxis} from "recharts";
 
 interface IStatisticProps {
     data: any,
@@ -12,10 +12,63 @@ const Statistic: React.FC<IStatisticProps> = ({data, fullStatistic}) => {
     const mobile = window.innerWidth >= 320 && window.innerWidth <= 470
 
     const [ldata, setLData] = useState<any>({})
+    const [filter, setFilter] = useState<string>('all'); // Изначально выбран фильтр "За все время"
+
+    const processData = (filter: string) => {
+        const transformedData = transformData(fullStatistic, filter);
+        setLData(transformedData);
+    }
 
     useEffect(() => {
-        setLData(data)
-    }, [data])
+        setLData(data);
+    }, [data]);
+
+
+    // Обработчик изменения фильтра
+    /*const handleFilterChange = (filter: string) => {
+        // Обновление ldata в соответствии с выбранным фильтром
+        if (filter === 'all') {
+            setLData(data);
+        } else if (filter === 'month') {
+            const filteredData = data.slice(0, 12); // Пример фильтрации по месяцам
+            setLData(filteredData);
+        } else if (filter === 'week') {
+            const filteredData = data.slice(0, 7); // Пример фильтрации по неделям
+            setLData(filteredData);
+        } else if (filter === 'yesterday') {
+            // Обработка фильтра "Вчера"
+            // ...
+        } else if (filter === 'today') {
+            // Обработка фильтра "Сегодня"
+            // ...
+        }
+    }*/
+    /*const handleFilterChange = (filter: string) => {
+        if (filter === 'all') {
+            setLData(data);
+        } else if (Array.isArray(data)) { // Check if data is an array
+            if (filter === 'month') {
+                const filteredData = data.slice(0, 12); // Example: filter by months
+                setLData(filteredData);
+            } else if (filter === 'week') {
+                const filteredData = data.slice(0, 7); // Example: filter by weeks
+                setLData(filteredData);
+            } else if (filter === 'yesterday') {
+                // Handle "yesterday" filter
+            } else if (filter === 'today') {
+                // Handle "today" filter
+            }
+        }
+    }*/
+    const handleFilterChange = (filter: string) => {
+        // Обновление ldata в соответствии с выбранным фильтром
+        if (filter === 'all') {
+            setLData(data);
+        } else {
+            let filteredData = transformData(data, filter);
+            setLData(filteredData);
+        }
+    }
 
     const months: string[] = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь']
 
@@ -30,7 +83,7 @@ const Statistic: React.FC<IStatisticProps> = ({data, fullStatistic}) => {
     }
 
 
-    function transformData(data: { [key: string]: DataEntry[] }): TransformedData[] {
+    function transformData(data: { [key: string]: DataEntry[] }, filter: string): TransformedData[] {
         const transformedData: TransformedData[] = [];
         const fieldTranslations: { [key: string]: string } = {
             registractions: 'Регистрации',
@@ -60,13 +113,21 @@ const Statistic: React.FC<IStatisticProps> = ({data, fullStatistic}) => {
             transformedData.push(newObj);
         }
 
+        // Применение фильтрации
+        if (filter === 'month') {
+            transformedData.splice(0, months.length - 1); // Оставляем только текущий месяц
+        } else if (filter === 'week') {
+            // Примените логику для фильтрации по неделе
+        } else if (filter === 'yesterday') {
+            // Примените логику для фильтрации по вчерашнему дню
+        } else if (filter === 'today') {
+            // Примените логику для фильтрации по текущему дню
+        }
+
         return transformedData;
     }
 
-
-
-    let res = transformData(fullStatistic)
-
+    let res = transformData(fullStatistic, filter);
 
     return (
         <div className={'statistic'}>
@@ -99,11 +160,11 @@ const Statistic: React.FC<IStatisticProps> = ({data, fullStatistic}) => {
             </div>
             <div className={'statistic__info'}>
                 <div className={'statistic__info-filters'}>
-                    <div className={'filter'}><p>За все время</p></div>
-                    <div className={'filter'}><p>Месяц</p></div>
-                    <div className={'filter'}><p>Неделя</p></div>
-                    <div className={'filter'}><p>Вчера</p></div>
-                    <div className={'filter'}><p>Сегодня</p></div>
+                    <div className={'filter'} onClick={() => handleFilterChange('all')}><p>За все время</p></div>
+                    <div className={'filter'} onClick={() => handleFilterChange('month')}><p>Месяц</p></div>
+                    <div className={'filter'} onClick={() => handleFilterChange('week')}><p>Неделя</p></div>
+                    <div className={'filter'} onClick={() => handleFilterChange('yesterday')}><p>Вчера</p></div>
+                    <div className={'filter'} onClick={() => handleFilterChange('today')}><p>Сегодня</p></div>
                 </div>
 
                 <div className={'statistic__info-container'}>

@@ -273,7 +273,10 @@ const Auth: React.FC<IAppProps> = ({showAuth, setLogged, setShowAuth, setProfile
                         )
                     })}
                 </div>
-                <div className={'mobile-register__form'}>
+                <div className={'mobile-register__form'} id={"register"}>
+                    <div className={"login__title"}>
+                        <p>Регистрация</p>
+                    </div>
                     <UiInput
                         onChange={(props) => {
                             setName(props)

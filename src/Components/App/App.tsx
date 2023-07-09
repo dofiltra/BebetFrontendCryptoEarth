@@ -186,9 +186,9 @@ function App() {
                     <p>Вывод средств</p>
                 </div>
                 <UiInput onChange={(props) => setEmail(props)} placeHolder={'Email от BeBet'} value={email} told/>
-                <UiInput onChange={(props) => setValue(props)} placeHolder={'Сумма выводаs'} value={value} told/>
+                <UiInput onChange={(props) => setValue(props)} placeHolder={'Сумма вывода'} value={value} told/>
                 <span>
-                    Вывод денежных средств осуществляется путем перечисления их на Ваш игровой счет, предварительно зарегистрированны айте букмекерской компании Обращаем внимание, что игровой аккаунт не должен быть зарегистрирован по Вашей реферальной ссылке или с использованием Вашего промокода
+                    Вывод денежных средств осуществляется путем перечисления их на Ваш игровой счет, предварительно зарегистрированной в букмекерской компании. Обращаем внимание, что игровой аккаунт не должен быть зарегистрирован по Вашей реферальной ссылке или с использованием Вашего промокода.
                 </span>
                 <UiButton title={'Вывести'} handleClick={request} disabled={false}
                           width={'100%'}
@@ -228,7 +228,7 @@ function App() {
                         >Мои рефералы</p>
                     </div>}
                     <div className="app-header__wrapper">
-                        <div className="app-header__menu">
+                        <div className={logged ? 'app-header__menu' : 'displaynone'}>
                             {menuOpen ?
                                 <svg onClick={() => setMenuOpen(false)}
                                      width="24" height="24" viewBox="0 0 24 24" fill="none"
