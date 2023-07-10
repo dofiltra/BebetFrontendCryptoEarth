@@ -311,12 +311,20 @@
   &__restore {
     display: flex;
     align-items: center;
-    justify-content: flex-start;
-
+    justify-content: space-between;
+    flex-wrap: wrap;
+    a {
+      text-decoration: none;
+    }
     p {
       @include p6-regular;
-      color: #DBDDE0;
+      color: #DBDDE0 !important;
       padding-top: 8px;
+      transition: 0.2s;
+      cursor: pointer;
+      &:hover{
+        color: #fff !important;;
+      }
     }
   }
 

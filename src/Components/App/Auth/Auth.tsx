@@ -179,6 +179,7 @@ const Auth: React.FC<IAppProps> = ({showAuth, setLogged, setShowAuth, setProfile
                             // setShowRestorePassword(true)
                             // setShowLoginPopup(false)
                         }}>Забыли пароль?</p>
+                        <p onClick={setShowAuth}>Нет аккаунта?</p>
                     </div>
                     <div className={'login__btn'}>
                         <UiButton title={'Войти'}
@@ -236,6 +237,9 @@ const Auth: React.FC<IAppProps> = ({showAuth, setLogged, setShowAuth, setProfile
                             // setShowRestorePassword(true)
                             // setShowLoginPopup(false)
                         }}>Забыли пароль?</p>
+                        <a href="#register">
+                            <p onClick={setShowAuth}>Нет аккаунта?</p>
+                        </a>
                     </div>
                     <div className={'login__btn'}>
                         <UiButton title={'Войти'}
@@ -273,7 +277,7 @@ const Auth: React.FC<IAppProps> = ({showAuth, setLogged, setShowAuth, setProfile
                         )
                     })}
                 </div>
-                <div className={'mobile-register__form'} id={"register"}>
+                <div className={'mobile-register__form'} id="register">
                     <div className={"login__title"}>
                         <p>Регистрация</p>
                     </div>
@@ -376,7 +380,7 @@ const Auth: React.FC<IAppProps> = ({showAuth, setLogged, setShowAuth, setProfile
 
 
     return (
-        <div className="register">
+        <div className="register" id="register">
 
             {showAuth && loginComp()}
             <div className={'register-body'}>
