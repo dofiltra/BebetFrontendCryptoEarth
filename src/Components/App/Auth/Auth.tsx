@@ -314,7 +314,7 @@ const Auth: React.FC<IAppProps> = ({showAuth, setLogged, setShowAuth, setProfile
                         items={['Email', 'Telegram', 'WhatsApp']}
                         error={error === 'communicationType'}
                     />
-                    <UiInput onChange={(props) => setLink(props)} placeHolder={'Введите ссылку'} value={link} told/>
+                    <UiInput onChange={(props) => setLink(props)} placeHolder={'Введите данные'} value={link} told/>
                     <UiInput
                         onChange={(props) => {
                             setPassword(props)
@@ -429,7 +429,7 @@ const Auth: React.FC<IAppProps> = ({showAuth, setLogged, setShowAuth, setProfile
                             error={error === 'communicationType'}
                         />
                         <UiInput onChange={(props) => setLink(props)}
-                                 placeHolder={'Введите ссылку'}
+                                 placeHolder={'Введите данные'}
                                  value={link}
                                  told
                         />
