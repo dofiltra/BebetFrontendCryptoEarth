@@ -1,7 +1,7 @@
 import './Links.scss';
 import React, {useState} from "react";
-import UiButton from "../../Ui/Button/UiButton";
-import UiInput from "../../Ui/Input/UiInput";
+import { Button } from "@shared/ui/button";
+import Input from "@shared/ui/input";
 import {createFormData, get, postFormData} from "../../../services/api";
 
 interface IStatisticProps {
@@ -42,15 +42,15 @@ const Links: React.FC<IStatisticProps> = ({user, getRefUrls, refLinks}) => {
                     <p>Создать ссылку</p>
                 </div>
 
-                <UiInput onChange={(props) => setName(props)} placeHolder={'Имя'} value={name}/>
-                <UiInput onChange={(props) => setLink(props)} placeHolder={'Ссылка на страницу'} value={link}/>
+                <Input onChange={(props) => setName(props)} placeHolder={'Имя'} value={name}/>
+                <Input onChange={(props) => setLink(props)} placeHolder={'Ссылка на страницу'} value={link}/>
                 <textarea
                     placeholder={'Описание'}
                     onChange={(event) => setDescription(event.target.value)}
                     value={description}
                 />
-                <UiButton title={'Создать ссылку'} handleClick={createUrl} disabled={false}
-                          width={'100%'}/>
+                <Button title={'Создать ссылку'} handleClick={createUrl} disabled={false}
+                        width={'100%'}/>
             </div>
         )
     }
@@ -61,7 +61,7 @@ const Links: React.FC<IStatisticProps> = ({user, getRefUrls, refLinks}) => {
             <div className={'links__title'}>
                 <p>Мои ссылки</p>
 
-                <UiButton title={'Создать ссылку'} handleClick={() => setShowPopup(true)} disabled={false}/>
+                <Button title={'Создать ссылку'} handleClick={() => setShowPopup(true)} disabled={false}/>
             </div>
             <div className={'links__container'}>
                 <div className={'links__container-header'}>

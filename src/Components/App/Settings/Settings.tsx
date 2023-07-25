@@ -1,7 +1,7 @@
 import './Settings.scss';
 import React, {useEffect, useState} from "react";
-import UiInput from "../../Ui/Input/UiInput";
-import UiButton from "../../Ui/Button/UiButton";
+import Input from "@shared/ui/input";
+import { Button } from "@shared/ui/button";
 import UiSelector from "../../Ui/UiSelector/UiSelector";
 
 interface ISettingsProps {
@@ -38,44 +38,44 @@ const Settings: React.FC<ISettingsProps> = ({user, updateUserState}) => {
             <div className={'settings__container'}>
                 <div className={'settings__inputs'}>
 
-                    <UiInput onChange={(props) => setName(props)} placeHolder={'Имя'} value={name} told/>
+                    <Input onChange={(props) => setName(props)} placeHolder={'Имя'} value={name} told/>
                     <UiSelector onSelect={(props) => setCommunicationType(props)}
                                 title={'Способ связи'}
                                 value={communicationType}
                                 items={['email']}
                     />
-                    <UiInput onChange={(props) => setTraffic(props)} placeHolder={'Источние трафика'}
-                             value={traffic}
-                             told
+                    <Input onChange={(props) => setTraffic(props)} placeHolder={'Источние трафика'}
+                           value={traffic}
+                           told
                     />
                     <UiSelector onSelect={(props) => setTypeOfCooperation(props)} title={'Тип сотрудничества'}
                                 items={['Rev. Share']}
                                 value={typeOfCooperation}/>
                     <div className={'settings__inputs-email'}>
-                        <UiInput onChange={(props) => setEmail(props)}
-                                 placeHolder={'Email'}
-                                 value={email}
-                                 told
-                                 autocomplete
+                        <Input onChange={(props) => setEmail(props)}
+                               placeHolder={'Email'}
+                               value={email}
+                               told
+                               autocomplete
                         />
                     </div>
-                    <UiInput onChange={(props) => setOldPassword(props)}
-                             placeHolder={'Старый пароль'}
-                             value={oldPassword ? oldPassword : ''}
-                             hidden
-                             told
+                    <Input onChange={(props) => setOldPassword(props)}
+                           placeHolder={'Старый пароль'}
+                           value={oldPassword ? oldPassword : ''}
+                           hidden
+                           told
                     />
-                    <UiInput onChange={(props) => setPassword(props)}
-                             placeHolder={'Новый пароль'}
-                             value={password}
-                             hidden
-                             told
+                    <Input onChange={(props) => setPassword(props)}
+                           placeHolder={'Новый пароль'}
+                           value={password}
+                           hidden
+                           told
                     />
-                    <UiInput onChange={(props) => setConfirmPassword(props)}
-                             placeHolder={'Повторите новый пароль'}
-                             value={confirmPassword}
-                             hidden
-                             told
+                    <Input onChange={(props) => setConfirmPassword(props)}
+                           placeHolder={'Повторите новый пароль'}
+                           value={confirmPassword}
+                           hidden
+                           told
                     />
                 </div>
 
@@ -90,16 +90,16 @@ const Settings: React.FC<ISettingsProps> = ({user, updateUserState}) => {
                 {/*</div>*/}
 
                 <div className={'settings__btn'}>
-                    <UiButton title={'Сохранить'}
-                              handleClick={() => updateUserState({
+                    <Button title={'Сохранить'}
+                            handleClick={() => updateUserState({
                                   email: email,
                                   password: password,
                                   name: name,
                                   communicationType: communicationType,
                                   partnershipType: typeOfCooperation
                               })}
-                              disabled={password !== confirmPassword}
-                              width={'100%'}
+                            disabled={password !== confirmPassword}
+                            width={'100%'}
                     />
                 </div>
             </div>

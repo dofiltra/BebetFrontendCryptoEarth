@@ -77,7 +77,7 @@ export async function postFormData(
     options = {},
     customOptions = defautCustomOptions,
 ) {
-    const val = await localStorage.getItem("token")
+    const val = localStorage.getItem("token")
     if (val) {
         headers.authorization = val
     }
@@ -372,4 +372,3 @@ export const createFormData = data => {
 
     return formdata;
 };
-  

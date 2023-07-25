@@ -1,5 +1,5 @@
 @import "/src/scss/mixins";
-.ui-input {
+.ui_input {
   position: relative;
 
   width: 100%;
@@ -13,15 +13,15 @@
   background: #2D303C;
   border-radius: 8px;
 
-  &--told{
+  &__told{
     height: 55px;
   }
 
-  &--error{
+  &__error{
     border: 1px solid red;
   }
 
-  &--large {
+  &__large {
     height: 100px;
     align-items: flex-start;
 
@@ -69,7 +69,7 @@
     }
   }
 
-  &__showBtn {
+  &__show_btn {
     position: absolute;
     top: 50%;
     right: 7%;
@@ -80,7 +80,7 @@
   }
 }
 
-.ui-inputLabel {
+.ui_input_label {
   width: 100%;
   height: 55px;
 
@@ -92,7 +92,7 @@
   background: #2D303C;
   border-radius: 8px;
 
-  &-placeholder {
+  &_placeholder {
 
     p{
       @include p7-regular;
@@ -125,10 +125,10 @@
 }
 
 @media (min-width: 320px) and (max-width: 700px) {
-  .ui-input {
+  .ui_input {
     height: 42px;
 
-    &--told{
+    &__told{
       height: 55px;
     }
   }

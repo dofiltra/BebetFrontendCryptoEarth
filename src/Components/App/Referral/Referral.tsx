@@ -1,7 +1,7 @@
 import './Referral.scss';
 import React, {useState} from "react";
-import UiButton from "../../Ui/Button/UiButton";
-import UiInput from "../../Ui/Input/UiInput";
+import { Button } from "@shared/ui/button";
+import Input from "@shared/ui/input";
 
 interface IStatisticProps {
     referent: any;
@@ -29,8 +29,8 @@ const Referral: React.FC<IStatisticProps> = ({referent}) => {
                     <p>Создать ссылку</p>
                 </div>
 
-                <UiInput onChange={(props) => setName(props)} placeHolder={'Имя'} value={name}/>
-                <UiInput onChange={(props) => setLink(props)} placeHolder={'Ссылка на страницу'} value={link}/>
+                <Input onChange={(props) => setName(props)} placeHolder={'Имя'} value={name}/>
+                <Input onChange={(props) => setLink(props)} placeHolder={'Ссылка на страницу'} value={link}/>
                 <textarea
                     placeholder={'Описание'}
                     onChange={(event) => setDescription(event.target.value)}

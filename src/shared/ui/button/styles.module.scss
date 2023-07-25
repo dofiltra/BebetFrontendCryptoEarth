@@ -1,4 +1,4 @@
-.ui-button {
+.ui_button {
   width: auto;
   height: 42px;
 
@@ -26,36 +26,24 @@
     background: #51acff;
   }
 
-  &--transparent {
+  &__transparent {
     background: transparent !important;
     color: #047AE7;
   }
 
-  &--black {
+  &__black {
     background: #2A2E39;
   }
 
-  &--disabled {
+  &__disabled {
     color: #0085FF;
     background: #E9F4FF;
   }
 
-  //&:hover {
-  //  background: #047AE7;
-  //}
-  //
-  //&:active {
-  //  background: #0268C6;
-  //}
-}
-
-@media (min-width: 320px) and (max-width: 700px) {
-  .ui-button {
-    height: 42px;
-
-
-    &--told{
+  @media (min-width: 320px) and (max-width: 700px) {
+    &__told {
       height: 55px;
     }
   }
 }
+

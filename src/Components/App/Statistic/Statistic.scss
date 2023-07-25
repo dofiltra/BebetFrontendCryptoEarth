@@ -43,8 +43,6 @@
       justify-content: flex-start;
       gap: 16px;
 
-      display: none !important; // #TODO: Временное решение
-
       .filter {
         width: auto;
         height: 32px;
@@ -60,7 +58,7 @@
         transition: 0.2s;
         cursor: pointer;
 
-        &:hover{
+        &:hover {
           background: #3e4251;
         }
 
@@ -168,3 +166,9 @@
     }
   }
 }
+
+.filter_active {
+  background: #0085FF !important;
+}
+
+
