@@ -1,5 +1,5 @@
 import './Statistic.scss'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Bar, BarChart, Legend, Tooltip, XAxis, YAxis } from 'recharts'
 import { useIsMobile } from '@shared/lib/hooks'
 import cn from 'classnames'
@@ -20,12 +20,22 @@ const getData = (value: unknown): number | string => {
 
 const Statistic = (props: Props) => {
   const { fullStatistic, onChangeDate } = props
-  const chartRef = useRef(null)
+  const chartRef = useRef<HTMLDivElement | null>(null)
   const { isMobile } = useIsMobile()
-
+  const [width, setWidth] = useState(0)
   const [filter, setFilter] = useState<Filters>('all') // Изначально выбран фильтр "За все время"
 
-
+  useEffect(() => {
+    const changeWidth = () => {
+      const offset = chartRef.current?.offsetWidth
+      if (offset) {
+        setWidth(offset)
+      }
+    }
+    changeWidth()
+    window.addEventListener('resize', changeWidth)
+    return () => window.removeEventListener('resize', changeWidth)
+  }, [])
   const handleFilterChange = (filterValue: Filters) => {
     onChangeDate(filterValue)
     setFilter(filterValue)
@@ -45,7 +55,7 @@ const Statistic = (props: Props) => {
   }
 
 
-  function transformData(data: { [key: string]: DataEntry[] }, filter: string): TransformedData[] {
+  function transformData(data: { [key: string]: DataEntry[] }): TransformedData[] {
     const transformedData: TransformedData[] = []
     const fieldTranslations: { [key: string]: string } = {
       registractions: 'Регистрации',
@@ -61,12 +71,13 @@ const Statistic = (props: Props) => {
         if (data.hasOwnProperty(key)) {
           const values: DataEntry[] = data[key]
           let totalValue = 0
-          if (!Array.isArray(values) || values.length === 0) continue
-          for (const entry of values) {
-            const date = entry.date
-            const value = entry.data
-            if (new Date(date).getMonth() === i) {
-              totalValue += value
+          if (Array.isArray(values)) {
+            for (const entry of values) {
+              const date = entry.date
+              const value = entry.data
+              if (new Date(date).getMonth() === i) {
+                totalValue += value
+              }
             }
           }
           const translatedKey = fieldTranslations[key] || key
@@ -78,8 +89,8 @@ const Statistic = (props: Props) => {
     return transformedData
   }
 
-  let res = transformData(fullStatistic, filter)
-  console.log(fullStatistic?.traffic)
+  let res = transformData(fullStatistic)
+  console.log(res)
   return (
     <div className={'statistic'}>
       <div className={'statistic__title'}>
@@ -87,8 +98,7 @@ const Statistic = (props: Props) => {
       </div>
       <div className={'statistic__graphics'} ref={chartRef}>
         <BarChart
-          // @ts-ignore
-          width={chartRef.current?.offsetWidth}
+          width={width}
           height={300}
           data={res}
           margin={{
