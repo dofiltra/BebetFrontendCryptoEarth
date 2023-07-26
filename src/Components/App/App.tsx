@@ -83,15 +83,7 @@ function App() {
   }
 
   const getFullStatistic = async (filter?: Filters) => {
-    let date: Date
-    if (!filter || filter === 'all') {
-      const currentDate = new Date()
-      const currentYear = currentDate.getFullYear()
-      date = new Date(currentYear, 0, 1)
-    } else {
-      date = getDateByFilter(filter)
-    }
-
+    const date = getDateByFilter(filter)
     const d = createFormData({ start_date: date })
     let res = await postFormData('/ref_user/getDashboardByDate', d)
     if (res) {
