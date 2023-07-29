@@ -1,6 +1,6 @@
 import './UiSelector.scss';
 import React, {useState} from 'react';
-import classNames from "classnames";
+import cn from "classnames";
 
 interface IUiSelectorProps {
     onSelect: (props: string) => void,
@@ -19,8 +19,7 @@ const UiSelector: React.FC<IUiSelectorProps> = ({onSelect, title, value, items, 
     }
 
     return (
-        <div className={classNames({
-            'ui-selector': true,
+        <div className={cn('ui-selector', {
             'ui-selector--error': error,
         })}
         >
@@ -35,18 +34,6 @@ const UiSelector: React.FC<IUiSelectorProps> = ({onSelect, title, value, items, 
                             <p>{item}</p>
                         </div>
                     ))}
-                    {/*<div className={'ui-selector-dropdown__item'} onClick={() => handleSelect('some')}>*/}
-                    {/*    <p>some</p>*/}
-                    {/*</div>*/}
-                    {/*<div className={'ui-selector-dropdown__item'} onClick={() => handleSelect('some')}>*/}
-                    {/*    <p>some</p>*/}
-                    {/*</div>*/}
-                    {/*<div className={'ui-selector-dropdown__item'} onClick={() => handleSelect('some')}>*/}
-                    {/*    <p>some</p>*/}
-                    {/*</div>*/}
-                    {/*<div className={'ui-selector-dropdown__item'} onClick={() => handleSelect('some')}>*/}
-                    {/*    <p>some</p>*/}
-                    {/*</div>*/}
                 </div>
             }
         </div>
