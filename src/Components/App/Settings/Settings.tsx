@@ -39,18 +39,6 @@ const Settings: React.FC<ISettingsProps> = ({user, updateUserState}) => {
                 <div className={'settings__inputs'}>
 
                     <Input onChange={(props) => setName(props)} placeHolder={'Имя'} value={name} told/>
-                    <UiSelector onSelect={(props) => setCommunicationType(props)}
-                                title={'Способ связи'}
-                                value={communicationType}
-                                items={['email']}
-                    />
-                    <Input onChange={(props) => setTraffic(props)} placeHolder={'Источние трафика'}
-                           value={traffic}
-                           told
-                    />
-                    <UiSelector onSelect={(props) => setTypeOfCooperation(props)} title={'Тип сотрудничества'}
-                                items={['Rev. Share']}
-                                value={typeOfCooperation}/>
                     <div className={'settings__inputs-email'}>
                         <Input onChange={(props) => setEmail(props)}
                                placeHolder={'Email'}

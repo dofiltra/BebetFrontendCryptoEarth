@@ -320,7 +320,7 @@ const Auth: React.FC<IAppProps> = ({ showAuth, setLogged, setShowAuth, setProfil
             items={['Email', 'Telegram', 'WhatsApp']}
             error={error === 'communicationType'}
           />
-          <Input onChange={(props) => setLink(props)} placeHolder={'Введите данные'} value={link} told/>
+          <Input onChange={(props) => setLink(props)} placeHolder={'Введите данные для связи'} value={link} told/>
           <Input
             onChange={(props) => {
               setPassword(props)
@@ -345,22 +345,6 @@ const Auth: React.FC<IAppProps> = ({ showAuth, setLogged, setShowAuth, setProfil
             told
             error={error === 'password'}
 
-          />
-          <Input onChange={(props) => setTraffic(props)} placeHolder={'Источник трафика'}
-                 value={traffic}
-                 told
-          />
-          <Input onChange={(props) => setRefCode(props)} placeHolder={'Промокод'} value={refCode} told/>
-          <UiSelector
-            onSelect={(props) => {
-              setTypeOfCooperation(props)
-              setDisabled(false)
-              setError('')
-            }}
-            title={'Тип сотрудничества'}
-            items={['Rev. Share']}
-            value={typeOfCooperation}
-            error={error === 'typeOfCooperation'}
           />
           <div className={'register-body-right__checkbox'}>
             <UiCheckBox title={'Я подтверждаю, что мне есть 18 лет'}

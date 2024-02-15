@@ -28,7 +28,7 @@ const Links: React.FC<IStatisticProps> = ({user, getRefUrls, refLinks}) => {
 
     const popup = () => {
         return (
-            <div className={'links-popup'}>
+            <div className={'links-popup'} style={'width: 100%; margin: 0;'}>
                 <div className={'login__closeBtn'} onClick={() => setShowPopup(false)}>
                     <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect width="48" height="48" rx="16" fill="white"/>
