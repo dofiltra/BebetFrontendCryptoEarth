@@ -135,6 +135,25 @@ function App() {
     }
   }
 
+  const handleEarningsHistory = async () => {
+    let res = await get('/ref_admin/users/')
+    if (res) {
+      setUser(res)
+    }
+  };
+  const handleWithdrawalInfo = async (id: any) => {
+    let res = await get(`/ref_admin/users/${id}`)
+    if (res) {
+      setUser(res)
+    }
+  };
+  const handleBlockUnblockUser = async (id: any) => {
+    let res = await get(`/ref_admin/users/${id}/block`)
+    if (res) {
+      setUser(res)
+    }
+  };
+
 
   useEffect(() => {
     if (logged) {
