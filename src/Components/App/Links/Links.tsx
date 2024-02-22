@@ -1,7 +1,7 @@
 import './Links.scss';
 import React, {useState} from "react";
-import { Button } from "@shared/ui/button";
-import Input from "@shared/ui/input";
+import { Button } from "@/shared/ui/button";
+import Input from "@/shared/ui/input";
 import {createFormData, get, postFormData} from "../../../services/api";
 
 interface IStatisticProps {

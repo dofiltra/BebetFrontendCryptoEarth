@@ -1,7 +1,7 @@
 import './Statistic.scss'
 import { useEffect, useRef, useState } from 'react'
 import { Bar, BarChart, Legend, Tooltip, XAxis, YAxis } from 'recharts'
-import { useIsMobile } from '@shared/lib/hooks'
+import { useIsMobile } from '@/shared/lib/hooks'
 import cn from 'classnames'
 
 export type Filters = 'all' | 'month' | 'week' | 'yesterday' | 'today'
@@ -90,7 +90,6 @@ const Statistic = (props: Props) => {
   }
 
   let res = transformData(fullStatistic)
-  console.log(res)
   return (
     <div className={'statistic'}>
       <div className={'statistic__title'}>

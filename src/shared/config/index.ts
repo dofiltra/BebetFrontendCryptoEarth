@@ -1,1 +1,1 @@
-export const API_URL = "https://api-bet.ru:3012/api/v1";
+export const API_URL = "https://api-bet.ru:3012";

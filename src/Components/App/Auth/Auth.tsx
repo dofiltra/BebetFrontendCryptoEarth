@@ -1,12 +1,12 @@
 import './Auth.scss'
 import { useState } from 'react'
-import { Button } from '@shared/ui/button'
+import { Button } from '@/shared/ui/button'
 import UiCheckBox from '../../Ui/CheckBox/UiCheckBox'
 import { createFormData, get, postFormData } from '../../../services/api'
-import Input from '@shared/ui/input'
+import Input from '@/shared/ui/input'
 import UiSelector from '../../Ui/UiSelector/UiSelector'
-import { useIsMobile } from '@shared/lib/hooks/use-is-mobile'
-import { ResetPasswordModal } from '@features/reset-password'
+import { useIsMobile } from '@/shared/lib/hooks/use-is-mobile'
+import { ResetPasswordModal } from '@/features/reset-password'
 
 const footerPoints = [
   {

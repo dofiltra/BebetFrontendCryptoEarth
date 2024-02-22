@@ -1,7 +1,7 @@
 import './Settings.scss';
 import React, {useEffect, useState} from "react";
-import Input from "@shared/ui/input";
-import { Button } from "@shared/ui/button";
+import Input from "@/shared/ui/input";
+import { Button } from "@/shared/ui/button";
 import UiSelector from "../../Ui/UiSelector/UiSelector";
 
 interface ISettingsProps {

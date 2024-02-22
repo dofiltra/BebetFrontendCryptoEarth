@@ -1,6 +1,6 @@
-import { apiInstance } from "@shared/api";
+import { apiInstance } from "@/shared/api";
 
-const BASE_URL = "/confirmation/ForgotPasswordRef";
+const BASE_URL = "/api/v1/confirmation/ForgotPasswordRef";
 
 export type ResetPasswordParams = {
   email: string;

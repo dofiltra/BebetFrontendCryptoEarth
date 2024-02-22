@@ -1,8 +1,10 @@
-import { API_URL } from "@shared/config";
+import { API_URL } from "@/shared/config";
 import axios, { AxiosInstance, AxiosResponse, AxiosRequestConfig } from "axios";
 
 class ApiInstance {
   private axios: AxiosInstance;
+
+  private _token: string | null = null
 
   constructor() {
     this.axios = axios.create({
@@ -11,6 +13,33 @@ class ApiInstance {
         "Content-Type": "application/json",
       },
     });
+    this.init()
+  }
+
+  public init() {
+
+    this.axios.interceptors.request.use((config) => {
+      if (!this.token) {
+        return config
+      }
+      config.headers['Authorization'] = this.token
+
+      return config
+    })
+  }
+
+  private get token() {
+    if (this._token) {
+      return this._token
+    }
+
+    const token = localStorage.getItem('token')
+
+    if (token) {
+      this._token = token
+    }
+
+    return this._token
   }
 
   async get<T>(endpoint: string, options: AxiosRequestConfig = {}): Promise<AxiosResponse<T>> {
