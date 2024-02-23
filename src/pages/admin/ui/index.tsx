@@ -3,7 +3,7 @@ import { UserAdminTable } from "@/widgets/user-admin-table/ui";
 import { useStyles } from './styles'
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
-import { Pagination } from "@mui/material";
+import { Button, Pagination } from "@mui/material";
 import { Link } from "@tanstack/react-router";
 
 const DEFAULT_USER_LIMIT = 10
@@ -15,8 +15,10 @@ export const AdminPage = () => {
 
   return (
     <div>
-      <nav>
-        <Link to={'/'}>Back</Link>
+      <nav className={classes.navigation}>
+        <Button component={Link} to={'/'}>
+          To Main
+        </Button>
       </nav>
       <h1 className={classes.title}>Admin page</h1>
       <h2 className={classes.stats_title}>Users</h2>
