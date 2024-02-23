@@ -1,6 +1,5 @@
 import './Referral.scss';
 import React, {useState} from "react";
-import { Button } from "@/shared/ui/button";
 import Input from "@/shared/ui/input";
 
 interface IStatisticProps {

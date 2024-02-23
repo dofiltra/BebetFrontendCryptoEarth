@@ -2,7 +2,6 @@ import './Settings.scss';
 import React, {useEffect, useState} from "react";
 import Input from "@/shared/ui/input";
 import { Button } from "@/shared/ui/button";
-import UiSelector from "../../Ui/UiSelector/UiSelector";
 
 interface ISettingsProps {
     user: any;
@@ -10,7 +9,6 @@ interface ISettingsProps {
 }
 
 const Settings: React.FC<ISettingsProps> = ({user, updateUserState}) => {
-    const mobile = window.innerWidth >= 320 && window.innerWidth <= 470
 
     const [name, setName] = useState(user?.name)
     const [email, setEmail] = useState(user?.email)
@@ -18,8 +16,7 @@ const Settings: React.FC<ISettingsProps> = ({user, updateUserState}) => {
     const [oldPassword, setOldPassword] = useState('')
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
-    const [communicationType, setCommunicationType] = useState(user?.connectionType)
-    const [traffic, setTraffic] = useState(user?.traficSource)
+    const [communicationType, ] = useState(user?.connectionType)
     const [typeOfCooperation, setTypeOfCooperation] = useState(user?.partnershipType)
 
     useEffect(() => {

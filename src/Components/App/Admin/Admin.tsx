@@ -10,6 +10,7 @@ interface IStatisticProps {
 
 const Admin: React.FC<IStatisticProps> = ({ referent }) => {
   const [showPopup, setShowPopup] = useState(false)
+  const [user, setUser] = useState<any>({})
   const [name, setName] = useState('')
   const [link, setLink] = useState('')
   const [description, setDescription] = useState('')
@@ -81,11 +82,11 @@ const Admin: React.FC<IStatisticProps> = ({ referent }) => {
               <p>{new Date(item?.statistics?.connection_date).toJSON().slice(0, 10)}</p>
               <p>{item?.statistics?.depositsFirst}</p>
               <p>
-                <Button title="История начислений" handleClick={handleEarningsHistory(user.id)} disabled={false}
+                <Button title="История начислений" handleClick={() => handleEarningsHistory()} disabled={false}
                         width="150px" transparent={false} black={true}/>
-                <Button title="Информация о выводах" handleClick={handleWithdrawalInfo(user.id)} disabled={false}
+                <Button title="Информация о выводах" handleClick={() => handleWithdrawalInfo(user.id)} disabled={false}
                         width="150px" transparent={false} black={true}/>
-                <Button title="Блок/разблок" handleClick={handleBlockUnblockUser(user.id)} disabled={false}
+                <Button title="Блок/разблок" handleClick={() => handleBlockUnblockUser(user.id)} disabled={false}
                         width="150px" transparent={false} black={true}/>
               </p>
             </div>

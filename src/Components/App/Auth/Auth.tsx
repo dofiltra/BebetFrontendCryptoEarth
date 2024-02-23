@@ -40,11 +40,10 @@ const Auth: React.FC<IAppProps> = ({ showAuth, setLogged, setShowAuth, setProfil
   const [link, setLink] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
-  const [traffic, setTraffic] = useState('')
-  const [refCode, setRefCode] = useState('')
-  const [typeOfCooperation, setTypeOfCooperation] = useState('')
+  const [traffic,] = useState('')
+  const [refCode,] = useState('')
+  const [typeOfCooperation,] = useState('')
   const [imOlder, setImOlder] = useState(false)
-  const [otp, setOtp] = useState('')
 
   const [disabled, setDisabled] = useState(false)
   const [error, setError] = useState('')
@@ -114,26 +113,6 @@ const Auth: React.FC<IAppProps> = ({ showAuth, setLogged, setShowAuth, setProfil
     if (res) {
       await auth()
     }
-  }
-
-  const restorePassword = async () => {
-    let d = createFormData({ email: email })
-    // let res = await postFormData('/confirmation/email-verify', d)
-    // if (res) {
-    //     console.log(res)
-    //     setShowOTPForm(true)
-    // }
-
-  }
-
-  const saveNewPassword = async () => {
-    let d = createFormData({ code: otp, password: password })
-    // let res = await postFormData('/confirmation/checkConfirmationAndSetPassword', d)
-    // if (res) {
-    //     console.log(res)
-    //     setShowOTPForm(false)
-    //     setShowRestorePassword(false)
-    // }
   }
 
   const loginComp = () => {

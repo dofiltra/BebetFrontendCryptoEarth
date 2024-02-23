@@ -1,5 +1,5 @@
 import './App.scss'
-import React, { useEffect, useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Button } from '@/shared/ui/button'
 import Auth from './Auth/Auth'
 import Statistic, { Filters } from './Statistic/Statistic'
@@ -135,25 +135,6 @@ function App() {
       setOuts(res)
     }
   }
-
-  const handleEarningsHistory = async () => {
-    let res = await get('/ref_admin/users/')
-    if (res) {
-      setUser(res)
-    }
-  };
-  const handleWithdrawalInfo = async (id: any) => {
-    let res = await get(`/ref_admin/users/${id}`)
-    if (res) {
-      setUser(res)
-    }
-  };
-  const handleBlockUnblockUser = async (id: any) => {
-    let res = await get(`/ref_admin/users/${id}/block`)
-    if (res) {
-      setUser(res)
-    }
-  };
 
 
   useEffect(() => {
