@@ -1,7 +1,7 @@
-export const backendApi = "https://api-wellink-test.online:3012/api/v1"
-export const backendApiBase = "https://api-wellink-test.online:3012/"
-export const wsApiBase = "wss://api-wellink-test.online:9002"
-export const wsApiChat = "wss://api-wellink-test.online:9004"
+export const backendApi = "https://api-bet.ru:3012/api/v1"
+export const backendApiBase = "https://api-bet.ru:3012/"
+export const wsApiBase = "wss://api-bet.ru:9002"
+export const wsApiChat = "wss://api-bet.ru:9004"
 
 const jsonHeaders = {
     'Content-Type': 'application/json',

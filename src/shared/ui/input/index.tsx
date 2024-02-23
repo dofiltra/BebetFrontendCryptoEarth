@@ -1,5 +1,5 @@
 import s from './styles.module.scss'
-import React, { useState } from 'react'
+import { useState } from 'react'
 import cn from 'classnames'
 
 interface IUiInputProps {
@@ -35,7 +35,6 @@ const Input = (props: IUiInputProps) => {
   }
 
 
-  const inputProps = hidden ? (showPassword ? value : value.replace(/./g, '*')) : value
   const inputType = hidden ? (showPassword ? 'text' : 'password') : type || 'text'
 
   if (label) {

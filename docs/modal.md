@@ -4,7 +4,7 @@
 
 #### Пример использования
 ```tsx
-import { Modal } from '@shared/ui/modal'
+import { Modal } from '@/shared/ui/modal'
 
 export default function BasicModal() {
   const [open, setOpen] = useState(false);

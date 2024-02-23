@@ -1,6 +1,6 @@
-import { Modal } from '@shared/ui/modal'
+import { Modal } from '@/shared/ui/modal'
 import { useState, JSX } from 'react'
-import { Content } from '@features/reset-password/ui/content'
+import { Content } from '@/features/reset-password/ui/content'
 
 type Props = {
   renderOpenEl: ((handleOpen: () => void) => JSX.Element)

@@ -1,12 +1,12 @@
 import './Auth.scss'
 import { useState } from 'react'
-import { Button } from '@shared/ui/button'
+import { Button } from '@/shared/ui/button'
 import UiCheckBox from '../../Ui/CheckBox/UiCheckBox'
 import { createFormData, get, postFormData } from '../../../services/api'
-import Input from '@shared/ui/input'
+import Input from '@/shared/ui/input'
 import UiSelector from '../../Ui/UiSelector/UiSelector'
-import { useIsMobile } from '@shared/lib/hooks/use-is-mobile'
-import { ResetPasswordModal } from '@features/reset-password'
+import { useIsMobile } from '@/shared/lib/hooks/use-is-mobile'
+import { ResetPasswordModal } from '@/features/reset-password'
 
 const footerPoints = [
   {
@@ -40,11 +40,10 @@ const Auth: React.FC<IAppProps> = ({ showAuth, setLogged, setShowAuth, setProfil
   const [link, setLink] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
-  const [traffic, setTraffic] = useState('')
-  const [refCode, setRefCode] = useState('')
-  const [typeOfCooperation, setTypeOfCooperation] = useState('')
+  const [traffic,] = useState('')
+  const [refCode,] = useState('')
+  const [typeOfCooperation,] = useState('')
   const [imOlder, setImOlder] = useState(false)
-  const [otp, setOtp] = useState('')
 
   const [disabled, setDisabled] = useState(false)
   const [error, setError] = useState('')
@@ -114,26 +113,6 @@ const Auth: React.FC<IAppProps> = ({ showAuth, setLogged, setShowAuth, setProfil
     if (res) {
       await auth()
     }
-  }
-
-  const restorePassword = async () => {
-    let d = createFormData({ email: email })
-    // let res = await postFormData('/confirmation/email-verify', d)
-    // if (res) {
-    //     console.log(res)
-    //     setShowOTPForm(true)
-    // }
-
-  }
-
-  const saveNewPassword = async () => {
-    let d = createFormData({ code: otp, password: password })
-    // let res = await postFormData('/confirmation/checkConfirmationAndSetPassword', d)
-    // if (res) {
-    //     console.log(res)
-    //     setShowOTPForm(false)
-    //     setShowRestorePassword(false)
-    // }
   }
 
   const loginComp = () => {
@@ -320,7 +299,7 @@ const Auth: React.FC<IAppProps> = ({ showAuth, setLogged, setShowAuth, setProfil
             items={['Email', 'Telegram', 'WhatsApp']}
             error={error === 'communicationType'}
           />
-          <Input onChange={(props) => setLink(props)} placeHolder={'Введите данные'} value={link} told/>
+          <Input onChange={(props) => setLink(props)} placeHolder={'Введите данные для связи'} value={link} told/>
           <Input
             onChange={(props) => {
               setPassword(props)
@@ -345,22 +324,6 @@ const Auth: React.FC<IAppProps> = ({ showAuth, setLogged, setShowAuth, setProfil
             told
             error={error === 'password'}
 
-          />
-          <Input onChange={(props) => setTraffic(props)} placeHolder={'Источник трафика'}
-                 value={traffic}
-                 told
-          />
-          <Input onChange={(props) => setRefCode(props)} placeHolder={'Промокод'} value={refCode} told/>
-          <UiSelector
-            onSelect={(props) => {
-              setTypeOfCooperation(props)
-              setDisabled(false)
-              setError('')
-            }}
-            title={'Тип сотрудничества'}
-            items={['Rev. Share']}
-            value={typeOfCooperation}
-            error={error === 'typeOfCooperation'}
           />
           <div className={'register-body-right__checkbox'}>
             <UiCheckBox title={'Я подтверждаю, что мне есть 18 лет'}
@@ -435,7 +398,7 @@ const Auth: React.FC<IAppProps> = ({ showAuth, setLogged, setShowAuth, setProfil
               error={error === 'communicationType'}
             />
             <Input onChange={(props) => setLink(props)}
-                   placeHolder={'Введите данные'}
+                   placeHolder={'Введите данные для связи'}
                    value={link}
                    told
             />
@@ -467,28 +430,6 @@ const Auth: React.FC<IAppProps> = ({ showAuth, setLogged, setShowAuth, setProfil
 
             />
           </div>
-          <Input onChange={(props) => setTraffic(props)}
-                 placeHolder={'Источник трафика'}
-                 value={traffic}
-                 told
-          />
-          <Input
-            onChange={(props) => setRefCode(props)}
-            placeHolder={'Промокод'}
-            value={refCode}
-            told
-          />
-          <UiSelector
-            onSelect={(props) => {
-              setTypeOfCooperation(props)
-              setDisabled(false)
-              setError('')
-            }}
-            title={'Тип сотрудничества'}
-            items={['Rev. Share']}
-            value={typeOfCooperation}
-            error={error === 'typeOfCooperation'}
-          />
 
           <div className={'register-body-right__checkbox'}>
             <UiCheckBox title={'Я подтверждаю, что мне есть 18 лет'}

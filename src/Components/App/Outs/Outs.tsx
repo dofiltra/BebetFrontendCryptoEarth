@@ -6,7 +6,6 @@ interface ISettingsProps {
 }
 
 const Outs: React.FC<ISettingsProps> = ({outs}) => {
-    const mobile = window.innerWidth >= 320 && window.innerWidth <= 470
 
 
     return (

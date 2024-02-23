@@ -1,6 +1,6 @@
 import './App.scss'
-import React, { useEffect, useMemo, useState } from 'react'
-import { Button } from '@shared/ui/button'
+import { useEffect, useState } from 'react'
+import { Button } from '@/shared/ui/button'
 import Auth from './Auth/Auth'
 import Statistic, { Filters } from './Statistic/Statistic'
 import Links from './Links/Links'
@@ -10,9 +10,10 @@ import Outs from './Outs/Outs'
 import { createFormData, get, postFormData } from '../../services/api'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import Input from '@shared/ui/input'
-import { useIsMobile } from '@shared/lib/hooks'
-import { getDateByFilter } from '@shared/lib/date/get-date-by-filter'
+import Input from '@/shared/ui/input'
+import { useIsMobile } from '@/shared/lib/hooks'
+import { getDateByFilter } from '@/shared/lib/date/get-date-by-filter'
+import { Link } from "@tanstack/react-router";
 
 function App() {
   const { isMobile } = useIsMobile()
@@ -295,6 +296,7 @@ function App() {
                         setMenuOpen(false)
                       }}>Выводы</p>
                       <p onClick={settingShow}>Настройки</p>
+                      <Link to={'/admin'}>Перейти в админ панель</Link>
                       <p onClick={getSupport}>Поддержка</p>
                       <p onClick={logOut}>Выйти</p>
                   </div>
@@ -400,6 +402,7 @@ function App() {
                       setShowProfile(false)
                     }}>Выводы</p>
                     <p onClick={settingShow}>Настройки</p>
+                    <Link to={'/admin'}>Перейти в админ панель</Link>
                     <p onClick={getSupport}>Поддержка</p>
                     <p onClick={logOut}>Выйти</p>
                 </div>

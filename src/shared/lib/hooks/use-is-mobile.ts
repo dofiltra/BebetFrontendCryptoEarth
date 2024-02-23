@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { throttle } from '@shared/lib/throttle'
+import { throttle } from '@/shared/lib/throttle'
 
 const getIsMobile = () => {
   return window.innerWidth >= 320 && window.innerWidth <= 470

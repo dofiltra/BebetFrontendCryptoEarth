@@ -47,7 +47,7 @@
 
   z-index: 10;
 
-  p{
+  p {
     padding: 12px 0;
     color: white;
 
@@ -57,7 +57,7 @@
   }
 }
 
-.money-request{
+.money-request {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -103,7 +103,7 @@
     }
   }
 
-  span{
+  span {
     padding: 16px 0;
     color: #DBDDE0;
 
@@ -112,12 +112,12 @@
 }
 
 @media (min-width: 320px) and (max-width: 700px) {
-  .money-request{
+  .money-request {
     width: 90%;
   }
 }
 
-.app-main-page{
+.app-main-page {
   width: 100vw;
   height: 100vh;
 }
@@ -200,7 +200,7 @@
         transition: 0.2s;
       }
 
-      p:hover{
+      p:hover {
         color: #a0c2e0;
       }
 
@@ -283,20 +283,23 @@
       justify-content: space-between;
       margin-bottom: 12px;
     }
-    p {
+
+    p, a {
       width: 100%;
+      text-decoration: none;
       @include p6-regular;
       text-align: left;
       padding: 12px;
       transition: 0.2s;
       cursor: pointer;
-    }
-    p:hover{
-      color: #30323c;
+
+      &:hover {
+        color: #30323c;
+      }
     }
   }
 }
 
-.displaynone{
+.displaynone {
   display: none;
 }
