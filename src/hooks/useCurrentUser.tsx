@@ -13,12 +13,15 @@ export const useCurrentUser = () => {
 }
 
 export const getCurrentUser = async (): Promise<UserDto | undefined> => {
+  if (!localStorage.getItem('token')) {
+    return
+  }
+
   const user = await get('/ref_user/getCurrentUser')
 
   if (!user) {
     return
   }
 
-  console.log('user', user)
   return user
 }

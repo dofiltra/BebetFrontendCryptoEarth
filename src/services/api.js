@@ -28,7 +28,7 @@ export async function post(
     options = {},
     customOptions = defautCustomOptions,
 ) {
-    const val = await localStorage.getItem("token")
+    const val = localStorage.getItem("token")
     if (val) {
         headers.authorization = val
     }
@@ -181,7 +181,7 @@ export async function get(
     options = {},
     customOptions = defautCustomOptions,
 ) {
-    const val = await localStorage.getItem("token")
+    const val = localStorage.getItem("token")
     if (val) {
         headers.authorization = val
     }
@@ -353,7 +353,7 @@ function addAuthHeader(headers) {
     const data = localStorage.getItem('session');
 
     if (data !== null) {
-        const {token} = JSON.parse(data);
+        const { token } = JSON.parse(data);
         if (token) {
             headers['authorization'] = token;
         }
