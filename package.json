@@ -30,6 +30,7 @@
   },
   "scripts": {
     "start": "vite",
+    "dev": "vite --port 3040",
     "build": "tsc && vite build",
     "serve": "vite preview",
     "gen:routes": "tsr generate",
