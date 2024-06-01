@@ -123,15 +123,15 @@ const Statistic = (props: Props) => {
             }
           }
         >
-          <XAxis dataKey='name' />
+          <XAxis dataKey="name" />
           <YAxis />
           <Tooltip />
           <Legend />
-          <Bar dataKey='Регистрации' fill='#F14336' />
-          <Bar dataKey='Переходы' fill='#a358e8' />
-          <Bar dataKey='Депозит' fill='#0085FF' />
-          <Bar dataKey='Сумма депозита' fill='#28B446' />
-          <Bar dataKey='Первые депозиты' fill='#FDB12F' />
+          <Bar dataKey="Регистрации" fill="#F14336" />
+          <Bar dataKey="Переходы" fill="#a358e8" />
+          <Bar dataKey="Депозит" fill="#0085FF" />
+          <Bar dataKey="Сумма депозита" fill="#28B446" />
+          <Bar dataKey="Первые депозиты" fill="#FDB12F" />
         </BarChart>
       </div>
       <div className={'statistic__info'}>
@@ -182,26 +182,26 @@ const Statistic = (props: Props) => {
           <div className={'statistic__info-container-first'}>
             {!isMobile && (
               <>
-                <div className='item'>
-                  <div className='item__title'>
+                <div className="item">
+                  <div className="item__title">
                     <p>Переходы</p>
                   </div>
                   <p>{getData(fullStatistic?.traffic)}</p>
                 </div>
-                <div className='item'>
-                  <div className='item__title'>
+                <div className="item">
+                  <div className="item__title">
                     <p>Регистрации</p>
                   </div>
                   <p>{getData(fullStatistic?.registractions)}</p>
                 </div>
-                <div className='item'>
-                  <div className='item__title'>
+                <div className="item">
+                  <div className="item__title">
                     <p>Ратио по регистрациям</p>
                   </div>
                   <p>{getData(fullStatistic?.ratioTrafficRegistration)}</p>
                 </div>
-                <div className='item'>
-                  <div className='item__title'>
+                <div className="item">
+                  <div className="item__title">
                     <p>Средний доход с игрока</p>
                   </div>
                   <p>{getData(fullStatistic?.avgIncome)}</p>
@@ -210,14 +210,14 @@ const Statistic = (props: Props) => {
             )}
             {isMobile && (
               <>
-                <div className='item'>
-                  <div className='item__title'>
+                <div className="item">
+                  <div className="item__title">
                     <p>Переходы</p>
                   </div>
                   <p>{getData(fullStatistic?.traffic)}</p>
                 </div>
-                <div className='item'>
-                  <div className='item__title'>
+                <div className="item">
+                  <div className="item__title">
                     <p>Регистрации</p>
                   </div>
                   <p>{getData(fullStatistic?.registractions)}</p>
@@ -228,26 +228,26 @@ const Statistic = (props: Props) => {
           <div className={'statistic__info-container-second'}>
             {!isMobile && (
               <>
-                <div className='item'>
-                  <div className='item__title'>
+                <div className="item">
+                  <div className="item__title">
                     <p>Переходы в день</p>
                   </div>
                   <p>{getData(fullStatistic?.traffic2)}</p>
                 </div>
-                <div className='item'>
-                  <div className='item__title'>
+                <div className="item">
+                  <div className="item__title">
                     <p>Первые депозиты</p>
                   </div>
                   <p>{getData(fullStatistic?.depositsFirst)}</p>
                 </div>
-                <div className='item'>
-                  <div className='item__title'>
+                <div className="item">
+                  <div className="item__title">
                     <p>Кол-во выполнений депозитов</p>
                   </div>
                   <p>{getData(fullStatistic?.depositsCompleted)}</p>
                 </div>
-                <div className='item'>
-                  <div className='item__title'>
+                <div className="item">
+                  <div className="item__title">
                     <p>Ратио по депозитам</p>
                   </div>
                   <p>{getData(fullStatistic?.depositsRatio)}</p>
@@ -256,14 +256,14 @@ const Statistic = (props: Props) => {
             )}
             {isMobile && (
               <>
-                <div className='item'>
-                  <div className='item__title'>
+                <div className="item">
+                  <div className="item__title">
                     <p>Ратио по регистрациям</p>
                   </div>
                   <p>{getData(fullStatistic?.ratioTrafficRegistration)}</p>
                 </div>
-                <div className='item'>
-                  <div className='item__title'>
+                <div className="item">
+                  <div className="item__title">
                     <p>Средний доход с игрока</p>
                   </div>
                   <p>{getData(fullStatistic?.avgIncome)}</p>
@@ -274,14 +274,14 @@ const Statistic = (props: Props) => {
           <div className={'statistic__info-container-third'}>
             {!isMobile && (
               <>
-                <div className='item'>
-                  <div className='item__title'>
+                <div className="item">
+                  <div className="item__title">
                     <p>Сумма депозитов</p>
                   </div>
                   <p>{getData(fullStatistic?.depositsSummary)}</p>
                 </div>
-                <div className='item'>
-                  <div className='item__title'>
+                <div className="item">
+                  <div className="item__title">
                     <p>Стоимость перехода</p>
                   </div>
                   <p>{getData(fullStatistic?.trafficPrice)}</p>
@@ -290,14 +290,14 @@ const Statistic = (props: Props) => {
             )}
             {isMobile && (
               <>
-                <div className='item'>
-                  <div className='item__title'>
+                <div className="item">
+                  <div className="item__title">
                     <p>Переходы в день</p>
                   </div>
                   <p>{getData(fullStatistic?.traffic2)}</p>
                 </div>
-                <div className='item'>
-                  <div className='item__title'>
+                <div className="item">
+                  <div className="item__title">
                     <p>Первые депозиты</p>
                   </div>
                   <p>{getData(fullStatistic?.depositsFirst)}</p>
@@ -308,28 +308,28 @@ const Statistic = (props: Props) => {
           {isMobile && (
             <>
               <div className={'statistic__info-container-four'}>
-                <div className='item'>
-                  <div className='item__title'>
+                <div className="item">
+                  <div className="item__title">
                     <p>Кол-во выполнений депозитов</p>
                   </div>
                   <p>{getData(fullStatistic?.depositsCompleted)}</p>
                 </div>
-                <div className='item'>
-                  <div className='item__title'>
+                <div className="item">
+                  <div className="item__title">
                     <p>Ратио по депозитам</p>
                   </div>
                   <p>{getData(fullStatistic?.depositsRatio)}</p>
                 </div>
               </div>
               <div className={'statistic__info-container-five'}>
-                <div className='item'>
-                  <div className='item__title'>
+                <div className="item">
+                  <div className="item__title">
                     <p>Сумма депозитов</p>
                   </div>
                   <p>{getData(fullStatistic?.depositsSummary)}</p>
                 </div>
-                <div className='item'>
-                  <div className='item__title'>
+                <div className="item">
+                  <div className="item__title">
                     <p>Стоимость перехода</p>
                   </div>
                   <p>{getData(fullStatistic?.trafficPrice)}</p>
