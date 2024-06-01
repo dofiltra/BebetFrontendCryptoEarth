@@ -5,7 +5,7 @@ export const Route = createRootRoute({
   component: () => (
     <>
       <Outlet />
-      {location.host.includes('localhost') && <TanStackRouterDevtools />}
+      <TanStackRouterDevtools />
     </>
   ),
 })
