@@ -6,7 +6,7 @@ import { type UserDto } from '@/entities/user'
 
 interface ISettingsProps {
   user?: UserDto
-  updateUserState: any
+  updateUserState: (props: any) => Promise<void>
 }
 
 const Settings: React.FC<ISettingsProps> = ({ user, updateUserState }) => {
@@ -17,12 +17,12 @@ const Settings: React.FC<ISettingsProps> = ({ user, updateUserState }) => {
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
   const [communicationType] = useState(user?.communicationType)
-  const [typeOfCooperation, setTypeOfCooperation] = useState(user?.partnershipType)
+  const [partnershipType, setPartnershipType] = useState(user?.partnershipType)
 
   useEffect(() => {
     if (user) {
       user.email && setEmail(user.email)
-      user.partnershipType && setTypeOfCooperation(user.partnershipType)
+      user.partnershipType && setPartnershipType(user.partnershipType)
     }
   }, [user])
 
@@ -41,7 +41,7 @@ const Settings: React.FC<ISettingsProps> = ({ user, updateUserState }) => {
           <Input
             onChange={(props) => setOldPassword(props)}
             placeHolder={'Старый пароль'}
-            value={oldPassword ? oldPassword : ''}
+            value={oldPassword || ''}
             hidden
             told
           />
@@ -70,11 +70,11 @@ const Settings: React.FC<ISettingsProps> = ({ user, updateUserState }) => {
             title={'Сохранить'}
             handleClick={() =>
               updateUserState({
-                email: email,
-                password: password,
-                name: name,
-                communicationType: communicationType,
-                partnershipType: typeOfCooperation,
+                email,
+                password,
+                name,
+                communicationType,
+                partnershipType,
               })
             }
             disabled={password !== confirmPassword}
