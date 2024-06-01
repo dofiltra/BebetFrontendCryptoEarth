@@ -63,7 +63,6 @@ function App() {
       if (authData?.token) {
         localStorage.setItem('token', authData.token)
         let userState = await get('/ref_wallet/getMainWallet')
-        console.log('userState', userState)
 
         if (userState) {
           setProfile(userState)
