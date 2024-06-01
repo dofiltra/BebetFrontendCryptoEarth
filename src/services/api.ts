@@ -47,23 +47,22 @@ export async function post(
       const err: any = Error(errRes.error)
       err.status = request.status
       throw err
-    } else {
-      const type = request.headers.get('Content-Type')
-
-      //temporary solution, it is necessary to change the returned text
-      if (request.url.includes('send-confirm-code')) {
-        return request
-      }
-
-      switch (type) {
-        case 'application/json; charset=utf-8':
-          return request.json()
-        case 'text/plain; charset=utf-8':
-          return request
-        default:
-          return request
-      }
     }
+
+    const type = request.headers.get('Content-Type')
+
+    //temporary solution, it is necessary to change the returned text
+    if (request.url.includes('send-confirm-code')) {
+      return request
+    }
+
+    switch (type) {
+      case 'application/json; charset=utf-8':
+        return request.json()
+      //   case 'text/plain; charset=utf-8':
+      //   default:
+    }
+    return request
   } catch (err) {
     console.log('api err', err)
     throw err
