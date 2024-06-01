@@ -27,3 +27,4 @@ yarn-error.log*
 .env
 .yarn
 yarn.lock
+routeTree.gen.ts
