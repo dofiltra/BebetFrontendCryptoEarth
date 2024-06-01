@@ -1,6 +1,6 @@
 export interface UserDto {
   _id: string
-  role?: 'user' | 'admin'
+  role?: 'user' | 'super_admin'
   is_removed: boolean
   ref_string: string
   email: string

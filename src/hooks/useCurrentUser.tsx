@@ -1,4 +1,4 @@
-import { UserDto } from '@/entities/user'
+import { type UserDto } from '@/entities/user'
 import { get } from '@/services/api'
 import { useEffect, useState } from 'react'
 

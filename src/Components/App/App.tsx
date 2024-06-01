@@ -13,7 +13,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import Input from '@/shared/ui/input'
 import { useIsMobile } from '@/shared/lib/hooks'
 import { getDateByFilter } from '@/shared/lib/date/get-date-by-filter'
-import { Link } from '@tanstack/react-router'
+import { Link, redirect } from '@tanstack/react-router'
 import { getCurrentUser, useCurrentUser } from '@/hooks/useCurrentUser'
 
 function App() {
@@ -53,7 +53,7 @@ function App() {
 
   useEffect(() => {
     const auth = async () => {
-      let data = createFormData({
+      const data = createFormData({
         email: localStorage.getItem('email'),
         password: localStorage.getItem('password'),
       })
@@ -187,6 +187,10 @@ function App() {
         <Button title={'Вывести'} handleClick={request} disabled={false} width={'100%'} />
       </div>
     )
+  }
+
+  if (currentUser?.role === 'super_admin') {
+    redirect({ to: `/admin` })
   }
 
   if (isMobile) {
@@ -331,7 +335,7 @@ function App() {
                     Выводы
                   </p>
                   <p onClick={settingShow}>Настройки</p>
-                  {currentUser?.role === 'admin' && <Link to={'/admin'}>Перейти в админ панель</Link>}
+                  {currentUser?.role === 'super_admin' && <Link to={'/admin'}>Перейти в админ панель</Link>}
                   <p onClick={getSupport}>Поддержка</p>
                   <p onClick={logOut}>Выйти</p>
                 </div>
@@ -449,7 +453,7 @@ function App() {
                   Выводы
                 </p>
                 <p onClick={settingShow}>Настройки</p>
-                {currentUser?.role === 'admin' && <Link to={'/admin'}>Перейти в админ панель</Link>}
+                {currentUser?.role === 'super_admin' && <Link to={'/admin'}>Перейти в админ панель</Link>}
                 <p onClick={getSupport}>Поддержка</p>
                 <p onClick={logOut}>Выйти</p>
               </div>

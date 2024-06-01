@@ -61,7 +61,7 @@ const Admin: React.FC<IStatisticProps> = ({ referent }) => {
     }
   }
 
-  if (!user?._id || user?.role !== 'admin') {
+  if (!user?._id || user?.role !== 'super_admin') {
     return <></>
   }
 

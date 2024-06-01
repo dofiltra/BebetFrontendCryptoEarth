@@ -1,4 +1,4 @@
-import { type UserDto, userQueries } from 'src/entities/user'
+import { userQueries } from 'src/entities/user'
 import { UserAdminTable } from '@/widgets/user-admin-table/ui'
 import { useStyles } from './styles'
 import { useQuery } from '@tanstack/react-query'
@@ -15,7 +15,7 @@ export const AdminPage = () => {
   const { data } = useQuery(userQueries.list(page, DEFAULT_USER_LIMIT))
   const { currentUser } = useCurrentUser()
 
-  if (currentUser?.role !== 'admin') {
+  if (currentUser?.role !== 'super_admin') {
     return <></>
   }
 
