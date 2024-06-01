@@ -14,7 +14,7 @@ import Input from '@/shared/ui/input'
 import { useIsMobile } from '@/shared/lib/hooks'
 import { getDateByFilter } from '@/shared/lib/date/get-date-by-filter'
 import { Link } from '@tanstack/react-router'
-import { type UserDto } from '@/entities/user'
+import { getCurrentUser, useCurrentUser } from '@/hooks/useCurrentUser'
 
 function App() {
   const { isMobile } = useIsMobile()
@@ -29,7 +29,8 @@ function App() {
   const [showAuth, setShowAuth] = useState(false)
   const [currentPage, setCurrentPage] = useState('statistic')
   const [showProfile, setShowProfile] = useState(false)
-  const [user, setUser] = useState<UserDto | undefined>()
+
+  const { currentUser, setCurrentUser } = useCurrentUser()
   const [profile, setProfile] = useState<any>({})
   const [referent, setReferent] = useState([])
   const [fullStatistic, setFullStatistic] = useState([])
@@ -98,16 +99,6 @@ function App() {
     }
   }
 
-  const getUserState = async () => {
-    const user = await get('/ref_user/getCurrentUser')
-
-    if (!user) {
-      return
-    }
-
-    console.log('user', user)
-    setUser(user)
-  }
   const updateUserState = async (props: any) => {
     const data = createFormData({
       data: {
@@ -122,7 +113,7 @@ function App() {
     const updatedData = await postFormData('/ref_user/updateData', data)
 
     if (updatedData) {
-      getUserState()
+      getCurrentUser().then((user) => setCurrentUser(user))
       setCurrentPage('statistic')
     }
   }
@@ -150,7 +141,7 @@ function App() {
 
   useEffect(() => {
     if (logged) {
-      getUserState()
+      getCurrentUser().then((user) => setCurrentUser(user))
       getReferent()
       getRefUrls()
       getFullStatistic()
@@ -340,7 +331,7 @@ function App() {
                     Выводы
                   </p>
                   <p onClick={settingShow}>Настройки</p>
-                  {user?.role === 'admin' && <Link to={'/admin'}>Перейти в админ панель</Link>}
+                  {currentUser?.role === 'admin' && <Link to={'/admin'}>Перейти в админ панель</Link>}
                   <p onClick={getSupport}>Поддержка</p>
                   <p onClick={logOut}>Выйти</p>
                 </div>
@@ -360,11 +351,11 @@ function App() {
           />
         )}
 
-        {currentPage === 'settings' && logged && <Settings updateUserState={updateUserState} user={user} />}
+        {currentPage === 'settings' && logged && <Settings updateUserState={updateUserState} user={currentUser} />}
         {currentPage === 'statistic' && logged && (
           <Statistic fullStatistic={fullStatistic} onChangeDate={getFullStatistic} />
         )}
-        {currentPage === 'links' && logged && <Links getRefUrls={getRefUrls} refLinks={refLinks} user={user} />}
+        {currentPage === 'links' && logged && <Links getRefUrls={getRefUrls} refLinks={refLinks} user={currentUser} />}
         {currentPage === 'referral' && logged && <Referral referent={referent} />}
         {currentPage === 'outs' && logged && <Outs outs={outs} />}
       </div>
@@ -458,7 +449,7 @@ function App() {
                   Выводы
                 </p>
                 <p onClick={settingShow}>Настройки</p>
-                {user?.role === 'admin' && <Link to={'/admin'}>Перейти в админ панель</Link>}
+                {currentUser?.role === 'admin' && <Link to={'/admin'}>Перейти в админ панель</Link>}
                 <p onClick={getSupport}>Поддержка</p>
                 <p onClick={logOut}>Выйти</p>
               </div>
@@ -480,9 +471,9 @@ function App() {
       {currentPage === 'statistic' && logged && (
         <Statistic onChangeDate={getFullStatistic} fullStatistic={fullStatistic} />
       )}
-      {currentPage === 'links' && logged && <Links getRefUrls={getRefUrls} refLinks={refLinks} user={user} />}
+      {currentPage === 'links' && logged && <Links getRefUrls={getRefUrls} refLinks={refLinks} user={currentUser} />}
       {currentPage === 'referral' && logged && <Referral referent={referent} />}
-      {currentPage === 'settings' && logged && <Settings updateUserState={updateUserState} user={user} />}
+      {currentPage === 'settings' && logged && <Settings updateUserState={updateUserState} user={currentUser} />}
       {currentPage === 'outs' && logged && <Outs outs={outs} />}
       <ToastContainer />
     </div>
