@@ -32,6 +32,7 @@
     "dev": "vite --port 3040",
     "build": "tsc && vite build",
     "serve": "vite preview",
+    "cp": "yarn run pull && mkdir -p /var/www/dev-bebet.dofiltra.com/ && cp -Rf /root/git/BebetFrontendCryptoEarth/dist/* /var/www/dev-bebet.dofiltra.com/",
     "gen:routes": "tsr generate",
     "lint:types": "tsc --skipLibCheck --noEmit --project tsconfig.json"
   },
