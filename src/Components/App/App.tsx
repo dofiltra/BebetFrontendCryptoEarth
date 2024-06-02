@@ -191,7 +191,7 @@ function App() {
     )
   }
 
-  if (currentUser?.role === 'super_admin') {
+  if (currentUser?.role === 'admin') {
     redirect({ to: `/admin` })
   }
 
@@ -314,7 +314,7 @@ function App() {
                     Выводы
                   </p>
                   <p onClick={settingShow}>Настройки</p>
-                  {currentUser?.role === 'super_admin' && <Link to={'/admin'}>Перейти в админ панель</Link>}
+                  {currentUser?.role === 'admin' && <Link to={'/admin'}>Перейти в админ панель</Link>}
                   <p onClick={getSupport}>Поддержка</p>
                   <p onClick={logOut}>Выйти</p>
                 </div>
@@ -409,7 +409,7 @@ function App() {
                   Выводы
                 </p>
                 <p onClick={settingShow}>Настройки</p>
-                {currentUser?.role === 'super_admin' && <Link to={'/admin'}>Перейти в админ панель</Link>}
+                {currentUser?.role === 'admin' && <Link to={'/admin'}>Перейти в админ панель</Link>}
                 <p onClick={getSupport}>Поддержка</p>
                 <p onClick={logOut}>Выйти</p>
               </div>

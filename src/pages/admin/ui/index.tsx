@@ -15,7 +15,7 @@ export const AdminPage = () => {
   const { data } = useQuery(userQueries.list(page, DEFAULT_USER_LIMIT))
   const { currentUser } = useCurrentUser()
 
-  if (currentUser?.role !== 'super_admin') {
+  if (currentUser?.role !== 'admin') {
     return <></>
   }
 
