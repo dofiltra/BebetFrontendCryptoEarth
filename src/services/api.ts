@@ -142,6 +142,7 @@ export async function download(path, body = {}, headers = {}, options = {}, cust
 
 export async function get(path, body = {}, headers = {} as any, options = {}, customOptions = defautCustomOptions) {
   const val = localStorage.getItem('token')
+  
   if (val) {
     headers.authorization = val
   }

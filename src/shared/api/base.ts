@@ -1,8 +1,8 @@
-import { API_URL } from "@/shared/config";
-import axios, { AxiosInstance, AxiosResponse, AxiosRequestConfig } from "axios";
+import { API_URL } from '@/shared/config'
+import axios, { AxiosInstance, AxiosResponse, AxiosRequestConfig } from 'axios'
 
 class ApiInstance {
-  private axios: AxiosInstance;
+  private axios: AxiosInstance
 
   private _token: string | null = null
 
@@ -10,14 +10,13 @@ class ApiInstance {
     this.axios = axios.create({
       baseURL: API_URL,
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
-    });
+    })
     this.init()
   }
 
   public init() {
-
     this.axios.interceptors.request.use((config) => {
       if (!this.token) {
         return config
@@ -44,64 +43,39 @@ class ApiInstance {
 
   async get<T>(endpoint: string, options: AxiosRequestConfig = {}): Promise<AxiosResponse<T>> {
     try {
-      const response = await this.axios.get(
-        endpoint,
-        options
-      );
-      return response;
+      const response = await this.axios.get(endpoint, options)
+      return response
     } catch (error) {
-      throw error;
+      throw error
     }
   }
 
-  async post<T>(
-    endpoint: string,
-    data: any,
-    options: AxiosRequestConfig = {}
-  ): Promise<AxiosResponse<T>> {
+  async post<T>(endpoint: string, data: any, options: AxiosRequestConfig = {}): Promise<AxiosResponse<T>> {
     try {
-      const response: AxiosResponse<T> = await this.axios.post(
-        endpoint,
-        data,
-        options
-      );
-      return response;
+      const response: AxiosResponse<T> = await this.axios.post(endpoint, data, options)
+      return response
     } catch (error) {
-      throw error;
+      throw error
     }
   }
 
-  async put<T>(
-    endpoint: string,
-    data: any,
-    options: AxiosRequestConfig = {}
-  ): Promise<AxiosResponse<T>> {
+  async put<T>(endpoint: string, data: any, options: AxiosRequestConfig = {}): Promise<AxiosResponse<T>> {
     try {
-      const response: AxiosResponse<T> = await this.axios.put(
-        endpoint,
-        data,
-        options
-      );
-      return response;
+      const response: AxiosResponse<T> = await this.axios.put(endpoint, data, options)
+      return response
     } catch (error) {
-      throw error;
+      throw error
     }
   }
 
-  async delete<T>(
-    endpoint: string,
-    options: AxiosRequestConfig = {}
-  ): Promise<AxiosResponse<T>> {
+  async delete<T>(endpoint: string, options: AxiosRequestConfig = {}): Promise<AxiosResponse<T>> {
     try {
-      const response: AxiosResponse<T> = await this.axios.delete(
-        endpoint,
-        options
-      );
-      return response;
+      const response: AxiosResponse<T> = await this.axios.delete(endpoint, options)
+      return response
     } catch (error) {
-      throw error;
+      throw error
     }
   }
 }
 
-export const apiInstance = new ApiInstance();
+export const apiInstance = new ApiInstance()

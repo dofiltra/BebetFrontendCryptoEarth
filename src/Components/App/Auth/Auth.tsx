@@ -7,6 +7,7 @@ import Input from '@/shared/ui/input'
 import UiSelector from '../../Ui/UiSelector/UiSelector'
 import { useIsMobile } from '@/shared/lib/hooks/use-is-mobile'
 import { ResetPasswordModal } from '@/features/reset-password'
+import { toast } from 'react-toastify'
 
 const footerPoints = [
   {
@@ -47,10 +48,14 @@ const Auth: React.FC<IAppProps> = ({ showAuth, setLogged, setShowAuth, setProfil
   const [error, setError] = useState('')
 
   const auth = async () => {
-    let data = createFormData({ email: email, password: password })
-    let res = await postFormData('/ref_user/auth', data)
+    let data = createFormData({ email, password })
+    let res = await postFormData('/ref_user/auth', data).catch((err) => {
+      if (err?.message === 'WRONG_EMAIL_OR_PASSWORD') {
+        toast.error(`Неверный Email или Пароль`)
+      }
+    })
 
-    if (res.token) {
+    if (res?.token) {
       localStorage.setItem('token', res.token)
       localStorage.setItem('email', email)
       localStorage.setItem('password', password)
