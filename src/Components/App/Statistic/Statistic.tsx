@@ -11,8 +11,17 @@ interface Props {
 }
 
 const getData = (value: unknown): number | string => {
-  if (value && (typeof value === 'number' || typeof value === 'string')) {
-    return value
+  if (value) {
+    if (Array.isArray(value)) {
+      value = value
+        ?.filter((x) => x?.data)
+        .map((x) => x.data)
+        .reduce((prev, curr) => prev + curr)
+    }
+
+    if (typeof value === 'number' || typeof value === 'string') {
+      return value
+    }
   }
   return 'Нет данных'
 }
@@ -37,7 +46,7 @@ const Statistic = (props: Props = {} as Props) => {
   const chartRef = useRef<HTMLDivElement | null>(null)
   const { isMobile } = useIsMobile()
   const [width, setWidth] = useState(0)
-  const [filter, setFilter] = useState<Filters>('all') // Изначально выбран фильтр "За все время"
+  const [filter, setFilter] = useState<Filters>('all')
 
   useEffect(() => {
     const changeWidth = () => {
@@ -105,6 +114,7 @@ const Statistic = (props: Props = {} as Props) => {
   }
 
   const statisticData = transformData(fullStatistic)
+  console.log('fullStatistic', fullStatistic)
 
   return (
     <div className={'statistic'}>
