@@ -3,11 +3,10 @@ import { useEffect, useRef, useState } from 'react'
 import { Bar, BarChart, Legend, Tooltip, XAxis, YAxis } from 'recharts'
 import { useIsMobile } from '@/shared/lib/hooks'
 import cn from 'classnames'
-
-export type Filters = 'all' | 'month' | 'week' | 'yesterday' | 'today'
+import type { DataEntry, Filters, TFullStatistic, TransformedData } from './Statistic.types'
 
 interface Props {
-  fullStatistic: any
+  fullStatistic: TFullStatistic
   onChangeDate: (value: Filters) => void
 }
 
@@ -19,7 +18,7 @@ const getData = (value: unknown): number | string => {
 }
 
 const Statistic = (props: Props) => {
-  const { fullStatistic, onChangeDate } = props
+  const { fullStatistic = {}, onChangeDate } = { ...props }
   const chartRef = useRef<HTMLDivElement | null>(null)
   const { isMobile } = useIsMobile()
   const [width, setWidth] = useState(0)
@@ -38,7 +37,7 @@ const Statistic = (props: Props) => {
   }, [])
 
   const handleFilterChange = (filterValue: Filters) => {
-    onChangeDate(filterValue)
+    onChangeDate?.(filterValue)
     setFilter(filterValue)
   }
 
@@ -57,17 +56,6 @@ const Statistic = (props: Props) => {
     'Декабрь',
   ]
 
-  interface DataEntry {
-    date: string
-    data: number
-  }
-
-  interface TransformedData {
-    name: string
-
-    [key: string]: number | string
-  }
-
   function transformData(data: { [key: string]: DataEntry[] }): TransformedData[] {
     const transformedData: TransformedData[] = []
     const fieldTranslations: { [key: string]: string } = {
@@ -81,29 +69,34 @@ const Statistic = (props: Props) => {
     for (let i = 0; i < months.length; i++) {
       const newObj: TransformedData = { name: months[i] }
       for (const key in data) {
-        if (data.hasOwnProperty(key)) {
-          const values: DataEntry[] = data[key]
-          let totalValue = 0
-          if (Array.isArray(values)) {
-            for (const entry of values) {
-              const date = entry.date
-              const value = entry.data
+        if (!data.hasOwnProperty(key)) {
+          continue
+        }
 
-              if (new Date(date).getMonth() === i) {
-                totalValue += value
-              }
+        const values: DataEntry[] | null = data[key]
+        let totalValue = 0
+
+        if (values?.length && Array.isArray(values)) {
+          for (const entry of values) {
+            const date = entry.date
+            const value = entry.data
+
+            if (new Date(date).getMonth() === i) {
+              totalValue += value
             }
           }
-          const translatedKey = fieldTranslations[key] || key
-          newObj[translatedKey] = totalValue
         }
+
+        const translatedKey = fieldTranslations[key] || key
+        newObj[translatedKey] = totalValue
       }
       transformedData.push(newObj)
     }
     return transformedData
   }
 
-  let res = transformData(fullStatistic)
+  const statisticData = transformData(fullStatistic)
+
   return (
     <div className={'statistic'}>
       <div className={'statistic__title'}>
@@ -113,7 +106,7 @@ const Statistic = (props: Props) => {
         <BarChart
           width={width}
           height={300}
-          data={res}
+          data={statisticData}
           margin={
             {
               // top: 5,

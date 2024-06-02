@@ -1,12 +1,18 @@
-import { Filters } from '../../../Components/App/Statistic/Statistic'
+import { Filters } from '@/Components/App/Statistic/Statistic.types'
 
 export function getDateByFilter(dateValue?: Filters): Date {
   const currentDate = new Date()
-  if (!dateValue || dateValue === 'all' || dateValue === 'month') {
-    return new Date(currentDate.getFullYear(), currentDate.getMonth(), 1)
+
+  if (!dateValue || dateValue === 'all') {
+    const startOfYear = new Date(currentDate)
+    startOfYear.setDate(currentDate.getDate() - 365)
+    return startOfYear
   }
 
   switch (dateValue) {
+    case 'month': {
+      return new Date(currentDate.getFullYear(), currentDate.getMonth(), 1)
+    }
     case 'week':
       const startOfWeek = new Date(currentDate)
       startOfWeek.setDate(currentDate.getDate() - currentDate.getDay())

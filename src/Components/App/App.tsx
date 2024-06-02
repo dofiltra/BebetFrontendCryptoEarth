@@ -2,7 +2,7 @@ import './App.scss'
 import { useEffect, useState } from 'react'
 import { Button } from '@/shared/ui/button'
 import Auth from './Auth/Auth'
-import Statistic, { Filters } from './Statistic/Statistic'
+import Statistic from './Statistic/Statistic'
 import Links from './Links/Links'
 import Referral from './Referral/Referral'
 import Settings from './Settings/Settings'
@@ -16,6 +16,7 @@ import { getDateByFilter } from '@/shared/lib/date/get-date-by-filter'
 import { Link, redirect } from '@tanstack/react-router'
 import { getCurrentUser, useCurrentUser } from '@/hooks/useCurrentUser'
 import type { TAppCurrentPage } from './App.types'
+import type { Filters, TFullStatistic } from './Statistic/Statistic.types'
 
 function App() {
   const { isMobile } = useIsMobile()
@@ -34,7 +35,7 @@ function App() {
   const { currentUser, setCurrentUser } = useCurrentUser()
   const [profile, setProfile] = useState<any>({})
   const [referent, setReferent] = useState([])
-  const [fullStatistic, setFullStatistic] = useState([])
+  const [fullStatistic, setFullStatistic] = useState<TFullStatistic>({})
   const [refLinks, setRefLinks] = useState([])
   const [outs, setOuts] = useState([])
 
