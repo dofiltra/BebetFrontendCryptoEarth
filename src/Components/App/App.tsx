@@ -425,7 +425,7 @@ function App() {
           setProfile={setProfile}
           showAuth={showAuth}
           setLogged={() => setLogged(true)}
-          setShowAuth={() => setShowAuth(!showAuth)}
+          setShowAuth={() => setShowAuth(false)}
         />
       )}
       {currentPage === 'statistic' && logged && (
