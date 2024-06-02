@@ -114,7 +114,6 @@ const Statistic = (props: Props = {} as Props) => {
   }
 
   const statisticData = transformData(fullStatistic)
-  console.log('fullStatistic', fullStatistic)
 
   return (
     <div className={'statistic'}>
