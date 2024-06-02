@@ -17,6 +17,14 @@ declare module '@tanstack/react-router' {
   }
 }
 
+const suppressedWarnings = ['Support for defaultProps will be removed from function components']
+const consoleError = console.error
+console.error = (message: string | string[], ...args: any) => {
+  if (!suppressedWarnings.some((entry) => message.includes(entry))) {
+    consoleError(message, ...args)
+  }
+}
+
 const queryClient = new QueryClient()
 
 // Render the app

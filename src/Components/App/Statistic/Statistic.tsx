@@ -17,7 +17,22 @@ const getData = (value: unknown): number | string => {
   return 'Нет данных'
 }
 
-const Statistic = (props: Props) => {
+const getMonths = () => [
+  'Январь',
+  'Февраль',
+  'Март',
+  'Апрель',
+  'Май',
+  'Июнь',
+  'Июль',
+  'Август',
+  'Сентябрь',
+  'Октябрь',
+  'Ноябрь',
+  'Декабрь',
+]
+
+const Statistic = (props: Props = {} as Props) => {
   const { fullStatistic = {}, onChangeDate } = { ...props }
   const chartRef = useRef<HTMLDivElement | null>(null)
   const { isMobile } = useIsMobile()
@@ -41,20 +56,7 @@ const Statistic = (props: Props) => {
     setFilter(filterValue)
   }
 
-  const months: string[] = [
-    'Январь',
-    'Февраль',
-    'Март',
-    'Апрель',
-    'Май',
-    'Июнь',
-    'Июль',
-    'Август',
-    'Сентябрь',
-    'Октябрь',
-    'Ноябрь',
-    'Декабрь',
-  ]
+  const months: string[] = getMonths()
 
   function transformData(data: { [key: string]: DataEntry[] }): TransformedData[] {
     const transformedData: TransformedData[] = []
@@ -67,7 +69,14 @@ const Statistic = (props: Props) => {
     }
 
     for (let i = 0; i < months.length; i++) {
-      const newObj: TransformedData = { name: months[i] }
+      const newObj: TransformedData = {
+        name: months[i] || '',
+        Депозит: 0,
+        Переходы: 0,
+        Регистрации: 0,
+        'Первые депозиты': 0,
+        'Сумма депозита': 0,
+      }
       for (const key in data) {
         if (!data.hasOwnProperty(key)) {
           continue
@@ -103,30 +112,21 @@ const Statistic = (props: Props) => {
         <p>Статистика</p>
       </div>
       <div className={'statistic__graphics'} ref={chartRef}>
-        <BarChart
-          width={width}
-          height={300}
-          data={statisticData}
-          margin={
-            {
-              // top: 5,
-              // right: 30,
-              // left: 20,
-              // bottom: 5,
-            }
-          }
-        >
-          <XAxis dataKey="name" />
-          <YAxis />
-          <Tooltip />
-          <Legend />
-          <Bar dataKey="Регистрации" fill="#F14336" />
-          <Bar dataKey="Переходы" fill="#a358e8" />
-          <Bar dataKey="Депозит" fill="#0085FF" />
-          <Bar dataKey="Сумма депозита" fill="#28B446" />
-          <Bar dataKey="Первые депозиты" fill="#FDB12F" />
-        </BarChart>
+        {width > 0 && (
+          <BarChart width={width} height={300} data={statisticData}>
+            <XAxis dataKey="name" />
+            <YAxis />
+            <Tooltip />
+            <Legend />
+            <Bar dataKey="Регистрации" fill="#F14336" />
+            <Bar dataKey="Переходы" fill="#a358e8" />
+            <Bar dataKey="Депозит" fill="#0085FF" />
+            <Bar dataKey="Сумма депозита" fill="#28B446" />
+            <Bar dataKey="Первые депозиты" fill="#FDB12F" />
+          </BarChart>
+        )}
       </div>
+
       <div className={'statistic__info'}>
         <div className={'statistic__info-filters'}>
           <div

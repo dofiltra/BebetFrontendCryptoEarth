@@ -18,7 +18,11 @@ export interface DataEntry {
 
 export interface TransformedData {
   name: string
-  [key: string]: number | string
+  ['Сумма депозита']: number | string
+  ['Первые депозиты']: number | string
+  ['Переходы']: number | string
+  ['Депозит']: number | string
+  ['Регистрации']: number | string
 }
 
 export type Filters = 'all' | 'month' | 'week' | 'yesterday' | 'today'
