@@ -25,4 +25,4 @@ export interface TransformedData {
   ['Регистрации']: number | string
 }
 
-export type Filters = 'all' | 'month' | 'week' | 'yesterday' | 'today'
+export type TFilterDate = 'all' | 'month' | 'week' | 'yesterday' | 'today'

@@ -16,7 +16,7 @@ import { getDateByFilter } from '@/shared/lib/date/get-date-by-filter'
 import { Link, redirect } from '@tanstack/react-router'
 import { getCurrentUser, useCurrentUser } from '@/hooks/useCurrentUser'
 import type { TAppCurrentPage } from './App.types'
-import type { Filters, TFullStatistic } from './Statistic/Statistic.types'
+import type { TFilterDate, TFullStatistic } from './Statistic/Statistic.types'
 
 function App() {
   const { isMobile } = useIsMobile()
@@ -84,6 +84,22 @@ function App() {
     }
   }, [logged])
 
+  useEffect(() => {
+    if (!currentUser?._id) {
+      return
+    }
+    // ## POST /users/{id}/grantRole
+    // ```jsx
+    // body: {
+    // 	role: 'admin' | 'user'
+    // }
+    // ```
+    // const data = createFormData({
+    //   role: 'admin',
+    // })
+    // postFormData(`/users/${currentUser._id}/grantRole`, data).then((x) => console.log(x))
+  }, [currentUser])
+
   const getReferent = async () => {
     let res = await get('/ref_user/getAllReferent')
     if (res) {
@@ -91,7 +107,7 @@ function App() {
     }
   }
 
-  const getFullStatistic = async (filter?: Filters) => {
+  const getFullStatistic = async (filter?: TFilterDate) => {
     const date = getDateByFilter(filter)
     const d = createFormData({ start_date: date })
     const res = await postFormData('/ref_user/getDashboardByDate', d)

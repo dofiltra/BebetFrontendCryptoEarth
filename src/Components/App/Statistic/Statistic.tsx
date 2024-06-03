@@ -3,11 +3,11 @@ import { useEffect, useRef, useState } from 'react'
 import { Bar, BarChart, Legend, Tooltip, XAxis, YAxis } from 'recharts'
 import { useIsMobile } from '@/shared/lib/hooks'
 import cn from 'classnames'
-import type { DataEntry, Filters, TFullStatistic, TransformedData } from './Statistic.types'
+import type { DataEntry, TFilterDate, TFullStatistic, TransformedData } from './Statistic.types'
 
 interface Props {
   fullStatistic: TFullStatistic
-  onChangeDate: (value: Filters) => void
+  onChangeDate: (value: TFilterDate) => void
 }
 
 const getData = (value: unknown): number | string => {
@@ -46,7 +46,7 @@ const Statistic = (props: Props = {} as Props) => {
   const chartRef = useRef<HTMLDivElement | null>(null)
   const { isMobile } = useIsMobile()
   const [width, setWidth] = useState(0)
-  const [filter, setFilter] = useState<Filters>('all')
+  const [filter, setFilter] = useState<TFilterDate>('all')
 
   useEffect(() => {
     const changeWidth = () => {
@@ -60,7 +60,7 @@ const Statistic = (props: Props = {} as Props) => {
     return () => window.removeEventListener('resize', changeWidth)
   }, [])
 
-  const handleFilterChange = (filterValue: Filters) => {
+  const handleFilterChange = (filterValue: TFilterDate) => {
     onChangeDate?.(filterValue)
     setFilter(filterValue)
   }

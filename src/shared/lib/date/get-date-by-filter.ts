@@ -1,15 +1,15 @@
-import { Filters } from '@/Components/App/Statistic/Statistic.types'
+import type { TFilterDate } from '@/Components/App/Statistic/Statistic.types'
 
-export function getDateByFilter(dateValue?: Filters): Date {
+export function getDateByFilter(filter?: TFilterDate): Date {
   const now = new Date()
 
-  if (!dateValue || dateValue === 'all') {
-    const startOfYear = new Date(now)
-    startOfYear.setDate(now.getDate() - 365)
-    return startOfYear
+  if (!filter || filter === 'all') {
+    const allDate = new Date()
+    allDate.setFullYear(allDate.getFullYear() - 10);
+    return allDate
   }
 
-  switch (dateValue) {
+  switch (filter) {
     case 'month': {
       return new Date(now.getFullYear(), now.getMonth(), 1)
     }
