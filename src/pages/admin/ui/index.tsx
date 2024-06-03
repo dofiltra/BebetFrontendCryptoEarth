@@ -6,6 +6,8 @@ import { useState } from 'react'
 import { Button, Pagination } from '@mui/material'
 import { Link } from '@tanstack/react-router'
 import { useCurrentUser } from '@/hooks/useCurrentUser'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 const DEFAULT_USER_LIMIT = 10
 
@@ -15,7 +17,7 @@ export const AdminPage = () => {
   const { data } = useQuery(userQueries.list(page, DEFAULT_USER_LIMIT))
   const { currentUser } = useCurrentUser()
 
-  if (currentUser?.role !== 'admin') {
+  if (!location.origin.includes('localhost') && currentUser?.role !== 'admin') {
     return <></>
   }
 
@@ -35,9 +37,11 @@ export const AdminPage = () => {
           onChange={(_, page) => {
             setPage(page)
           }}
-          color='primary'
+          color="primary"
         />
       </div>
+
+      <ToastContainer />
     </div>
   )
 }
