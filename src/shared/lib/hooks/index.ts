@@ -1,2 +1,2 @@
 export { useIsMobile } from './use-is-mobile'
-export { useCurrentUser } from './useCurrentUser'
+export { useCurrentUser, getCurrentUser } from './use-current-user'
