@@ -1,6 +1,6 @@
-import { UserDto } from "src/entities/user";
-import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
-import { UserRow } from "./user-row";
+import { UserDto } from 'src/entities/user'
+import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
+import { UserRow } from './user-row'
 import { useStyles } from './styles'
 
 type Props = {
@@ -9,14 +9,10 @@ type Props = {
 
 export const UserAdminTable = (props: Props) => {
   const { users } = props
-
   const { classes } = useStyles()
 
   return (
-    <TableContainer
-      component={Paper}
-      className={classes.root}
-    >
+    <TableContainer component={Paper} className={classes.root}>
       <Table aria-label="collapsible table">
         <TableHead>
           <TableRow>
@@ -36,7 +32,7 @@ export const UserAdminTable = (props: Props) => {
         </TableHead>
         <TableBody>
           {users.map((user) => (
-            <UserRow key={user._id} user={user}/>
+            <UserRow key={user._id} user={user} />
           ))}
         </TableBody>
       </Table>
