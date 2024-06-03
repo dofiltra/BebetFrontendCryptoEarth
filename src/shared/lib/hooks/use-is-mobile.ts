@@ -5,7 +5,6 @@ const getIsMobile = () => {
   return window.innerWidth >= 320 && window.innerWidth <= 470
 }
 
-
 export const useIsMobile = () => {
   const [isMobile, setIsMobile] = useState(getIsMobile())
 

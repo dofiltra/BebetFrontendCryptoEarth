@@ -5,6 +5,7 @@ import Input from '@/shared/ui/input'
 import { get } from '../../../services/api'
 import { type UserDto } from '@/entities/user'
 import { toast } from 'react-toastify'
+import { isAdmin } from '@/shared/lib/admin/isAdmin'
 
 interface IStatisticProps {
   referent: any
@@ -63,7 +64,7 @@ const Admin: React.FC<IStatisticProps> = ({ referent }) => {
     }
   }
 
-  if (!user?._id || user?.role !== 'admin') {
+  if (!isAdmin(user)) {
     return <></>
   }
 

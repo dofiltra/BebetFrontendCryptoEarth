@@ -13,10 +13,11 @@ import 'react-toastify/dist/ReactToastify.css'
 import Input from '@/shared/ui/input'
 import { useIsMobile } from '@/shared/lib/hooks'
 import { getDateByFilter } from '@/shared/lib/date/get-date-by-filter'
-import { Link, redirect } from '@tanstack/react-router'
-import { getCurrentUser, useCurrentUser } from '@/hooks/useCurrentUser'
+import { Link } from '@tanstack/react-router'
+import { getCurrentUser, useCurrentUser } from '@/shared/lib/hooks/useCurrentUser'
 import type { TAppCurrentPage } from './App.types'
 import type { TFilterDate, TFullStatistic } from './Statistic/Statistic.types'
+import { isAdmin } from '@/shared/lib/admin/isAdmin'
 
 function App() {
   const { isMobile } = useIsMobile()
@@ -83,22 +84,6 @@ function App() {
       auth()
     }
   }, [logged])
-
-  useEffect(() => {
-    if (!currentUser?._id) {
-      return
-    }
-    // ## POST /users/{id}/grantRole
-    // ```jsx
-    // body: {
-    // 	role: 'admin' | 'user'
-    // }
-    // ```
-    // const data = createFormData({
-    //   role: 'admin',
-    // })
-    // postFormData(`/users/${currentUser._id}/grantRole`, data).then((x) => console.log(x))
-  }, [currentUser])
 
   const getReferent = async () => {
     let res = await get('/ref_user/getAllReferent')
@@ -207,8 +192,9 @@ function App() {
     )
   }
 
-  if (currentUser?.role === 'admin') {
-    redirect({ to: `/admin` })
+  if (isAdmin(currentUser)) {
+    // redirect({ to: `/admin` })
+    location.href = '/admin'
   }
 
   if (isMobile) {
@@ -330,7 +316,7 @@ function App() {
                     Выводы
                   </p>
                   <p onClick={settingShow}>Настройки</p>
-                  {currentUser?.role === 'admin' && <Link to={'/admin'}>Перейти в админ панель</Link>}
+                  {isAdmin(currentUser) && <Link to={'/admin'}>Перейти в админ панель</Link>}
                   <p onClick={getSupport}>Поддержка</p>
                   <p onClick={logOut}>Выйти</p>
                 </div>
@@ -425,7 +411,7 @@ function App() {
                   Выводы
                 </p>
                 <p onClick={settingShow}>Настройки</p>
-                {currentUser?.role === 'admin' && <Link to={'/admin'}>Перейти в админ панель</Link>}
+                {isAdmin(currentUser) && <Link to={'/admin'}>Перейти в админ панель</Link>}
                 <p onClick={getSupport}>Поддержка</p>
                 <p onClick={logOut}>Выйти</p>
               </div>

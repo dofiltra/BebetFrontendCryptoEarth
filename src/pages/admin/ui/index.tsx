@@ -5,9 +5,10 @@ import { useQuery } from '@tanstack/react-query'
 import { useState } from 'react'
 import { Button, Pagination } from '@mui/material'
 import { Link } from '@tanstack/react-router'
-import { useCurrentUser } from '@/hooks/useCurrentUser'
+import { useCurrentUser } from '@/shared/lib/hooks/useCurrentUser'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { isAdmin } from '@/shared/lib/admin/isAdmin'
 
 const DEFAULT_USER_LIMIT = 10
 
@@ -17,8 +18,8 @@ export const AdminPage = () => {
   const { data } = useQuery(userQueries.list(page, DEFAULT_USER_LIMIT))
   const { currentUser } = useCurrentUser()
 
-  if (!location.origin.includes('localhost') && currentUser?.role !== 'admin') {
-    return <></>
+  if (!isAdmin(currentUser)) {
+    location.href = '/'
   }
 
   return (
