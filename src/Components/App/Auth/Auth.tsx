@@ -114,7 +114,7 @@ const Auth: React.FC<IAppProps> = ({ showAuth, setLogged, setShowAuth, setProfil
       trafficSource,
       promocode: refCode || '',
     })
-    const res = await postFormData('/ref_auth/registrate', formData)
+    const res = await postFormData('/ref_auth/registrate', formData).catch((e) => toast.error(e))
 
     if (res) {
       await auth()
