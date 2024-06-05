@@ -1,6 +1,10 @@
 import { BACKEND_API_BASE } from '@/services/api'
 import axios, { AxiosInstance, AxiosResponse, AxiosRequestConfig } from 'axios'
 
+type TEvents = {
+  onError?: (o: { error: any }) => Promise<void>
+}
+
 class ApiInstance {
   private axios: AxiosInstance
 
@@ -41,13 +45,7 @@ class ApiInstance {
     return this._token
   }
 
-  async get<T>(
-    endpoint: string,
-    options: AxiosRequestConfig = {},
-    events?: {
-      onError?: (o: { error: any }) => Promise<void>
-    }
-  ): Promise<AxiosResponse<T>> {
+  async get<T>(endpoint: string, options: AxiosRequestConfig = {}, events?: TEvents): Promise<AxiosResponse<T>> {
     try {
       const response = await this.axios.get(endpoint, options)
       if (response?.status >= 400) {

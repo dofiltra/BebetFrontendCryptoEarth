@@ -13,7 +13,6 @@ import 'react-toastify/dist/ReactToastify.css'
 import Input from '@/shared/ui/input'
 import { useIsMobile, getCurrentUser, useCurrentUser } from '@/shared/lib/hooks'
 import { getDateByFilter } from '@/shared/lib/date/get-date-by-filter'
-import { Link } from '@tanstack/react-router'
 import type { TAppCurrentPage } from './App.types'
 import type { TFilterDate, TFullStatistic } from './Statistic/Statistic.types'
 import { isAdmin } from '@/shared/lib/admin/isAdmin'
@@ -44,7 +43,7 @@ function App() {
     setShowProfile(false)
   }
 
-  const getSupport = () => {
+  const gotoSupport = () => {
     window.location.replace('https://t.me/BebetSupport')
   }
 
@@ -143,7 +142,13 @@ function App() {
 
   useEffect(() => {
     if (logged) {
-      getCurrentUser().then((user) => setCurrentUser(user))
+      getCurrentUser().then((user) => {
+        setCurrentUser(user)
+
+        if (isAdmin(user)) {
+          location.href = '/admin'
+        }
+      })
       getReferent()
       getRefUrls()
       getFullStatistic()
@@ -189,10 +194,6 @@ function App() {
         <Button title={'Вывести'} handleClick={request} disabled={false} width={'100%'} />
       </div>
     )
-  }
-
-  if (isAdmin(currentUser)) {
-    location.href = '/admin'
   }
 
   if (isMobile) {
@@ -314,8 +315,7 @@ function App() {
                     Выводы
                   </p>
                   <p onClick={settingShow}>Настройки</p>
-                  {isAdmin(currentUser) && <Link to={'/admin'}>Перейти в админ панель</Link>}
-                  <p onClick={getSupport}>Поддержка</p>
+                  <p onClick={gotoSupport}>Поддержка</p>
                   <p onClick={logOut}>Выйти</p>
                 </div>
               )}
@@ -409,8 +409,7 @@ function App() {
                   Выводы
                 </p>
                 <p onClick={settingShow}>Настройки</p>
-                {isAdmin(currentUser) && <Link to={'/admin'}>Перейти в админ панель</Link>}
-                <p onClick={getSupport}>Поддержка</p>
+                <p onClick={gotoSupport}>Поддержка</p>
                 <p onClick={logOut}>Выйти</p>
               </div>
             )}
