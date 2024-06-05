@@ -1,5 +1,7 @@
-export const BACKEND_API_BASE = 'https://api-bet.ru:3012/'
+export const BACKEND_API_PORT = 3012
+export const BACKEND_API_BASE = `https://api-bet.ru:${BACKEND_API_PORT}`
 export const BACKEND_API = `${BACKEND_API_BASE}/api/v1`
+
 export const wsApiBase = 'wss://api-bet.ru:9002'
 export const wsApiChat = 'wss://api-bet.ru:9004'
 
