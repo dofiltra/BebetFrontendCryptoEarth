@@ -1,5 +1,5 @@
-export const backendApi = 'https://api-bet.ru:3012/api/v1'
-export const backendApiBase = 'https://api-bet.ru:3012/'
+export const BACKEND_API_BASE = 'https://api-bet.ru:3012/'
+export const BACKEND_API = `${BACKEND_API_BASE}/api/v1`
 export const wsApiBase = 'wss://api-bet.ru:9002'
 export const wsApiChat = 'wss://api-bet.ru:9004'
 
@@ -142,7 +142,7 @@ export async function download(path, body = {}, headers = {}, options = {}, cust
 
 export async function get(path, body = {}, headers = {} as any, options = {}, customOptions = defautCustomOptions) {
   const val = localStorage.getItem('token')
-  
+
   if (val) {
     headers.authorization = val
   }
@@ -256,12 +256,8 @@ function fetchEnriched(method: any, path: any, body: any, headers: any, options:
   })
 }
 
-export function getApiUrl(path) {
-  const developmentLink = backendApi
-
-  const baseLink = developmentLink
-
-  return baseLink + path
+export function getApiUrl(path: string) {
+  return BACKEND_API + path
 }
 
 function getHeaders(defaultHeaders: any, headers: any) {
@@ -271,7 +267,7 @@ function getHeaders(defaultHeaders: any, headers: any) {
   }
 }
 
-function addAuthHeader(headers) {
+function addAuthHeader(headers: any) {
   const data = localStorage.getItem('session')
 
   if (data !== null) {
@@ -282,7 +278,7 @@ function addAuthHeader(headers) {
   }
 }
 
-export async function mockResponse(response) {
+export async function mockResponse(response: any) {
   return response
 }
 

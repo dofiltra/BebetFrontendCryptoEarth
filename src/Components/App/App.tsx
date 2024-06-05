@@ -192,7 +192,6 @@ function App() {
   }
 
   if (isAdmin(currentUser)) {
-    // redirect({ to: `/admin` })
     location.href = '/admin'
   }
 

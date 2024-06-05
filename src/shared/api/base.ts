@@ -1,4 +1,4 @@
-import { API_URL } from '@/shared/config'
+import { BACKEND_API_BASE } from '@/services/api'
 import axios, { AxiosInstance, AxiosResponse, AxiosRequestConfig } from 'axios'
 
 class ApiInstance {
@@ -8,7 +8,7 @@ class ApiInstance {
 
   constructor() {
     this.axios = axios.create({
-      baseURL: API_URL,
+      baseURL: BACKEND_API_BASE,
       headers: {
         'Content-Type': 'application/json',
       },
