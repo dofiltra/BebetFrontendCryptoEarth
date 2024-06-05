@@ -1,5 +1,6 @@
-export const BACKEND_API_PORT = 3012
-export const BACKEND_API_BASE = `https://api-bet.ru:${BACKEND_API_PORT}`
+export const IS_DEV = location.origin.includes('localhost')
+export const BACKEND_API_PORT = IS_DEV ? 3030 : 3012
+export const BACKEND_API_BASE = `${IS_DEV ? 'http://localhost' : 'https://api-bet.ru'}:${BACKEND_API_PORT}`
 export const BACKEND_API = `${BACKEND_API_BASE}/api/v1`
 
 export const wsApiBase = 'wss://api-bet.ru:9002'
