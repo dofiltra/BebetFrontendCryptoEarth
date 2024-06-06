@@ -43,9 +43,11 @@ export const AdminPage = () => {
       }}
     >
       <div className="app-header">
-        <HeaderLogo />
         <div className="app-header__container">
-          <p>Admin page</p>
+          <p>
+            Admin
+            <HeaderLogo />
+          </p>
         </div>
         {/* <Profile
           wallet={wallet}
