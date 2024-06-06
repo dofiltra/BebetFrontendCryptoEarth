@@ -128,9 +128,7 @@ function App() {
 
     if (res) {
       const parsedData = res.map((item: any) => {
-        const newItem = item
-        newItem.url = `${import.meta.env.VITE_FRONT_URL}?ref=${item.ref_string}`
-
+        const newItem = { ...item, url: `${import.meta.env.VITE_FRONT_URL}?ref=${item.ref_string}` }
         return newItem
       })
       setRefLinks(parsedData)
