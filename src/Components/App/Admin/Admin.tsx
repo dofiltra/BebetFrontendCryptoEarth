@@ -3,15 +3,15 @@ import React, { useState } from 'react'
 import { Button } from '@/shared/ui/button'
 import Input from '@/shared/ui/input'
 import { get } from '../../../services/api'
-import { type UserDto } from '@/entities/user'
+import { type ReferredDto, type UserDto } from '@/entities/user'
 import { toast } from 'react-toastify'
 import { isAdmin } from '@/shared/lib/admin/isAdmin'
 
 interface IStatisticProps {
-  referent: any
+  referents: ReferredDto[]
 }
 
-const Admin: React.FC<IStatisticProps> = ({ referent }) => {
+const Admin: React.FC<IStatisticProps> = ({ referents = [] }) => {
   const [showPopup, setShowPopup] = useState(false)
   const [user, setUser] = useState<UserDto | undefined>()
   const [name, setName] = useState('')
@@ -83,8 +83,8 @@ const Admin: React.FC<IStatisticProps> = ({ referent }) => {
           <p>Действия</p>
         </div>
 
-        {referent.length > 0 &&
-          referent.map((item: any, index: any) => {
+        {referents.length > 0 &&
+          referents.map((item: any, index: any) => {
             return (
               <div key={index} className={'referral__item'}>
                 <p>{new Date(item?.statistics?.connection_date).toJSON().slice(0, 10)}</p>

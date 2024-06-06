@@ -7,10 +7,10 @@ export interface GetDetailUserResponse {
 }
 
 export interface ReferredDto {
+  _id: string
   email: string
   status: string
   is_removed: boolean
-  _id: string
   login: string
   password: any
   createdAt: string
@@ -39,11 +39,11 @@ export interface StatisticsDto {
 }
 
 export interface WalletDto {
+  _id: string
   currency: string
   value: number
   status: string
   is_removed: boolean
-  _id: string
   user: string
   createdAt: string
   updatedAt: string
