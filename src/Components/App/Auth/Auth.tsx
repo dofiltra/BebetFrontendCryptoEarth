@@ -8,6 +8,7 @@ import UiSelector from '../../Ui/UiSelector/UiSelector'
 import { useIsMobile } from '@/shared/lib/hooks/use-is-mobile'
 import { ResetPasswordModal } from '@/features/reset-password'
 import { toast } from 'react-toastify'
+import { type WalletDto } from '@/entities/user'
 
 const footerPoints = [
   {
@@ -27,11 +28,11 @@ const footerPoints = [
 interface IAppProps {
   showAuth: boolean
   setLogged: () => void
-  setProfile: any
+  setWallet: (o: WalletDto) => void
   setShowAuth: () => void
 }
 
-const Auth: React.FC<IAppProps> = ({ showAuth, setLogged, setShowAuth, setProfile }) => {
+const Auth: React.FC<IAppProps> = ({ showAuth, setLogged, setShowAuth, setWallet }) => {
   const { isMobile } = useIsMobile()
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
@@ -62,11 +63,11 @@ const Auth: React.FC<IAppProps> = ({ showAuth, setLogged, setShowAuth, setProfil
       localStorage.setItem('reconnect', password)
 
       setLogged()
-      let userState = await get('/ref_wallet/getMainWallet')
-      if (userState) {
-        setProfile(userState)
+      const wallet = await get('/ref_wallet/getMainWallet')
+
+      if (wallet) {
+        setWallet(wallet)
         setShowAuth()
-        setLogged()
       }
     }
   }
