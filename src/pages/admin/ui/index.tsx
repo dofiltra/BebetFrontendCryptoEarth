@@ -10,7 +10,6 @@ import { useCurrentUser } from '@/shared/lib/hooks'
 import { ToastContainer } from 'react-toastify'
 import { isAdmin } from '@/shared/lib/admin/isAdmin'
 import { HeaderLogo } from '@/Components/Ui/Header/Header'
-import { Profile } from '@/Components/Ui/Profile/Profile'
 
 const DEFAULT_USER_LIMIT = 10
 
