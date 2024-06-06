@@ -1,23 +1,24 @@
 import './App.scss'
+import 'react-toastify/dist/ReactToastify.css'
+
 import { useEffect, useState } from 'react'
 import { Button } from '@/shared/ui/button'
 import Auth from '../Auth/Auth'
 import Statistic from '../Statistic/Statistic'
 import Links from '../Links/Links'
-import Referral from '../Referral/Referral'
+import Referrals from '../Referral/Referral'
 import Settings from '../Settings/Settings'
 import Outs from '../Outs/Outs'
 import { createFormData, get, postFormData } from '../../../services/api'
 import { ToastContainer } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
 import Input from '@/shared/ui/input'
 import { useIsMobile, getCurrentUser, useCurrentUser } from '@/shared/lib/hooks'
 import { getDateByFilter } from '@/shared/lib/date/get-date-by-filter'
 import type { TAppCurrentPage } from './App.types'
 import type { TFilterDate, TFullStatistic } from '../Statistic/Statistic.types'
-import { isAdmin } from '@/shared/lib/admin/isAdmin'
+import { isAdmin, isDev } from '@/shared/lib/admin/isAdmin'
 import { HeaderLogo } from '../../Ui/Header/Header'
-import { type WalletDto } from '@/entities/user'
+import { type ReferredDto, type WalletDto } from '@/entities/user'
 import { Profile } from '@/Components/Ui/Profile/Profile'
 
 function App() {
@@ -36,7 +37,7 @@ function App() {
 
   const { currentUser, setCurrentUser } = useCurrentUser()
   const [wallet, setWallet] = useState<WalletDto | undefined>()
-  const [referent, setReferent] = useState([])
+  const [referents, setReferents] = useState<ReferredDto[]>([])
   const [fullStatistic, setFullStatistic] = useState<TFullStatistic>({})
   const [refLinks, setRefLinks] = useState([])
   const [outs, setOuts] = useState([])
@@ -89,7 +90,7 @@ function App() {
   const getReferent = async () => {
     let res = await get('/ref_user/getAllReferent')
     if (res) {
-      setReferent(res)
+      setReferents(res)
     }
   }
 
@@ -148,7 +149,7 @@ function App() {
       getCurrentUser().then((user) => {
         setCurrentUser(user)
 
-        if (isAdmin(user)) {
+        if (isAdmin(user) && !isDev()) {
           location.href = '/admin'
         }
       })
@@ -332,7 +333,7 @@ function App() {
           <Statistic fullStatistic={fullStatistic} onChangeDate={getFullStatistic} />
         )}
         {currentPage === 'links' && logged && <Links getRefUrls={getRefUrls} refLinks={refLinks} user={currentUser} />}
-        {currentPage === 'referral' && logged && <Referral referent={referent} />}
+        {currentPage === 'referral' && logged && <Referrals referents={referents} />}
         {currentPage === 'outs' && logged && <Outs outs={outs} />}
       </div>
     )
@@ -414,7 +415,7 @@ function App() {
         <Statistic onChangeDate={getFullStatistic} fullStatistic={fullStatistic} />
       )}
       {currentPage === 'links' && logged && <Links getRefUrls={getRefUrls} refLinks={refLinks} user={currentUser} />}
-      {currentPage === 'referral' && logged && <Referral referent={referent} />}
+      {currentPage === 'referral' && logged && <Referrals referents={referents} />}
       {currentPage === 'settings' && logged && <Settings updateUserState={updateUserState} user={currentUser} />}
       {currentPage === 'outs' && logged && <Outs outs={outs} />}
       <ToastContainer />

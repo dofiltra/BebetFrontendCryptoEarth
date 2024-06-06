@@ -1,12 +1,13 @@
 import './Referral.scss'
 import React, { useState } from 'react'
 import Input from '@/shared/ui/input'
+import { type ReferredDto } from '@/entities/user'
 
 interface IStatisticProps {
-  referent: any
+  referents: ReferredDto[]
 }
 
-const Referral: React.FC<IStatisticProps> = ({ referent }) => {
+const Referrals: React.FC<IStatisticProps> = ({ referents }) => {
   const [showPopup, setShowPopup] = useState(false)
   const [name, setName] = useState('')
   const [link, setLink] = useState('')
@@ -51,20 +52,44 @@ const Referral: React.FC<IStatisticProps> = ({ referent }) => {
           <p>Дата</p>
           <p>Переходы</p>
           <p>Регистрация</p>
-          <p>Первые<br/> депозиты</p>
-          <p>Кол-во<br/> депозитов</p>
-          <p>Сумма <br/>депозитов</p>
-          <p>Повторные <br/>депозиты</p>
-          <p>Сумма <br/>ставок</p>
-          <p>Общий <br/>выигрыш</p>
-          <p>Общий <br/>проигрыш</p>
-          <p>Общая <br/>разница</p>
+          <p>
+            Первые
+            <br /> депозиты
+          </p>
+          <p>
+            Кол-во
+            <br /> депозитов
+          </p>
+          <p>
+            Сумма <br />
+            депозитов
+          </p>
+          <p>
+            Повторные <br />
+            депозиты
+          </p>
+          <p>
+            Сумма <br />
+            ставок
+          </p>
+          <p>
+            Общий <br />
+            выигрыш
+          </p>
+          <p>
+            Общий <br />
+            проигрыш
+          </p>
+          <p>
+            Общая <br />
+            разница
+          </p>
           <p>Бонус</p>
           <p>Доход</p>
         </div>
 
-        {referent.length > 0 &&
-          referent.map((item: any, index: any) => {
+        {referents.length > 0 &&
+          referents.map((item: ReferredDto, index: any) => {
             return (
               <div key={index} className={'referral__item'}>
                 <p>{new Date(item?.statistics?.connection_date).toJSON().slice(0, 10)}</p>
@@ -88,4 +113,4 @@ const Referral: React.FC<IStatisticProps> = ({ referent }) => {
   )
 }
 
-export default Referral
+export default Referrals

@@ -61,8 +61,8 @@ const Auth: React.FC<IAppProps> = ({ showAuth, setLogged, setShowAuth, setWallet
       localStorage.setItem('email', email)
       localStorage.setItem('password', password)
       localStorage.setItem('reconnect', password)
-
       setLogged()
+
       const wallet = await get('/ref_wallet/getMainWallet')
 
       if (wallet) {
