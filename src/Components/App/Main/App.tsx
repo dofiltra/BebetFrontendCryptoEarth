@@ -16,9 +16,9 @@ import { useIsMobile, getCurrentUser, useCurrentUser } from '@/shared/lib/hooks'
 import { getDateByFilter } from '@/shared/lib/date/get-date-by-filter'
 import type { TAppCurrentPage } from './App.types'
 import type { TFilterDate, TFullStatistic } from '../Statistic/Statistic.types'
+import type { ReferredDto, WalletDto } from '@/entities/user'
 import { isAdmin, isDev } from '@/shared/lib/admin/isAdmin'
 import { HeaderLogo } from '../../Ui/Header/Header'
-import { type ReferredDto, type WalletDto } from '@/entities/user'
 import { Profile } from '@/Components/Ui/Profile/Profile'
 
 function App() {
@@ -274,7 +274,7 @@ function App() {
                 </svg>
               )}
             </div>
-            {HeaderLogo()}
+            <HeaderLogo />
           </div>
 
           {logged ? (

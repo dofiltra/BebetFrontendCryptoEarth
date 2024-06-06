@@ -44,10 +44,7 @@ export const AdminPage = () => {
     >
       <div className="app-header">
         <div className="app-header__container">
-          <p>
-            Admin
-            <HeaderLogo />
-          </p>
+          <HeaderLogo />
         </div>
         {/* <Profile
           wallet={wallet}
@@ -84,10 +81,10 @@ export const AdminPage = () => {
         /> */}
       </div>
 
-      <h1 className={classes.title}></h1>
-      <h2 className={classes.stats_title}>Users</h2>
+      <h1 className={classes?.title}></h1>
+      <h2 className={classes?.stats_title}>Users</h2>
       <UserAdminTable users={data?.users || []} />
-      <div className={classes.paginate_wrapper}>
+      <div className={classes?.paginate_wrapper}>
         <Pagination
           count={data?.totalPages || 1}
           onChange={(_, page) => {

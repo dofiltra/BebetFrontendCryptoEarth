@@ -1,15 +1,10 @@
-import type { ReferredDto, StatisticsDto } from 'src/entities/user'
 import { TableCell, TableRow } from '@mui/material'
 import { getStringDate } from '@/shared/lib/date/get-string-date'
+import { TReferredProps } from './types'
 
-type Props = {
-  refferend: ReferredDto
-  hiddenCols?: (keyof ReferredDto | keyof StatisticsDto)[]
-}
-
-export const ReferredRow = (props: Props) => {
-  const { refferend, hiddenCols = [] } = props
-  const { statistics } = refferend
+export const ReferredRow = (props: TReferredProps) => {
+  const { refferend, hiddenCols = [], actionsCol } = props
+  const { statistics } = { ...refferend }
 
   return (
     <TableRow>
@@ -35,6 +30,7 @@ export const ReferredRow = (props: Props) => {
       {!hiddenCols?.includes('betsDiff') && <TableCell align="center">{statistics.betsDiff?.toFixed(2)}</TableCell>}
       {!hiddenCols?.includes('bonus') && <TableCell align="center"> {statistics.bonus}</TableCell>}
       {!hiddenCols?.includes('income') && <TableCell align="center">{statistics.income?.toFixed(2)}</TableCell>}
+      {actionsCol && <TableCell align="center">{actionsCol?.({ user: refferend })}</TableCell>}
     </TableRow>
   )
 }

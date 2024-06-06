@@ -1,13 +1,8 @@
-import type { StatisticsDto, ReferredDto } from 'src/entities/user'
 import { Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material'
 import { ReferredRow } from './referred-row'
+import { TReferredProps } from './types'
 
-type Props = {
-  refferends: ReferredDto[]
-  hiddenCols?: (keyof ReferredDto | keyof StatisticsDto)[]
-}
-
-export const ReferredTable = ({ refferends = [], hiddenCols = [] }: Props) => {
+export const ReferredTable = ({ refferends = [], hiddenCols = [], actionsCol }: TReferredProps) => {
   if (refferends.length === 0) {
     return <></>
   }
@@ -38,7 +33,7 @@ export const ReferredTable = ({ refferends = [], hiddenCols = [] }: Props) => {
       </TableHead>
       <TableBody>
         {refferends.map((refferend) => (
-          <ReferredRow key={refferend._id} refferend={refferend} hiddenCols={hiddenCols} />
+          <ReferredRow key={refferend._id} refferend={refferend} hiddenCols={hiddenCols} actionsCol={actionsCol} />
         ))}
       </TableBody>
     </Table>
