@@ -1,12 +1,8 @@
-import { WalletDto } from 'src/entities/user'
 import { Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material'
 import { WalletRow } from './wallet-row'
+import type { TWalletProps } from './types'
 
-type Props = {
-  wallets: WalletDto[]
-}
-
-export const WalletTable = ({ wallets }: Props) => {
+export const WalletTable = ({ wallets = [], actionsCol }: TWalletProps) => {
   if (wallets.length === 0) {
     return <></>
   }
@@ -18,11 +14,12 @@ export const WalletTable = ({ wallets }: Props) => {
           <TableCell align="center">Currency</TableCell>
           <TableCell align="center">Status</TableCell>
           <TableCell align="center">Is removed</TableCell>
+          {!!actionsCol && <TableCell></TableCell>}
         </TableRow>
       </TableHead>
       <TableBody>
         {wallets.map((wallet) => (
-          <WalletRow key={wallet._id} wallet={wallet} />
+          <WalletRow key={wallet._id} wallet={wallet} actionsCol={actionsCol} />
         ))}
       </TableBody>
     </Table>

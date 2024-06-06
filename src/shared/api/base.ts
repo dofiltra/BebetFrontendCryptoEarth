@@ -7,7 +7,6 @@ type TEvents = {
 
 class ApiInstance {
   private axios: AxiosInstance
-
   private _token: string | null = null
 
   constructor() {
@@ -53,16 +52,25 @@ class ApiInstance {
       }
       return response
     } catch (error) {
-      events?.onError({ error })
+      events?.onError({ error: error?.response?.data?.error || error?.message || error })
       throw error
     }
   }
 
-  async post<T>(endpoint: string, data: any, options: AxiosRequestConfig = {}): Promise<AxiosResponse<T>> {
+  async post<T>(
+    endpoint: string,
+    data: any,
+    options: AxiosRequestConfig = {},
+    events?: TEvents
+  ): Promise<AxiosResponse<T>> {
     try {
       const response: AxiosResponse<T> = await this.axios.post(endpoint, data, options)
+      if (response?.status >= 400) {
+        events?.onError({ error: response.statusText })
+      }
       return response
     } catch (error) {
+      events?.onError({ error: error?.response?.data?.error || error?.message || error })
       throw error
     }
   }

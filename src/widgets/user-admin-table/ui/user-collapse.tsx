@@ -1,11 +1,12 @@
-import { ReferredDto, userQueries } from 'src/entities/user'
+import { WalletDto, userQueries } from 'src/entities/user'
 import { ReferredTable } from 'src/widgets/user-admin-table/ui/referred-table'
 import { WalletTable } from 'src/widgets/user-admin-table/ui/wallet-table'
 import { useQuery } from '@tanstack/react-query'
 import { useStyles } from './styles'
 import { toast } from 'react-toastify'
-import { get } from '@/services/api'
 import { Button } from '@/shared/ui/button'
+import { apiInstance } from '@/shared/api'
+import { useState } from 'react'
 
 type Props = {
   userId: string
@@ -14,30 +15,27 @@ type Props = {
 export const UserCollapse = (props: Props) => {
   const { userId } = props
   const { classes } = useStyles()
-  const { data, isLoading } = useQuery(userQueries.detail({ id: userId }))
+  const { data, isLoading, refetch } = useQuery(userQueries.detail({ id: userId }))
 
-  const handleEarningsHistory = async () => {
-    const users = await get('/ref_admin/users/')
-
-    if (!users) {
-      return toast.error(`Не получилось загрузить пользователей`)
-    }
-    console.log('handleEarningsHistory', users)
-  }
-  const handleWithdrawalInfo = async (id: any) => {
-    let res = await get(`/ref_admin/users/${id}`)
+  const toogleBlock = async ({ userId, type }: { userId: string; type: 'block' | 'unblock' }) => {
+    const res = await apiInstance.post<any>(
+      `/api/v1/ref_admin/users/${userId}/${type}`,
+      {
+        withCredentials: true,
+        params: {},
+      },
+      {},
+      {
+        onError: async ({ error = 'Error' }) => {
+          toast.error(`${error}`)
+        },
+      }
+    )
 
     if (!res) {
-      return toast.error(`Не получилось`)
+      return
     }
-    console.log('handleWithdrawalInfo', res)
-  }
-  const handleBlockUnblockUser = async (id: any) => {
-    let res = await get(`/ref_admin/users/${id}/block`)
-    if (!res) {
-      return toast.error(`Не получилось`)
-    }
-    console.log('handleBlockUnblockUser', res)
+    refetch()
   }
 
   if (isLoading) {
@@ -48,42 +46,33 @@ export const UserCollapse = (props: Props) => {
     <div className={classes.user_collapse}>
       <div>
         <h2>Referents</h2>
-        <ReferredTable
-          refferends={data?.data?.referents || []}
-          hiddenCols={['refferend']}
-          actionsCol={({ user }: { user: ReferredDto }) => (
-            <>
-              <Button
-                title="История начислений"
-                handleClick={() => handleEarningsHistory()}
-                disabled={false}
-                width="150px"
-                transparent={false}
-                black={true}
-              />
-              <Button
-                title="Информация о выводах"
-                handleClick={() => handleWithdrawalInfo(user._id)}
-                disabled={false}
-                width="150px"
-                transparent={false}
-                black={true}
-              />
-              <Button
-                title="Блок/разблок"
-                handleClick={() => handleBlockUnblockUser(user._id)}
-                disabled={false}
-                width="150px"
-                transparent={false}
-                black={true}
-              />
-            </>
-          )}
-        />
+        <ReferredTable refferends={data?.data?.referents || []} hiddenCols={['refferend']} />
       </div>
       <div>
         <h2>Wallets</h2>
-        <WalletTable wallets={data?.data?.wallets || []} />
+        <WalletTable
+          wallets={data?.data?.wallets || []}
+          actionsCol={({ wallet }) => {
+            const isBlocked = wallet?.status === 'blocked'
+            return (
+              <>
+                <Button
+                  title={isBlocked ? 'Unblock' : 'Block'}
+                  handleClick={() =>
+                    toogleBlock({
+                      userId: wallet.user,
+                      type: isBlocked ? 'unblock' : 'block',
+                    })
+                  }
+                  disabled={false}
+                  width="120px"
+                  transparent={false}
+                  black={true}
+                />
+              </>
+            )
+          }}
+        />
       </div>
     </div>
   )

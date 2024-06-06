@@ -29,6 +29,7 @@ export const ReferredTable = ({ refferends = [], hiddenCols = [], actionsCol }: 
           {!hiddenCols?.includes('betsDiff') && <TableCell align="center">Bets diff</TableCell>}
           {!hiddenCols?.includes('bonus') && <TableCell align="center">Bonus</TableCell>}
           {!hiddenCols?.includes('income') && <TableCell align="center">Income</TableCell>}
+          {!!actionsCol && <TableCell align="center"></TableCell>}
         </TableRow>
       </TableHead>
       <TableBody>
