@@ -1,14 +1,14 @@
-import { ReferredDto } from "src/entities/user";
-import { Table, TableBody, TableCell, TableHead, TableRow } from "@mui/material";
-import { ReferredRow } from "./referred-row";
+import type { StatisticsDto, ReferredDto } from 'src/entities/user'
+import { Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material'
+import { ReferredRow } from './referred-row'
 
 type Props = {
-  referred: ReferredDto[]
+  refferends: ReferredDto[]
+  hiddenCols?: (keyof ReferredDto | keyof StatisticsDto)[]
 }
 
-
-export const ReferredTable = ({ referred }: Props) => {
-  if (referred.length === 0) {
+export const ReferredTable = ({ refferends = [], hiddenCols = [] }: Props) => {
+  if (refferends.length === 0) {
     return <></>
   }
 
@@ -16,30 +16,29 @@ export const ReferredTable = ({ referred }: Props) => {
     <Table aria-label="collapsible table">
       <TableHead>
         <TableRow>
-          <TableCell align='center'>Email</TableCell>
-          <TableCell align='center'>Connection date</TableCell>
-          <TableCell align='center'>Is removed</TableCell>
-          <TableCell align='center'>Status</TableCell>
-          <TableCell align='center'>Referred</TableCell>
-          <TableCell align='center'>Date</TableCell>
-          <TableCell align='center'>Traffic</TableCell>
-          <TableCell align='center'>Connection date</TableCell>
-          <TableCell align='center'>Deposits first</TableCell>
-          <TableCell align='center'>Deposits count</TableCell>
-          <TableCell align='center'>Deposits summary</TableCell>
-          <TableCell align='center'>Deposits repeat</TableCell>
-          <TableCell align='center'>Bets count</TableCell>
-          <TableCell align='center'>Bets summary</TableCell>
-          <TableCell align='center'>Losed summary</TableCell>
-          <TableCell align='center'>Winned summary</TableCell>
-          <TableCell align='center'>Bets diff</TableCell>
-          <TableCell align='center'>Bonus</TableCell>
-          <TableCell align='center'>Income</TableCell>
+          {!hiddenCols?.includes('email') && <TableCell align="center">Email</TableCell>}
+          {!hiddenCols?.includes('is_removed') && <TableCell align="center">Is removed</TableCell>}
+          {!hiddenCols?.includes('status') && <TableCell align="center">Status</TableCell>}
+          {!hiddenCols?.includes('refferend') && <TableCell align="center">Referrend</TableCell>}
+          {!hiddenCols?.includes('date') && <TableCell align="center">Date</TableCell>}
+          {!hiddenCols?.includes('traffic') && <TableCell align="center">Traffic</TableCell>}
+          {!hiddenCols?.includes('connection_date') && <TableCell align="center">Connection date</TableCell>}
+          {!hiddenCols?.includes('depositsFirst') && <TableCell align="center">Deposits first</TableCell>}
+          {!hiddenCols?.includes('depositsCount') && <TableCell align="center">Deposits count</TableCell>}
+          {!hiddenCols?.includes('depositsSummary') && <TableCell align="center">Deposits summary</TableCell>}
+          {!hiddenCols?.includes('depositsRepeat') && <TableCell align="center">Deposits repeat</TableCell>}
+          {!hiddenCols?.includes('betsCount') && <TableCell align="center">Bets count</TableCell>}
+          {!hiddenCols?.includes('betsSummary') && <TableCell align="center">Bets summary</TableCell>}
+          {!hiddenCols?.includes('losedSummary') && <TableCell align="center">Losed summary</TableCell>}
+          {!hiddenCols?.includes('winnedSummary') && <TableCell align="center">Winned summary</TableCell>}
+          {!hiddenCols?.includes('betsDiff') && <TableCell align="center">Bets diff</TableCell>}
+          {!hiddenCols?.includes('bonus') && <TableCell align="center">Bonus</TableCell>}
+          {!hiddenCols?.includes('income') && <TableCell align="center">Income</TableCell>}
         </TableRow>
       </TableHead>
       <TableBody>
-        {referred.map((referrer) => (
-          <ReferredRow key={referrer._id} referrer={referrer}/>
+        {refferends.map((refferend) => (
+          <ReferredRow key={refferend._id} refferend={refferend} hiddenCols={hiddenCols} />
         ))}
       </TableBody>
     </Table>

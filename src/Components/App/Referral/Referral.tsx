@@ -2,6 +2,7 @@ import './Referral.scss'
 import React, { useState } from 'react'
 import Input from '@/shared/ui/input'
 import { type ReferredDto } from '@/entities/user'
+import { ReferredTable } from '@/widgets/user-admin-table/ui/referred-table'
 
 interface IStatisticProps {
   referents: ReferredDto[]
@@ -42,74 +43,20 @@ const Referrals: React.FC<IStatisticProps> = ({ referents }) => {
   }
 
   return (
-    <div className={'referral'}>
-      {showPopup && popup()}
-      <div className={'referral__title'}>
-        <p>Мои рефералы</p>
-      </div>
-      <div className={'referral__container'}>
-        <div className={'referral__container-header'}>
-          <p>Дата</p>
-          <p>Переходы</p>
-          <p>Регистрация</p>
-          <p>
-            Первые
-            <br /> депозиты
-          </p>
-          <p>
-            Кол-во
-            <br /> депозитов
-          </p>
-          <p>
-            Сумма <br />
-            депозитов
-          </p>
-          <p>
-            Повторные <br />
-            депозиты
-          </p>
-          <p>
-            Сумма <br />
-            ставок
-          </p>
-          <p>
-            Общий <br />
-            выигрыш
-          </p>
-          <p>
-            Общий <br />
-            проигрыш
-          </p>
-          <p>
-            Общая <br />
-            разница
-          </p>
-          <p>Бонус</p>
-          <p>Доход</p>
+    <>
+      <div className={'referral'}>
+        {showPopup && popup()}
+        <div className={'referral__title'}>
+          <p>Мои рефералы</p>
         </div>
-
-        {referents.length > 0 &&
-          referents.map((item: ReferredDto, index: any) => {
-            return (
-              <div key={index} className={'referral__item'}>
-                <p>{new Date(item?.statistics?.connection_date).toJSON().slice(0, 10)}</p>
-                <p>{item?.statistics?.traffic}</p>
-                <p>{new Date(item?.statistics?.connection_date).toJSON().slice(0, 10)}</p>
-                <p>{item?.statistics?.depositsFirst}</p>
-                <p>{item?.statistics?.depositsCount}</p>
-                <p>{item?.statistics?.depositsSummary}</p>
-                <p>{item?.statistics?.depositsRepeat}</p>
-                <p>{item?.statistics?.betsSummary}</p>
-                <p>{item?.statistics?.winnedSummary}</p>
-                <p>{item?.statistics?.losedSummary}</p>
-                <p>{item?.statistics?.betsDiff}</p>
-                <p>{item?.statistics?.bonus}</p>
-                <p>{item?.statistics?.income}</p>
-              </div>
-            )
-          })}
+        <div className={'referral__container'}>
+          <ReferredTable
+            refferends={referents || []}
+            hiddenCols={['email', 'is_removed', 'status', 'refferend', 'betsCount']}
+          />
+        </div>
       </div>
-    </div>
+    </>
   )
 }
 

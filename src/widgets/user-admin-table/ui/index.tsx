@@ -1,4 +1,4 @@
-import { UserDto } from 'src/entities/user'
+import type { UserDto } from 'src/entities/user'
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
 import { UserRow } from './user-row'
 import { useStyles } from './styles'

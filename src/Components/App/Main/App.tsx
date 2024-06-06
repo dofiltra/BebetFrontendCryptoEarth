@@ -23,7 +23,6 @@ import { Profile } from '@/Components/Ui/Profile/Profile'
 
 function App() {
   const { isMobile } = useIsMobile()
-
   const [menuOpen, setMenuOpen] = useState(false)
 
   const [showMoneyPopup, setShowMoneyPopup] = useState(false)
@@ -37,7 +36,7 @@ function App() {
 
   const { currentUser, setCurrentUser } = useCurrentUser()
   const [wallet, setWallet] = useState<WalletDto | undefined>()
-  const [referents, setReferents] = useState<ReferredDto[]>([])
+  const [refferends, setReferends] = useState<ReferredDto[]>([])
   const [fullStatistic, setFullStatistic] = useState<TFullStatistic>({})
   const [refLinks, setRefLinks] = useState([])
   const [outs, setOuts] = useState([])
@@ -90,7 +89,7 @@ function App() {
   const getReferent = async () => {
     let res = await get('/ref_user/getAllReferent')
     if (res) {
-      setReferents(res)
+      setReferends(res)
     }
   }
 
@@ -331,7 +330,7 @@ function App() {
           <Statistic fullStatistic={fullStatistic} onChangeDate={getFullStatistic} />
         )}
         {currentPage === 'links' && logged && <Links getRefUrls={getRefUrls} refLinks={refLinks} user={currentUser} />}
-        {currentPage === 'referral' && logged && <Referrals referents={referents} />}
+        {currentPage === 'referral' && logged && <Referrals referents={refferends} />}
         {currentPage === 'outs' && logged && <Outs outs={outs} />}
       </div>
     )
@@ -413,7 +412,7 @@ function App() {
         <Statistic onChangeDate={getFullStatistic} fullStatistic={fullStatistic} />
       )}
       {currentPage === 'links' && logged && <Links getRefUrls={getRefUrls} refLinks={refLinks} user={currentUser} />}
-      {currentPage === 'referral' && logged && <Referrals referents={referents} />}
+      {currentPage === 'referral' && logged && <Referrals referents={refferends} />}
       {currentPage === 'settings' && logged && <Settings updateUserState={updateUserState} user={currentUser} />}
       {currentPage === 'outs' && logged && <Outs outs={outs} />}
       <ToastContainer />

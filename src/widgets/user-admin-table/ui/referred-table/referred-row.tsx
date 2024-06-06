@@ -1,36 +1,40 @@
-import { ReferredDto } from "src/entities/user";
-import { TableCell, TableRow } from "@mui/material";
-import { getStringDate } from "@/shared/lib/date/get-string-date";
+import type { ReferredDto, StatisticsDto } from 'src/entities/user'
+import { TableCell, TableRow } from '@mui/material'
+import { getStringDate } from '@/shared/lib/date/get-string-date'
 
 type Props = {
-  referrer: ReferredDto
+  refferend: ReferredDto
+  hiddenCols?: (keyof ReferredDto | keyof StatisticsDto)[]
 }
 
 export const ReferredRow = (props: Props) => {
-  const { referrer } = props
-  const { statistics } = referrer
+  const { refferend, hiddenCols = [] } = props
+  const { statistics } = refferend
+
   return (
     <TableRow>
-      <TableCell align='center'>{referrer.email}</TableCell>
-      <TableCell align='center'>{referrer.connection_date}</TableCell>
-      <TableCell align='center'>{referrer.is_removed ? 'Yes' : 'No'}</TableCell>
-      <TableCell align='center'>{referrer.status}</TableCell>
-      <TableCell align='center'>{referrer.refferend}</TableCell>
-      <TableCell align='center'>{getStringDate(statistics.date)}</TableCell>
-      <TableCell align='center'>{statistics.traffic}</TableCell>
-      <TableCell align='center'>{statistics.connection_date}</TableCell>
-      <TableCell align='center'>{statistics.depositsFirst}</TableCell>
-      <TableCell align='center'>{statistics.depositsCount}</TableCell>
-      <TableCell align='center'>{statistics.depositsSummary}</TableCell>
-      <TableCell align='center'>{statistics.depositsRepeat}</TableCell>
-      <TableCell align='center'>{statistics.betsCount}</TableCell>
-      <TableCell align='center'>{statistics.betsSummary}</TableCell>
-      <TableCell align='center'>{statistics.losedSummary}</TableCell>
-      <TableCell align='center'>{statistics.winnedSummary}</TableCell>
-      <TableCell align='center'>{statistics.betsDiff}</TableCell>
-      <TableCell align='center'>{statistics.bonus}</TableCell>
-      <TableCell align='center'>{statistics.income}</TableCell>
+      {!hiddenCols?.includes('email') && <TableCell align="center">{refferend.email}</TableCell>}
+      {!hiddenCols?.includes('is_removed') && <TableCell align="center">{refferend.is_removed}</TableCell>}
+      {!hiddenCols?.includes('status') && <TableCell align="center">{refferend.status}</TableCell>}
+      {!hiddenCols?.includes('refferend') && <TableCell align="center">{refferend.refferend}</TableCell>}
+      {!hiddenCols?.includes('date') && <TableCell align="center">{getStringDate(statistics.date)}</TableCell>}
+      {!hiddenCols?.includes('traffic') && <TableCell align="center">{statistics.traffic}</TableCell>}
+      {!hiddenCols?.includes('connection_date') && (
+        <TableCell align="center">{getStringDate(statistics.connection_date)}</TableCell>
+      )}
+      {!hiddenCols?.includes('depositsFirst') && <TableCell align="center">{statistics.depositsFirst}</TableCell>}
+      {!hiddenCols?.includes('depositsCount') && <TableCell align="center">{statistics.depositsCount}</TableCell>}
+      {!hiddenCols?.includes('depositsSummary') && <TableCell align="center">{statistics.depositsSummary}</TableCell>}
+      {!hiddenCols?.includes('depositsRepeat') && <TableCell align="center">{statistics.depositsRepeat}</TableCell>}
+      {!hiddenCols?.includes('betsCount') && <TableCell align="center">{statistics.betsCount}</TableCell>}
+      {!hiddenCols?.includes('betsSummary') && <TableCell align="center">{statistics.betsSummary}</TableCell>}
+      {!hiddenCols?.includes('losedSummary') && <TableCell align="center">{statistics.losedSummary}</TableCell>}
+      {!hiddenCols?.includes('winnedSummary') && (
+        <TableCell align="center">{statistics.winnedSummary?.toFixed(2)}</TableCell>
+      )}
+      {!hiddenCols?.includes('betsDiff') && <TableCell align="center">{statistics.betsDiff?.toFixed(2)}</TableCell>}
+      {!hiddenCols?.includes('bonus') && <TableCell align="center"> {statistics.bonus}</TableCell>}
+      {!hiddenCols?.includes('income') && <TableCell align="center">{statistics.income?.toFixed(2)}</TableCell>}
     </TableRow>
   )
-
 }

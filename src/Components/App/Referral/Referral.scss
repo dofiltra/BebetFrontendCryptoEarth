@@ -3,6 +3,12 @@
 .referral {
   width: 100%;
 
+  th,
+  tr,
+  td {
+    color: #ffffff;
+  }
+
   &__title {
     width: 100%;
 
@@ -19,36 +25,5 @@
 
   &__container {
     overflow-x: auto;
-  }
-
-  &__container-header,
-  &__item {
-    display: grid;
-    grid-template-columns: repeat(13, 1fr);
-    gap: 10px;
-    padding: 10px;
-
-    p {
-      margin: 0;
-      padding: 5px;
-      text-align: center;
-      @include p7-regular;
-      color: #ffffff;
-      padding-top: 16px;
-    }
-  }
-
-  &__container-header {
-    font-weight: bold;
-    @include p7-regular;
-    color: #ffffff;
-    padding-top: 16px;
-  }
-
-  @media (max-width: 768px) {
-    &__container-header,
-    &__item {
-      grid-template-columns: repeat(13, minmax(100px, 1fr));
-    }
   }
 }

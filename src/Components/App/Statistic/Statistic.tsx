@@ -16,7 +16,7 @@ const getData = (value: unknown): number | string => {
       value = value
         ?.filter((x) => x?.data)
         .map((x) => x.data)
-        .reduce((prev, curr) => prev + curr)
+        .reduce((prev, curr) => prev + (curr || 0), 0)
     }
 
     if (typeof value === 'number' || typeof value === 'string') {
@@ -97,7 +97,7 @@ const Statistic = (props: Props = {} as Props) => {
         if (values?.length && Array.isArray(values)) {
           for (const entry of values) {
             const date = entry.date
-            const value = entry.data
+            const value = entry.data || 0
 
             if (new Date(date).getMonth() === i) {
               totalValue += value
