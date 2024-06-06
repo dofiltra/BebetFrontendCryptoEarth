@@ -1,4 +1,4 @@
-import { WalletDto, userQueries } from 'src/entities/user'
+import { userQueries } from 'src/entities/user'
 import { ReferredTable } from 'src/widgets/user-admin-table/ui/referred-table'
 import { WalletTable } from 'src/widgets/user-admin-table/ui/wallet-table'
 import { useQuery } from '@tanstack/react-query'
@@ -6,7 +6,6 @@ import { useStyles } from './styles'
 import { toast } from 'react-toastify'
 import { Button } from '@/shared/ui/button'
 import { apiInstance } from '@/shared/api'
-import { useState } from 'react'
 
 type Props = {
   userId: string
