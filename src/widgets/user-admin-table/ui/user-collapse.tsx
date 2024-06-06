@@ -21,7 +21,7 @@ export const UserCollapse = (props: Props) => {
     <div className={classes.user_collapse}>
       <div>
         <h2>Referents</h2>
-        <ReferredTable refferends={data?.data?.referents || []} />
+        <ReferredTable refferends={data?.data?.referents || []} hiddenCols={['refferend']} />
       </div>
       <div>
         <h2>Wallets</h2>
