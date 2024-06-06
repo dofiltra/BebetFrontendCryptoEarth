@@ -20,10 +20,12 @@ import type { ReferredDto, WalletDto } from '@/entities/user'
 import { isAdmin, isDev } from '@/shared/lib/admin/isAdmin'
 import { HeaderLogo } from '../../Ui/Header/Header'
 import { Profile } from '@/Components/Ui/Profile/Profile'
+import { useRouter } from '@tanstack/react-router'
 
 function App() {
   const { isMobile } = useIsMobile()
   const [menuOpen, setMenuOpen] = useState(false)
+  const router = useRouter()
 
   const [showMoneyPopup, setShowMoneyPopup] = useState(false)
   const [email, setEmail] = useState('')
@@ -147,7 +149,7 @@ function App() {
         setCurrentUser(user)
 
         if (isAdmin(user) && !isDev()) {
-          location.href = '/admin'
+          router.navigate({ to: '/admin' })
         }
       })
       getReferent()

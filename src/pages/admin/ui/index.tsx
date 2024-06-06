@@ -1,5 +1,6 @@
 import '../../../Components/App/Main/App.scss'
 import 'react-toastify/dist/ReactToastify.css'
+
 import { userQueries } from 'src/entities/user'
 import { UserAdminTable } from '@/widgets/user-admin-table/ui'
 import { useStyles } from './styles'
