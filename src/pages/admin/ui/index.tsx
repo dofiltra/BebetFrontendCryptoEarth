@@ -9,7 +9,7 @@ import { useQuery } from '@tanstack/react-query'
 import { useEffect, useState } from 'react'
 import { Pagination } from '@mui/material'
 import { useCurrentUser, useIsMobile } from '@/shared/lib/hooks'
-import { ToastContainer } from 'react-toastify'
+import { ToastContainer, toast } from 'react-toastify'
 import { HeaderLogo } from '@/Components/Ui/Header/Header'
 import { AdminDashboard } from '@/Components/Admin/Dashboard/Dashboard'
 import { createFormData, postFormData } from '@/services/api'
@@ -47,7 +47,9 @@ export const AdminPage = () => {
   const loadAdminStatistics = async () => {
     // const date = getDateByFilter(filter)
     const d = createFormData({})
-    const res = await postFormData('/ref_user/getAdminDashboard', d)
+    const p = postFormData('/ref_user/getAdminDashboard', d)
+    toast.promise(p, { pending: 'Loading stats...', success: 'Got the data' })
+    const res = await p
 
     if (res) {
       setAdminStatistics(res)
