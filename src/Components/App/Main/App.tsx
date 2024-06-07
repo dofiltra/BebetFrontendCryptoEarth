@@ -211,6 +211,61 @@ function App() {
     </>
   )
 
+  const CurrentAuth = () => (
+    <>
+      {!logged && (
+        <Auth
+          setWallet={setWallet}
+          showAuth={showAuth}
+          setLogged={() => setLogged(true)}
+          setShowAuth={() => setShowAuth(false)}
+        />
+      )}
+    </>
+  )
+
+  const CurrentProfile = () => (
+    <>
+      {logged ? (
+        <Profile
+          wallet={wallet}
+          isVisible={showProfile}
+          setVisible={setShowProfile}
+          popupButtons={() => (
+            <>
+              <Button
+                title={'Вывести'}
+                handleClick={() => {
+                  setShowProfile(false)
+                  setShowMoneyPopup(true)
+                }}
+                disabled={false}
+                width={'100%'}
+              />
+            </>
+          )}
+          content={() => (
+            <>
+              <p
+                onClick={() => {
+                  setCurrentPage('outs')
+                  setShowProfile(false)
+                }}
+              >
+                Выводы
+              </p>
+              <p onClick={settingShow}>Настройки</p>
+              <p onClick={gotoSupport}>Поддержка</p>
+              <p onClick={logOut}>Выйти</p>
+            </>
+          )}
+        />
+      ) : (
+        <Button title={'Войти'} handleClick={() => setShowAuth(true)} disabled={false} />
+      )}
+    </>
+  )
+
   if (isMobile) {
     return (
       <div className={'mobile-app'}>
@@ -291,54 +346,10 @@ function App() {
             <HeaderLogo />
           </div>
 
-          {logged ? (
-            <Profile
-              wallet={wallet}
-              isVisible={showProfile}
-              setVisible={setShowProfile}
-              popupButtons={() => (
-                <>
-                  <Button
-                    title={'Вывести'}
-                    handleClick={() => {
-                      setShowProfile(false)
-                      setShowMoneyPopup(true)
-                    }}
-                    disabled={false}
-                    width={'100%'}
-                  />
-                </>
-              )}
-              content={() => (
-                <>
-                  <p
-                    onClick={() => {
-                      setCurrentPage('outs')
-                      setShowProfile(false)
-                    }}
-                  >
-                    Выводы
-                  </p>
-                  <p onClick={settingShow}>Настройки</p>
-                  <p onClick={gotoSupport}>Поддержка</p>
-                  <p onClick={logOut}>Выйти</p>
-                </>
-              )}
-            />
-          ) : (
-            <Button title={'Войти'} handleClick={() => setShowAuth(true)} disabled={false} />
-          )}
+          <CurrentProfile />
         </div>
 
-        {!logged && (
-          <Auth
-            setWallet={setWallet}
-            showAuth={showAuth}
-            setLogged={() => setLogged(true)}
-            setShowAuth={() => setShowAuth(false)}
-          />
-        )}
-
+        <CurrentAuth />
         <CurrentPage />
       </div>
     )
@@ -408,15 +419,7 @@ function App() {
         )}
       </div>
 
-      {!logged && (
-        <Auth
-          setWallet={setWallet}
-          showAuth={showAuth}
-          setLogged={() => setLogged(true)}
-          setShowAuth={() => setShowAuth(false)}
-        />
-      )}
-
+      <CurrentAuth />
       <CurrentPage />
       <ToastContainer />
     </div>
