@@ -221,7 +221,7 @@ function Traf2Reg({ data }: { data?: DataEntry[] }) {
     <DashboardItem
       title={`Конверсия в регистрации`}
       data={data}
-      formatter={({ value }) => `${parseFloat(value.toString() || '0') * 100}%`}
+      formatter={({ value }) => `${(parseFloat(value.toString() || '0') * 100).toFixed(2)}%`}
     />
   )
 }
@@ -248,7 +248,7 @@ function DepositsConversion({ data }: { data?: DataEntry[] }) {
     <DashboardItem
       title={`Конверсия рег в деп`}
       data={data}
-      formatter={({ value }) => `${parseFloat(value.toString() || '0') * 100}%`}
+      formatter={({ value }) => `${(parseFloat(value.toString() || '0') * 100).toFixed(2)}%`}
     />
   )
 }
