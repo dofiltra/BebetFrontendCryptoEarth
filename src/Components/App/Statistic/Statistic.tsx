@@ -318,15 +318,21 @@ const Statistic = (props: Props = {} as Props) => {
   )
 }
 
+function Traffic({ traffic }: { traffic?: DataEntry[] }) {
+  return (
+    <div className="item">
+      <div className="item__title">
+        <p>Переходы</p>
+      </div>
+      <p>{getData(traffic)}</p>
+    </div>
+  )
+}
+
 function FirstRow({ fullStatistic }: { fullStatistic: TFullStatistic }) {
   return (
     <>
-      <div className="item">
-        <div className="item__title">
-          <p>Переходы</p>
-        </div>
-        <p>{getData(fullStatistic?.traffic)}</p>
-      </div>
+      <Traffic traffic={fullStatistic?.traffic} />
       <div className="item">
         <div className="item__title">
           <p>Регистрации</p>
