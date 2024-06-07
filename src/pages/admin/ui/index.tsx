@@ -1,3 +1,4 @@
+import '../../../Components/App/Statistic/Statistic.scss'
 import '../../../Components/App/Main/App.scss'
 import 'react-toastify/dist/ReactToastify.css'
 
@@ -7,15 +8,18 @@ import { useStyles } from './styles'
 import { useQuery } from '@tanstack/react-query'
 import { useEffect, useState } from 'react'
 import { Pagination } from '@mui/material'
-import { useCurrentUser } from '@/shared/lib/hooks'
+import { useCurrentUser, useIsMobile } from '@/shared/lib/hooks'
 import { ToastContainer } from 'react-toastify'
-import { isAdmin } from '@/shared/lib/admin/isAdmin'
+import { isAdmin } from '@/shared/lib/validators/isAdmin'
 import { HeaderLogo } from '@/Components/Ui/Header/Header'
+import { AdminDashboard } from '@/Components/Admin/Dashboard/Dashboard'
 
 const DEFAULT_USER_LIMIT = 10
 
 export const AdminPage = () => {
   const { classes } = useStyles()
+  const { isMobile } = useIsMobile()
+
   const [page, setPage] = useState(1)
   const { data, refetch } = useQuery(userQueries.list(page, DEFAULT_USER_LIMIT))
   const { currentUser } = useCurrentUser()
@@ -82,6 +86,14 @@ export const AdminPage = () => {
       </div>
 
       <h1 className={classes?.title}>Admin panel</h1>
+
+      <div className={'statistic'}>
+        <div className={'statistic__info'}>
+          <div className={'statistic__info-container'}>
+            <AdminDashboard statistics={{}} isMobile={isMobile} />
+          </div>
+        </div>
+      </div>
 
       <h2 className={classes?.stats_title}>Partners</h2>
       <UserAdminTable users={data?.users || []} wallets={{ ...data.walets }} refetch={refetch} />

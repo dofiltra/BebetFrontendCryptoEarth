@@ -1,39 +1,5 @@
+import { DashboardItem } from '@/shared/ui/dashboard/item'
 import type { DataEntry, TFullStatistic } from './Statistic.types'
-
-const getData = (value: unknown): number | string => {
-  if (value || value === 0) {
-    if (Array.isArray(value)) {
-      value = value
-        ?.filter((x) => x?.data)
-        .map((x) => x.data)
-        .reduce((prev, curr) => prev + (curr || 0), 0)
-    }
-
-    if (typeof value === 'number' || typeof value === 'string') {
-      return value
-    }
-  }
-  return 'Нет данных'
-}
-
-function DashboardItem({
-  title,
-  data,
-  formatter = ({ value }) => value.toString(),
-}: {
-  title: string
-  data?: DataEntry[]
-  formatter?: (o: { value: string | number }) => string
-}) {
-  return (
-    <div className="item">
-      <div className="item__title">
-        <p>{title}</p>
-      </div>
-      <p>{formatter({ value: getData(data) })}</p>
-    </div>
-  )
-}
 
 function Traffic({ data }: { data?: DataEntry[] }) {
   return <DashboardItem title={`Переходы`} data={data} />
@@ -48,7 +14,7 @@ function Traf2Reg({ data }: { data?: DataEntry[] }) {
     <DashboardItem
       title={`Конверсия в регистрации`}
       data={data}
-      formatter={({ value }) => `${(parseFloat(value.toString() || '0') * 100).toFixed(2)}%`}
+      formatter={({ value }) => `${(parseFloat((value || 0).toString() || '0') * 100).toFixed(2)}%`}
     />
   )
 }
@@ -74,7 +40,7 @@ function DepositsConversion({ data }: { data?: DataEntry[] }) {
     <DashboardItem
       title={`Конверсия рег в деп`}
       data={data}
-      formatter={({ value }) => `${(parseFloat(value.toString() || '0') * 100).toFixed(2)}%`}
+      formatter={({ value }) => `${(parseFloat((value || 0).toString() || '0') * 100).toFixed(2)}%`}
     />
   )
 }
@@ -87,7 +53,7 @@ function TotalIncome({ data }: { data?: DataEntry[] }) {
   return <DashboardItem title={`Общий доход`} data={data} />
 }
 
-function DashboardItems({ fullStatistic }: { fullStatistic: TFullStatistic }) {
+function DashboardLaptop({ fullStatistic }: { fullStatistic: TFullStatistic }) {
   return (
     <>
       <div className={'statistic__info-container-first'}>
@@ -110,7 +76,7 @@ function DashboardItems({ fullStatistic }: { fullStatistic: TFullStatistic }) {
   )
 }
 
-function DashboardItemsMobile({ fullStatistic }: { fullStatistic: TFullStatistic }) {
+function DashboardMobile({ fullStatistic }: { fullStatistic: TFullStatistic }) {
   return (
     <>
       <div className={'statistic__info-container-first'}>
@@ -140,8 +106,8 @@ function DashboardItemsMobile({ fullStatistic }: { fullStatistic: TFullStatistic
 
 export function Dashboard({ fullStatistic, isMobile }: { fullStatistic: TFullStatistic; isMobile: boolean }) {
   if (isMobile) {
-    return <DashboardItemsMobile fullStatistic={fullStatistic} />
+    return <DashboardMobile fullStatistic={fullStatistic} />
   }
 
-  return <DashboardItems fullStatistic={fullStatistic} />
+  return <DashboardLaptop fullStatistic={fullStatistic} />
 }
