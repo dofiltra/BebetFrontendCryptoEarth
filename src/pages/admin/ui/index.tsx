@@ -17,7 +17,7 @@ const DEFAULT_USER_LIMIT = 10
 export const AdminPage = () => {
   const { classes } = useStyles()
   const [page, setPage] = useState(1)
-  const { data } = useQuery(userQueries.list(page, DEFAULT_USER_LIMIT))
+  const { data, refetch } = useQuery(userQueries.list(page, DEFAULT_USER_LIMIT))
   const { currentUser } = useCurrentUser()
 
   useEffect(() => {
@@ -82,8 +82,8 @@ export const AdminPage = () => {
       </div>
 
       <h1 className={classes?.title}></h1>
-      <h2 className={classes?.stats_title}>Users</h2>
-      <UserAdminTable users={data?.users || []} wallets={{ ...data.walets }} />
+      <h2 className={classes?.stats_title}>Partners</h2>
+      <UserAdminTable users={data?.users || []} wallets={{ ...data.walets }} refetch={refetch} />
       <div className={classes?.paginate_wrapper}>
         <Pagination
           count={data?.totalPages || 1}

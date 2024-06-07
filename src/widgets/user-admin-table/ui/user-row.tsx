@@ -12,9 +12,18 @@ import { Button } from '@/shared/ui/button'
 type Props = {
   user: UserDto
   wallet: WalletDto
+  refetch: () => void
 }
 
-const toogleBlockWallet = async ({ userId, type }: { userId: string; type: 'block' | 'unblock' }) => {
+const toogleBlockWallet = async ({
+  userId,
+  type,
+  refetch,
+}: {
+  userId: string
+  type: 'block' | 'unblock'
+  refetch: () => void
+}) => {
   const resp = await apiInstance.post<any>(
     `/api/v1/ref_admin/users/${userId}/${type}`,
     {
@@ -34,11 +43,11 @@ const toogleBlockWallet = async ({ userId, type }: { userId: string; type: 'bloc
   if (!resp) {
     return
   }
-  // refetch()
+  refetch()
 }
 
 export const UserRow = (props: Props) => {
-  const { user, wallet } = props
+  const { user, wallet, refetch } = props
   const [open, setOpen] = useState(false)
   const isBlockedWallet = wallet?.status !== 'open'
 
@@ -65,6 +74,7 @@ export const UserRow = (props: Props) => {
                   toogleBlockWallet({
                     userId: user._id,
                     type: isBlockedWallet ? 'unblock' : 'block',
+                    refetch,
                   })
                 }
                 disabled={false}
