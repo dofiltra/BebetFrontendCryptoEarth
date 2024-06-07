@@ -4,8 +4,8 @@ const getData = (value: TDashboardItemData): number | string => {
   if (value || value === 0) {
     if (Array.isArray(value)) {
       value = value
-        ?.filter((x) => x?.data)
-        .map((x) => x.data)
+        ?.filter((x: any) => x?.data || x?.value)
+        .map((x: any) => x.data || x.value)
         .reduce((prev, curr) => prev + (curr || 0), 0)
     }
 
