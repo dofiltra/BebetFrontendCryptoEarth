@@ -181,175 +181,125 @@ const Statistic = (props: Props = {} as Props) => {
         </div>
 
         <div className={'statistic__info-container'}>
-          <div className={'statistic__info-container-first'}>
-            {!isMobile && <FirstRow fullStatistic={fullStatistic} />}
-            {isMobile && (
-              <>
-                <div className="item">
-                  <div className="item__title">
-                    <p>Переходы</p>
-                  </div>
-                  <p>{getData(fullStatistic?.traffic)}</p>
-                </div>
-                <div className="item">
-                  <div className="item__title">
-                    <p>Регистрации</p>
-                  </div>
-                  <p>{getData(fullStatistic?.registractions)}</p>
-                </div>
-              </>
-            )}
-          </div>
-          <div className={'statistic__info-container-second'}>
-            {!isMobile && (
-              <>
-                <div className="item">
-                  <div className="item__title">
-                    <p>Переходы в день</p>
-                  </div>
-                  <p>{getData(fullStatistic?.traffic2)}</p>
-                </div>
-                <div className="item">
-                  <div className="item__title">
-                    <p>Первые депозиты</p>
-                  </div>
-                  <p>{getData(fullStatistic?.depositsFirst)}</p>
-                </div>
-                <div className="item">
-                  <div className="item__title">
-                    <p>Кол-во выполнений депозитов</p>
-                  </div>
-                  <p>{getData(fullStatistic?.depositsCompleted)}</p>
-                </div>
-                <div className="item">
-                  <div className="item__title">
-                    <p>Ратио по депозитам</p>
-                  </div>
-                  <p>{getData(fullStatistic?.depositsRatio)}</p>
-                </div>
-              </>
-            )}
-            {isMobile && (
-              <>
-                <div className="item">
-                  <div className="item__title">
-                    <p>Конверсия в регистрации</p>
-                  </div>
-                  <p>{parseFloat(getData(fullStatistic?.ratioTrafficRegistration).toString() || '0') * 100}%</p>
-                </div>
-                <div className="item">
-                  <div className="item__title">
-                    <p>Средний доход с игрока</p>
-                  </div>
-                  <p>{getData(fullStatistic?.avgIncome)}</p>
-                </div>
-              </>
-            )}
-          </div>
-          <div className={'statistic__info-container-third'}>
-            {!isMobile && (
-              <>
-                <div className="item">
-                  <div className="item__title">
-                    <p>Сумма депозитов</p>
-                  </div>
-                  <p>{getData(fullStatistic?.depositsSummary)}</p>
-                </div>
-                <div className="item">
-                  <div className="item__title">
-                    <p>Стоимость перехода</p>
-                  </div>
-                  <p>{getData(fullStatistic?.trafficPrice)}</p>
-                </div>
-              </>
-            )}
-            {isMobile && (
-              <>
-                <div className="item">
-                  <div className="item__title">
-                    <p>Переходы в день</p>
-                  </div>
-                  <p>{getData(fullStatistic?.traffic2)}</p>
-                </div>
-                <div className="item">
-                  <div className="item__title">
-                    <p>Первые депозиты</p>
-                  </div>
-                  <p>{getData(fullStatistic?.depositsFirst)}</p>
-                </div>
-              </>
-            )}
-          </div>
-          {isMobile && (
-            <>
-              <div className={'statistic__info-container-four'}>
-                <div className="item">
-                  <div className="item__title">
-                    <p>Кол-во выполнений депозитов</p>
-                  </div>
-                  <p>{getData(fullStatistic?.depositsCompleted)}</p>
-                </div>
-                <div className="item">
-                  <div className="item__title">
-                    <p>Ратио по депозитам</p>
-                  </div>
-                  <p>{getData(fullStatistic?.depositsRatio)}</p>
-                </div>
-              </div>
-              <div className={'statistic__info-container-five'}>
-                <div className="item">
-                  <div className="item__title">
-                    <p>Сумма депозитов</p>
-                  </div>
-                  <p>{getData(fullStatistic?.depositsSummary)}</p>
-                </div>
-                <div className="item">
-                  <div className="item__title">
-                    <p>Стоимость перехода</p>
-                  </div>
-                  <p>{getData(fullStatistic?.trafficPrice)}</p>
-                </div>
-              </div>
-            </>
-          )}
+          {isMobile && <DashboardItemsMobile fullStatistic={fullStatistic} />}
+          {!isMobile && <DashboardItems fullStatistic={fullStatistic} />}
         </div>
       </div>
     </div>
   )
 }
 
-function Traffic({ traffic }: { traffic?: DataEntry[] }) {
+function DashboardItem({
+  title,
+  data,
+  formatter = ({ value }) => value.toString(),
+}: {
+  title: string
+  data?: DataEntry[]
+  formatter?: (o: { value: string | number }) => string
+}) {
   return (
     <div className="item">
       <div className="item__title">
-        <p>Переходы</p>
+        <p>{title}</p>
       </div>
-      <p>{getData(traffic)}</p>
+      <p>{formatter({ value: getData(data) })}</p>
     </div>
   )
 }
 
-function FirstRow({ fullStatistic }: { fullStatistic: TFullStatistic }) {
+function Traffic({ data }: { data?: DataEntry[] }) {
+  return <DashboardItem title={`Переходы`} data={data} />
+}
+
+function Reg({ data }: { data?: DataEntry[] }) {
+  return <DashboardItem title={`Регистрации`} data={data} />
+}
+
+function Traf2Reg({ data }: { data?: DataEntry[] }) {
+  return (
+    <DashboardItem
+      title={`Конверсия в регистрации`}
+      data={data}
+      formatter={({ value }) => `${parseFloat(value.toString() || '0') * 100}%`}
+    />
+  )
+}
+
+function AvgIncome({ data }: { data?: DataEntry[] }) {
+  return <DashboardItem title={`Средний доход с игрока`} data={data} />
+}
+
+function AvgTrafByDay({ data }: { data?: DataEntry[] }) {
+  return <DashboardItem title={`Переходы в день`} data={data} />
+}
+
+function FirstDeposits({ data }: { data?: DataEntry[] }) {
+  return <DashboardItem title={`Первые депозиты`} data={data} />
+}
+
+function DepositsCompleted({ data }: { data?: DataEntry[] }) {
+  return <DashboardItem title={`Кол-во выполнений депозитов`} data={data} />
+}
+
+function DepositsConversion({ data }: { data?: DataEntry[] }) {
+  return <DashboardItem title={`Ратио по депозитам`} data={data} />
+}
+
+function DepositsSum({ data }: { data?: DataEntry[] }) {
+  return <DashboardItem title={`Сумма депозитов`} data={data} />
+}
+
+function TrafPrice({ data }: { data?: DataEntry[] }) {
+  return <DashboardItem title={`Стоимость перехода`} data={data} />
+}
+
+function DashboardItems({ fullStatistic }: { fullStatistic: TFullStatistic }) {
   return (
     <>
-      <Traffic traffic={fullStatistic?.traffic} />
-      <div className="item">
-        <div className="item__title">
-          <p>Регистрации</p>
-        </div>
-        <p>{getData(fullStatistic?.registractions)}</p>
+      <div className={'statistic__info-container-first'}>
+        <Traffic data={fullStatistic?.traffic} />
+        <Reg data={fullStatistic?.registractions} />
+        <Traf2Reg data={fullStatistic?.ratioTrafficRegistration} />
+        <AvgIncome data={fullStatistic?.avgIncome} />
       </div>
-      <div className="item">
-        <div className="item__title">
-          <p>Конверсия в регистрации</p>
-        </div>
-        <p>{parseFloat(getData(fullStatistic?.ratioTrafficRegistration).toString() || '0') * 100}%</p>
+      <div className={'statistic__info-container-second'}>
+        <AvgTrafByDay data={fullStatistic?.traffic2} />
+        <FirstDeposits data={fullStatistic?.depositsFirst} />
+        <DepositsCompleted data={fullStatistic?.depositsCompleted} />
+        <DepositsConversion data={fullStatistic?.depositsRatio} />
       </div>
-      <div className="item">
-        <div className="item__title">
-          <p>Средний доход с игрока</p>
-        </div>
-        <p>{getData(fullStatistic?.avgIncome)}</p>
+      <div className={'statistic__info-container-third'}>
+        <DepositsSum data={fullStatistic?.depositsSummary} />
+        <TrafPrice data={fullStatistic?.trafficPrice} />
+      </div>
+    </>
+  )
+}
+
+function DashboardItemsMobile({ fullStatistic }: { fullStatistic: TFullStatistic }) {
+  return (
+    <>
+      <div className={'statistic__info-container-first'}>
+        <Traffic data={fullStatistic?.traffic} />
+        <Reg data={fullStatistic?.registractions} />
+      </div>
+      <div className={'statistic__info-container-second'}>
+        <Traf2Reg data={fullStatistic?.ratioTrafficRegistration} />
+        <AvgIncome data={fullStatistic?.avgIncome} />
+      </div>
+      <div className={'statistic__info-container-third'}>
+        <AvgTrafByDay data={fullStatistic?.traffic2} />
+        <FirstDeposits data={fullStatistic?.depositsFirst} />
+      </div>
+
+      <div className={'statistic__info-container-four'}>
+        <DepositsCompleted data={fullStatistic?.depositsCompleted} />
+        <DepositsConversion data={fullStatistic?.depositsRatio} />
+      </div>
+      <div className={'statistic__info-container-five'}>
+        <DepositsSum data={fullStatistic?.depositsSummary} />
+        <TrafPrice data={fullStatistic?.trafficPrice} />
       </div>
     </>
   )
