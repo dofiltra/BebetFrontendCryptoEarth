@@ -38,8 +38,6 @@ const toogleBlockWallet = async ({
     }
   )
 
-  console.log('res', resp)
-
   if (!resp) {
     return
   }
