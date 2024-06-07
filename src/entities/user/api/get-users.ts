@@ -30,7 +30,7 @@ export const getUsers = async (page: number, limit: number) => {
 
   return {
     users: data.users,
-    walets: data.wallets,
+    walets: data?.wallets,
     limit,
     total: data.total,
     totalPages: calculateUsersPage(data.total, limit),

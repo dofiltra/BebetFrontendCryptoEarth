@@ -10,7 +10,7 @@ type Props = {
 }
 
 export const UserAdminTable = (props: Props) => {
-  const { users, wallets, refetch } = props
+  const { users = [], wallets = {}, refetch } = props
   const { classes } = useStyles()
 
   return (
@@ -35,7 +35,7 @@ export const UserAdminTable = (props: Props) => {
         </TableHead>
         <TableBody>
           {users.map((user) => (
-            <UserRow key={user._id} user={user} wallet={wallets?.[user._id]} refetch={refetch} />
+            <UserRow key={user._id} user={user} wallet={wallets?.[user?._id]} refetch={refetch} />
           ))}
         </TableBody>
       </Table>

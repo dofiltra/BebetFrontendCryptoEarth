@@ -116,7 +116,7 @@ export const AdminPage = () => {
       </div>
 
       <h2 className={classes?.stats_title}>Partners</h2>
-      <UserAdminTable users={data?.users || []} wallets={{ ...data.walets }} refetch={refetch} />
+      <UserAdminTable users={data?.users || []} wallets={{ ...data?.walets }} refetch={refetch} />
       <div className={classes?.paginate_wrapper}>
         <Pagination
           count={data?.totalPages || 1}
