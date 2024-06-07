@@ -8,7 +8,7 @@ export type TFullStatistic = {
   depositsCompleted?: DataEntry[] | null
   depositsRatio?: DataEntry[] | null
   depositsSummary?: DataEntry[] | null
-  trafficPrice?: DataEntry[] | null
+  income?: DataEntry[] | null
 }
 
 export interface DataEntry {
@@ -19,7 +19,7 @@ export interface DataEntry {
 export interface TransformedData {
   name: string
   ['Сумма депозита']: number | string
-  ['Первые депозиты']: number | string
+  ['Средний доход с игрока']: number | string
   ['Переходы']: number | string
   ['Депозит']: number | string
   ['Регистрации']: number | string

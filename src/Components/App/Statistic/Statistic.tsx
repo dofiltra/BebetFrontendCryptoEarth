@@ -74,7 +74,7 @@ const Statistic = (props: Props = {} as Props) => {
       traffic: 'Переходы',
       depositsFirst: 'Депозит',
       depositsSummary: 'Сумма депозита',
-      avgIncome: 'Первые депозиты',
+      avgIncome: 'Средний доход с игрока',
     }
 
     for (let i = 0; i < months.length; i++) {
@@ -83,7 +83,7 @@ const Statistic = (props: Props = {} as Props) => {
         Депозит: 0,
         Переходы: 0,
         Регистрации: 0,
-        'Первые депозиты': 0,
+        'Средний доход с игрока': 0,
         'Сумма депозита': 0,
       }
       for (const key in data) {
@@ -131,7 +131,7 @@ const Statistic = (props: Props = {} as Props) => {
             <Bar dataKey="Переходы" fill="#a358e8" />
             <Bar dataKey="Депозит" fill="#0085FF" />
             <Bar dataKey="Сумма депозита" fill="#28B446" />
-            <Bar dataKey="Первые депозиты" fill="#FDB12F" />
+            <Bar dataKey="Средний доход с игрока" fill="#FDB12F" />
           </BarChart>
         )}
       </div>
@@ -257,8 +257,8 @@ function DepositsSum({ data }: { data?: DataEntry[] }) {
   return <DashboardItem title={`Сумма депозитов`} data={data} />
 }
 
-function TrafPrice({ data }: { data?: DataEntry[] }) {
-  return <DashboardItem title={`Стоимость перехода`} data={data} />
+function TotalIncome({ data }: { data?: DataEntry[] }) {
+  return <DashboardItem title={`Общий доход`} data={data} />
 }
 
 function DashboardItems({ fullStatistic }: { fullStatistic: TFullStatistic }) {
@@ -268,17 +268,17 @@ function DashboardItems({ fullStatistic }: { fullStatistic: TFullStatistic }) {
         <Traffic data={fullStatistic?.traffic} />
         <Reg data={fullStatistic?.registractions} />
         <Traf2Reg data={fullStatistic?.ratioTrafficRegistration} />
-        <AvgIncome data={fullStatistic?.avgIncome} />
+        <AvgTrafByDay data={fullStatistic?.traffic2} />
       </div>
       <div className={'statistic__info-container-second'}>
-        <AvgTrafByDay data={fullStatistic?.traffic2} />
         <FirstDeposits data={fullStatistic?.depositsFirst} />
         <DepositsCompleted data={fullStatistic?.depositsCompleted} />
         <DepositsConversion data={fullStatistic?.depositsRatio} />
+        <DepositsSum data={fullStatistic?.depositsSummary} />
       </div>
       <div className={'statistic__info-container-third'}>
-        <DepositsSum data={fullStatistic?.depositsSummary} />
-        <TrafPrice data={fullStatistic?.trafficPrice} />
+        <AvgIncome data={fullStatistic?.avgIncome} />
+        <TotalIncome data={fullStatistic?.income} />
       </div>
     </>
   )
@@ -293,20 +293,20 @@ function DashboardItemsMobile({ fullStatistic }: { fullStatistic: TFullStatistic
       </div>
       <div className={'statistic__info-container-second'}>
         <Traf2Reg data={fullStatistic?.ratioTrafficRegistration} />
-        <AvgIncome data={fullStatistic?.avgIncome} />
+        <AvgTrafByDay data={fullStatistic?.traffic2} />
       </div>
       <div className={'statistic__info-container-third'}>
-        <AvgTrafByDay data={fullStatistic?.traffic2} />
         <FirstDeposits data={fullStatistic?.depositsFirst} />
+        <DepositsCompleted data={fullStatistic?.depositsCompleted} />
       </div>
 
       <div className={'statistic__info-container-four'}>
-        <DepositsCompleted data={fullStatistic?.depositsCompleted} />
         <DepositsConversion data={fullStatistic?.depositsRatio} />
+        <DepositsSum data={fullStatistic?.depositsSummary} />
       </div>
       <div className={'statistic__info-container-five'}>
-        <DepositsSum data={fullStatistic?.depositsSummary} />
-        <TrafPrice data={fullStatistic?.trafficPrice} />
+        <AvgIncome data={fullStatistic?.avgIncome} />
+        <TotalIncome data={fullStatistic?.income} />
       </div>
     </>
   )
