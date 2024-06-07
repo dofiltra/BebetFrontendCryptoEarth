@@ -63,7 +63,7 @@ export const AdminPage = () => {
       className="app"
       style={{
         alignItems: 'center',
-        minHeight: '100vh',
+        height: 'auto',
       }}
     >
       <div className="app-header">

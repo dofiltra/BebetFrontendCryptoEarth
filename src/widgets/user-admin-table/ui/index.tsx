@@ -14,7 +14,13 @@ export const UserAdminTable = (props: Props) => {
   const { classes } = useStyles()
 
   return (
-    <TableContainer component={Paper} className={classes.root}>
+    <TableContainer
+      component={Paper}
+      className={classes.root}
+      style={{
+        maxHeight: '100vh',
+      }}
+    >
       <Table aria-label="collapsible table">
         <TableHead>
           <TableRow>
