@@ -38,7 +38,7 @@ const toogleBlockWallet = async ({
     }
   )
 
-  if (!resp) {
+  if (!resp?.data) {
     return
   }
   refetch()
