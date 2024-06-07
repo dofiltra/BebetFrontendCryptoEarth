@@ -380,43 +380,7 @@ function App() {
             </p>
           </div>
         )}
-        {logged ? (
-          <Profile
-            wallet={wallet}
-            isVisible={showProfile}
-            setVisible={setShowProfile}
-            popupButtons={() => (
-              <>
-                <Button
-                  title={'Вывести'}
-                  handleClick={() => {
-                    setShowProfile(false)
-                    setShowMoneyPopup(true)
-                  }}
-                  disabled={false}
-                  width={'100%'}
-                />
-              </>
-            )}
-            content={() => (
-              <>
-                <p
-                  onClick={() => {
-                    setCurrentPage('outs')
-                    setShowProfile(false)
-                  }}
-                >
-                  Выводы
-                </p>
-                <p onClick={settingShow}>Настройки</p>
-                <p onClick={gotoSupport}>Поддержка</p>
-                <p onClick={logOut}>Выйти</p>
-              </>
-            )}
-          />
-        ) : (
-          <Button title={'Войти'} handleClick={() => setShowAuth(true)} disabled={false} width={'15%'} />
-        )}
+        <CurrentProfile />
       </div>
 
       <CurrentAuth />
