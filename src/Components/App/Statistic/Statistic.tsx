@@ -198,9 +198,9 @@ const Statistic = (props: Props = {} as Props) => {
                 </div>
                 <div className="item">
                   <div className="item__title">
-                    <p>Ратио по регистрациям</p>
+                    <p>Конверсия в регистрации</p>
                   </div>
-                  <p>{getData(fullStatistic?.ratioTrafficRegistration)}</p>
+                  <p>{parseFloat(getData(fullStatistic?.ratioTrafficRegistration).toString() || '0') * 100}%</p>
                 </div>
                 <div className="item">
                   <div className="item__title">
@@ -260,9 +260,9 @@ const Statistic = (props: Props = {} as Props) => {
               <>
                 <div className="item">
                   <div className="item__title">
-                    <p>Ратио по регистрациям</p>
+                    <p>Конверсия в регистрации</p>
                   </div>
-                  <p>{getData(fullStatistic?.ratioTrafficRegistration)}</p>
+                  <p>{parseFloat(getData(fullStatistic?.ratioTrafficRegistration).toString() || '0') * 100}%</p>
                 </div>
                 <div className="item">
                   <div className="item__title">
