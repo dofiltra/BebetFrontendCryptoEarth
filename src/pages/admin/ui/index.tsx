@@ -63,7 +63,7 @@ export const AdminPage = () => {
       className="app"
       style={{
         alignItems: 'center',
-        // height: currentPage === 'auth' ? '100vh' : '',
+        minHeight: '100vh',
       }}
     >
       <div className="app-header">
