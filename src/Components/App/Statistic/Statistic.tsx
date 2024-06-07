@@ -11,7 +11,7 @@ interface Props {
 }
 
 const getData = (value: unknown): number | string => {
-  if (value) {
+  if (value || value === 0) {
     if (Array.isArray(value)) {
       value = value
         ?.filter((x) => x?.data)
@@ -231,7 +231,7 @@ function AvgIncome({ data }: { data?: DataEntry[] }) {
 }
 
 function AvgTrafByDay({ data }: { data?: DataEntry[] }) {
-  return <DashboardItem title={`Переходы в день`} data={data} />
+  return <DashboardItem title={`Среднее кол-во переходов в сутки`} data={data} />
 }
 
 function FirstDeposits({ data }: { data?: DataEntry[] }) {
@@ -239,11 +239,18 @@ function FirstDeposits({ data }: { data?: DataEntry[] }) {
 }
 
 function DepositsCompleted({ data }: { data?: DataEntry[] }) {
-  return <DashboardItem title={`Кол-во выполнений депозитов`} data={data} />
+  return <DashboardItem title={`Кол-во заврешенных депозитов`} data={data} />
 }
 
 function DepositsConversion({ data }: { data?: DataEntry[] }) {
-  return <DashboardItem title={`Ратио по депозитам`} data={data} />
+  console.log(data)
+  return (
+    <DashboardItem
+      title={`Конверсия рег в деп`}
+      data={data}
+      formatter={({ value }) => `${parseFloat(value.toString() || '0') * 100}%`}
+    />
+  )
 }
 
 function DepositsSum({ data }: { data?: DataEntry[] }) {
