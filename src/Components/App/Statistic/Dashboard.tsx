@@ -87,7 +87,7 @@ function TotalIncome({ data }: { data?: DataEntry[] }) {
   return <DashboardItem title={`Общий доход`} data={data} />
 }
 
-export function DashboardItems({ fullStatistic }: { fullStatistic: TFullStatistic }) {
+function DashboardItems({ fullStatistic }: { fullStatistic: TFullStatistic }) {
   return (
     <>
       <div className={'statistic__info-container-first'}>
@@ -110,7 +110,7 @@ export function DashboardItems({ fullStatistic }: { fullStatistic: TFullStatisti
   )
 }
 
-export function DashboardItemsMobile({ fullStatistic }: { fullStatistic: TFullStatistic }) {
+function DashboardItemsMobile({ fullStatistic }: { fullStatistic: TFullStatistic }) {
   return (
     <>
       <div className={'statistic__info-container-first'}>
@@ -136,4 +136,12 @@ export function DashboardItemsMobile({ fullStatistic }: { fullStatistic: TFullSt
       </div>
     </>
   )
+}
+
+export function Dashboard({ fullStatistic, isMobile }: { fullStatistic: TFullStatistic; isMobile: boolean }) {
+  if (isMobile) {
+    return <DashboardItemsMobile fullStatistic={fullStatistic} />
+  }
+
+  return <DashboardItems fullStatistic={fullStatistic} />
 }

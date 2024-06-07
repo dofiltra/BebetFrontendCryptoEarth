@@ -81,7 +81,8 @@ export const AdminPage = () => {
         /> */}
       </div>
 
-      <h1 className={classes?.title}></h1>
+      <h1 className={classes?.title}>Admin panel</h1>
+
       <h2 className={classes?.stats_title}>Partners</h2>
       <UserAdminTable users={data?.users || []} wallets={{ ...data.walets }} refetch={refetch} />
       <div className={classes?.paginate_wrapper}>

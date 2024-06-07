@@ -4,7 +4,7 @@ import { Bar, BarChart, Legend, Tooltip, XAxis, YAxis } from 'recharts'
 import { useIsMobile } from '@/shared/lib/hooks'
 import cn from 'classnames'
 import type { DataEntry, TFilterDate, TFullStatistic, TransformedData } from './Statistic.types'
-import { DashboardItems, DashboardItemsMobile } from './Dashboard'
+import { Dashboard } from './Dashboard'
 
 interface Props {
   fullStatistic: TFullStatistic
@@ -166,8 +166,7 @@ const Statistic = (props: Props = {} as Props) => {
         </div>
 
         <div className={'statistic__info-container'}>
-          {isMobile && <DashboardItemsMobile fullStatistic={fullStatistic} />}
-          {!isMobile && <DashboardItems fullStatistic={fullStatistic} />}
+          <Dashboard fullStatistic={fullStatistic} isMobile={isMobile} />
         </div>
       </div>
     </div>
