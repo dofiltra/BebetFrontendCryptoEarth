@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Bar, BarChart, Legend, Tooltip, XAxis, YAxis } from 'recharts'
 import { useIsMobile } from '@/shared/lib/hooks'
 import cn from 'classnames'
-import type { DataEntry, TFilterDate, TFullStatistic, TransformedData } from './Statistic.types'
+import type { TFilterDate, TFullStatistic, TransformedData } from './Statistic.types'
 import { Dashboard } from './Dashboard'
 import { TDashboardItemData } from '@/shared/ui/dashboard/types'
 

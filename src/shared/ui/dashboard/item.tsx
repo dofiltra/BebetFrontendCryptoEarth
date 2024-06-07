@@ -30,7 +30,7 @@ export function DashboardItem({
       <div className="item__title">
         <p>{title}</p>
       </div>
-      <p>{formatter({ value: getData(data) })}</p>
+      <p>{data !== undefined ? formatter({ value: getData(data) }) : 'Нет данных'}</p>
     </div>
   )
 }
@@ -43,14 +43,15 @@ export function Reg({ data }: { data?: TDashboardItemData }) {
   return <DashboardItem title={`Регистрации`} data={data} />
 }
 
+function percentFormatter({ value }: { value: string | number }) {
+  if (value === undefined) {
+    return ''
+  }
+  return `${(parseFloat((value || 0).toString() || '0') * 100).toFixed(2)}%`
+}
+
 export function Traf2Reg({ data }: { data?: TDashboardItemData }) {
-  return (
-    <DashboardItem
-      title={`Конверсия в регистрации`}
-      data={data}
-      formatter={({ value }) => `${(parseFloat((value || 0).toString() || '0') * 100).toFixed(2)}%`}
-    />
-  )
+  return <DashboardItem title={`Конверсия в регистрации`} data={data} formatter={percentFormatter} />
 }
 
 export function AvgTrafByDay({ data }: { data?: TDashboardItemData }) {
@@ -74,13 +75,7 @@ export function DepositsCompleted({ data }: { data?: TDashboardItemData }) {
 }
 
 export function DepositsConversion({ data }: { data?: TDashboardItemData }) {
-  return (
-    <DashboardItem
-      title={`Конверсия рег в деп`}
-      data={data}
-      formatter={({ value }) => `${(parseFloat((value || 0).toString() || '0') * 100).toFixed(2)}%`}
-    />
-  )
+  return <DashboardItem title={`Конверсия рег в деп`} data={data} formatter={percentFormatter} />
 }
 
 export function DepositsSum({ data }: { data?: TDashboardItemData }) {
