@@ -182,34 +182,7 @@ const Statistic = (props: Props = {} as Props) => {
 
         <div className={'statistic__info-container'}>
           <div className={'statistic__info-container-first'}>
-            {!isMobile && (
-              <>
-                <div className="item">
-                  <div className="item__title">
-                    <p>Переходы</p>
-                  </div>
-                  <p>{getData(fullStatistic?.traffic)}</p>
-                </div>
-                <div className="item">
-                  <div className="item__title">
-                    <p>Регистрации</p>
-                  </div>
-                  <p>{getData(fullStatistic?.registractions)}</p>
-                </div>
-                <div className="item">
-                  <div className="item__title">
-                    <p>Конверсия в регистрации</p>
-                  </div>
-                  <p>{parseFloat(getData(fullStatistic?.ratioTrafficRegistration).toString() || '0') * 100}%</p>
-                </div>
-                <div className="item">
-                  <div className="item__title">
-                    <p>Средний доход с игрока</p>
-                  </div>
-                  <p>{getData(fullStatistic?.avgIncome)}</p>
-                </div>
-              </>
-            )}
+            {!isMobile && <FirstRow fullStatistic={fullStatistic} />}
             {isMobile && (
               <>
                 <div className="item">
@@ -342,6 +315,37 @@ const Statistic = (props: Props = {} as Props) => {
         </div>
       </div>
     </div>
+  )
+}
+
+function FirstRow({ fullStatistic }: { fullStatistic: TFullStatistic }) {
+  return (
+    <>
+      <div className="item">
+        <div className="item__title">
+          <p>Переходы</p>
+        </div>
+        <p>{getData(fullStatistic?.traffic)}</p>
+      </div>
+      <div className="item">
+        <div className="item__title">
+          <p>Регистрации</p>
+        </div>
+        <p>{getData(fullStatistic?.registractions)}</p>
+      </div>
+      <div className="item">
+        <div className="item__title">
+          <p>Конверсия в регистрации</p>
+        </div>
+        <p>{parseFloat(getData(fullStatistic?.ratioTrafficRegistration).toString() || '0') * 100}%</p>
+      </div>
+      <div className="item">
+        <div className="item__title">
+          <p>Средний доход с игрока</p>
+        </div>
+        <p>{getData(fullStatistic?.avgIncome)}</p>
+      </div>
+    </>
   )
 }
 
