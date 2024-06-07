@@ -1,14 +1,15 @@
-import type { UserDto } from 'src/entities/user'
+import type { UserDto, WalletDto } from 'src/entities/user'
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
 import { UserRow } from './user-row'
 import { useStyles } from './styles'
 
 type Props = {
   users: UserDto[]
+  wallets: Record<string, WalletDto>
 }
 
 export const UserAdminTable = (props: Props) => {
-  const { users } = props
+  const { users, wallets } = props
   const { classes } = useStyles()
 
   return (
@@ -19,9 +20,10 @@ export const UserAdminTable = (props: Props) => {
             <TableCell></TableCell>
             <TableCell align="center">Name</TableCell>
             <TableCell align="center">Email</TableCell>
+            <TableCell align="center">Referrals</TableCell>
+            <TableCell align="center">Wallet</TableCell>
             <TableCell align="center">Partnership Type</TableCell>
             <TableCell align="center">Communication Type</TableCell>
-            <TableCell align="center">Referrals</TableCell>
             <TableCell align="center">Role</TableCell>
             <TableCell align="center">Ref string</TableCell>
             <TableCell align="center">Reference</TableCell>
@@ -32,7 +34,7 @@ export const UserAdminTable = (props: Props) => {
         </TableHead>
         <TableBody>
           {users.map((user) => (
-            <UserRow key={user._id} user={user} />
+            <UserRow key={user._id} user={user} wallet={wallets?.[user._id]} />
           ))}
         </TableBody>
       </Table>

@@ -1,9 +1,11 @@
 import { apiInstance } from '@/shared/api'
 import { UserDto } from './dto/user.dto'
 import { toast } from 'react-toastify'
+import type { WalletDto } from './dto/detail-user.dto'
 
 type GetUserResponse = {
   users: UserDto[]
+  wallets?: Record<string, WalletDto>
   total: number
 }
 
@@ -28,6 +30,7 @@ export const getUsers = async (page: number, limit: number) => {
 
   return {
     users: data.users,
+    walets: data.wallets,
     limit,
     total: data.total,
     totalPages: calculateUsersPage(data.total, limit),

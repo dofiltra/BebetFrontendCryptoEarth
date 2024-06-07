@@ -83,7 +83,7 @@ export const AdminPage = () => {
 
       <h1 className={classes?.title}></h1>
       <h2 className={classes?.stats_title}>Users</h2>
-      <UserAdminTable users={data?.users || []} />
+      <UserAdminTable users={data?.users || []} wallets={{ ...data.walets }} />
       <div className={classes?.paginate_wrapper}>
         <Pagination
           count={data?.totalPages || 1}
