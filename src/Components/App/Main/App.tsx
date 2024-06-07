@@ -10,7 +10,7 @@ import Referrals from '../Referral/Referral'
 import Settings from '../Settings/Settings'
 import Outs from '../Outs/Outs'
 import { createFormData, get, postFormData } from '../../../services/api'
-import { ToastContainer } from 'react-toastify'
+import { ToastContainer, toast } from 'react-toastify'
 import Input from '@/shared/ui/input'
 import { useIsMobile, getCurrentUser, useCurrentUser } from '@/shared/lib/hooks'
 import { getDateByFilter } from '@/shared/lib/date/get-date-by-filter'
@@ -56,6 +56,8 @@ function App() {
     localStorage.setItem('reconnect', '')
     window.location.reload()
   }
+
+  const isBlockedWallet = wallet?.status !== 'open'
 
   useEffect(() => {
     const auth = async () => {
@@ -161,11 +163,14 @@ function App() {
 
   const moneyReauestPopup = () => {
     const request = async () => {
-      let data = createFormData({
-        email: email,
-        value: value,
+      const data = createFormData({
+        email,
+        value,
       })
-      let res = await postFormData('/out_ref_transaction/requestOut', data)
+      const res = await postFormData('/out_ref_transaction/requestOut', data).catch((err) => {
+        toast.error(err?.message || err)
+      })
+
       if (res) {
         setShowMoneyPopup(false)
         getOuts()
@@ -195,6 +200,18 @@ function App() {
           зарегистрирован по Вашей реферальной ссылке или с использованием Вашего промокода.
         </span>
         <Button title={'Вывести'} handleClick={request} disabled={false} width={'100%'} />
+      </div>
+    )
+  }
+
+  const walletBlockedPopup = () => {
+    return (
+      <div className={'money-request'}>
+        <div className={'money-request__title'}>
+          <p>Идёт проверка...</p>
+        </div>
+        <span>Для дополнительной информации свяжитесь с поддержкой.</span>
+        <Button title={'Связаться с поддержкой'} handleClick={gotoSupport} disabled={false} width={'100%'} />
       </div>
     )
   }
@@ -390,8 +407,9 @@ function App() {
 
   return (
     <div {...getParentContainerProps()}>
-      {(showAuth || showMoneyPopup) && <div className={'bg'} />}
+      {(showAuth || showMoneyPopup || isBlockedWallet) && <div className={'bg'} />}
       {showMoneyPopup && moneyReauestPopup()}
+      {isBlockedWallet && walletBlockedPopup()}
       <CurrentHeader />
       <CurrentAuth />
       <CurrentPage />

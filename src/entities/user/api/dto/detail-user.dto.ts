@@ -1,4 +1,4 @@
-import { UserDto } from "src/entities/user";
+import type { UserDto } from 'src/entities/user'
 
 export interface GetDetailUserResponse {
   user: UserDto
@@ -42,7 +42,7 @@ export interface WalletDto {
   _id: string
   currency: string
   value: number
-  status: string
+  status: 'open' | 'blocked'
   is_removed: boolean
   user: string
   createdAt: string
