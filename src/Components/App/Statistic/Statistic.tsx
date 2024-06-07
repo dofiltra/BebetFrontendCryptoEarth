@@ -5,6 +5,7 @@ import { useIsMobile } from '@/shared/lib/hooks'
 import cn from 'classnames'
 import type { DataEntry, TFilterDate, TFullStatistic, TransformedData } from './Statistic.types'
 import { Dashboard } from './Dashboard'
+import { TDashboardItemData } from '@/shared/ui/dashboard/types'
 
 interface Props {
   fullStatistic: TFullStatistic
@@ -52,7 +53,7 @@ const Statistic = (props: Props = {} as Props) => {
 
   const months: string[] = getMonths()
 
-  function transformData(data: { [key: string]: DataEntry[] }): TransformedData[] {
+  function transformData(data: { [key: string]: TDashboardItemData }): TransformedData[] {
     const transformedData: TransformedData[] = []
     const fieldTranslations: { [key: string]: string } = {
       registractions: 'Регистрации',
@@ -76,10 +77,10 @@ const Statistic = (props: Props = {} as Props) => {
           continue
         }
 
-        const values: DataEntry[] | null = data[key]
+        const values: TDashboardItemData = data[key]
         let totalValue = 0
 
-        if (values?.length && Array.isArray(values)) {
+        if ((values as any)?.length && Array.isArray(values)) {
           for (const entry of values) {
             const date = entry.date
             const value = entry.data || 0

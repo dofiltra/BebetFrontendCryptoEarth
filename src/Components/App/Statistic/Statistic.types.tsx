@@ -1,14 +1,16 @@
+import type { TDashboardItemData } from '@/shared/ui/dashboard/types'
+
 export type TFullStatistic = {
-  traffic?: DataEntry[] | null
-  registractions?: DataEntry[] | null
-  ratioTrafficRegistration?: DataEntry[] | null
-  avgIncome?: DataEntry[] | null
-  traffic2?: DataEntry[] | null
-  depositsFirst?: DataEntry[] | null
-  depositsCompleted?: DataEntry[] | null
-  depositsRatio?: DataEntry[] | null
-  depositsSummary?: DataEntry[] | null
-  income?: DataEntry[] | null
+  traffic?: TDashboardItemData
+  registractions?: TDashboardItemData
+  ratioTrafficRegistration?: TDashboardItemData
+  avgIncome?: TDashboardItemData
+  traffic2?: TDashboardItemData
+  depositsFirst?: TDashboardItemData
+  depositsCompleted?: TDashboardItemData
+  depositsRatio?: TDashboardItemData
+  depositsSummary?: TDashboardItemData
+  income?: TDashboardItemData
 }
 
 export interface DataEntry {

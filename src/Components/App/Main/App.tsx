@@ -57,7 +57,7 @@ function App() {
     window.location.reload()
   }
 
-  const isBlockedWallet = wallet?.status !== 'open'
+  const isBlockedWallet = wallet?.status && wallet.status !== 'open'
 
   useEffect(() => {
     const auth = async () => {

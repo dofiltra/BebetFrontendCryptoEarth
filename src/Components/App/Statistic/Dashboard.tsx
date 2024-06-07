@@ -1,57 +1,16 @@
-import { DashboardItem } from '@/shared/ui/dashboard/item'
-import type { DataEntry, TFullStatistic } from './Statistic.types'
-
-function Traffic({ data }: { data?: DataEntry[] }) {
-  return <DashboardItem title={`Переходы`} data={data} />
-}
-
-function Reg({ data }: { data?: DataEntry[] }) {
-  return <DashboardItem title={`Регистрации`} data={data} />
-}
-
-function Traf2Reg({ data }: { data?: DataEntry[] }) {
-  return (
-    <DashboardItem
-      title={`Конверсия в регистрации`}
-      data={data}
-      formatter={({ value }) => `${(parseFloat((value || 0).toString() || '0') * 100).toFixed(2)}%`}
-    />
-  )
-}
-
-function AvgIncome({ data }: { data?: DataEntry[] }) {
-  return <DashboardItem title={`Средний доход с игрока`} data={data} />
-}
-
-function AvgTrafByDay({ data }: { data?: DataEntry[] }) {
-  return <DashboardItem title={`Среднее кол-во переходов в сутки`} data={data} />
-}
-
-function FirstDeposits({ data }: { data?: DataEntry[] }) {
-  return <DashboardItem title={`Первые депозиты`} data={data} />
-}
-
-function DepositsCompleted({ data }: { data?: DataEntry[] }) {
-  return <DashboardItem title={`Кол-во заврешенных депозитов`} data={data} />
-}
-
-function DepositsConversion({ data }: { data?: DataEntry[] }) {
-  return (
-    <DashboardItem
-      title={`Конверсия рег в деп`}
-      data={data}
-      formatter={({ value }) => `${(parseFloat((value || 0).toString() || '0') * 100).toFixed(2)}%`}
-    />
-  )
-}
-
-function DepositsSum({ data }: { data?: DataEntry[] }) {
-  return <DashboardItem title={`Сумма депозитов`} data={data} />
-}
-
-function TotalIncome({ data }: { data?: DataEntry[] }) {
-  return <DashboardItem title={`Общий доход`} data={data} />
-}
+import {
+  AvgIncome,
+  AvgTrafByDay,
+  DepositsCompleted,
+  DepositsConversion,
+  DepositsSum,
+  FirstDeposits,
+  Reg,
+  TotalIncome,
+  Traf2Reg,
+  Traffic,
+} from '@/shared/ui/dashboard/item'
+import type { TFullStatistic } from './Statistic.types'
 
 function DashboardLaptop({ fullStatistic }: { fullStatistic: TFullStatistic }) {
   return (

@@ -10,9 +10,11 @@ import { useEffect, useState } from 'react'
 import { Pagination } from '@mui/material'
 import { useCurrentUser, useIsMobile } from '@/shared/lib/hooks'
 import { ToastContainer } from 'react-toastify'
-import { isAdmin } from '@/shared/lib/validators/isAdmin'
 import { HeaderLogo } from '@/Components/Ui/Header/Header'
 import { AdminDashboard } from '@/Components/Admin/Dashboard/Dashboard'
+import { createFormData, postFormData } from '@/services/api'
+import { isAdmin } from '@/shared/lib/validators/isAdmin'
+import { TFullStatistic } from '@/Components/App/Statistic/Statistic.types'
 
 const DEFAULT_USER_LIMIT = 10
 
@@ -23,6 +25,7 @@ export const AdminPage = () => {
   const [page, setPage] = useState(1)
   const { data, refetch } = useQuery(userQueries.list(page, DEFAULT_USER_LIMIT))
   const { currentUser } = useCurrentUser()
+  const [adminStatistics, setAdminStatistics] = useState<TFullStatistic>({})
 
   useEffect(() => {
     if (!currentUser) {
@@ -33,6 +36,23 @@ export const AdminPage = () => {
       location.href = '/'
     }
   }, [currentUser])
+
+  useEffect(() => {
+    if (currentUser?.role !== 'admin') {
+      return
+    }
+    loadAdminStatistics()
+  }, [currentUser])
+
+  const loadAdminStatistics = async () => {
+    // const date = getDateByFilter(filter)
+    const d = createFormData({})
+    const res = await postFormData('/ref_user/getAdminDashboard', d)
+
+    if (res) {
+      setAdminStatistics(res)
+    }
+  }
 
   if (currentUser?.role !== 'admin') {
     return <></>
@@ -90,7 +110,7 @@ export const AdminPage = () => {
       <div className={'statistic'}>
         <div className={'statistic__info'}>
           <div className={'statistic__info-container'}>
-            <AdminDashboard statistics={{}} isMobile={isMobile} />
+            <AdminDashboard statistics={adminStatistics} isMobile={isMobile} />
           </div>
         </div>
       </div>
