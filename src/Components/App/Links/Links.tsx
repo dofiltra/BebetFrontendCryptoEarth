@@ -15,12 +15,11 @@ interface IStatisticProps {
 const Links: React.FC<IStatisticProps> = ({ user, getRefUrls, refLinks }) => {
   const [showPopup, setShowPopup] = useState(false)
   const [name, setName] = useState('')
-  const [link, setLink] = useState('')
+  const [sourceTraffic, setSourceTraffic] = useState('')
   const [description, setDescription] = useState('')
 
   const createUrl = async () => {
-    const url = `${link}`
-    const d = createFormData({ name, description, adress: url })
+    const d = createFormData({ name, description, adress: sourceTraffic })
     const res = await postFormData('/ref_refs/Create', d)
 
     if (!res) {
@@ -49,7 +48,7 @@ const Links: React.FC<IStatisticProps> = ({ user, getRefUrls, refLinks }) => {
         </div>
 
         <Input onChange={(props) => setName(props)} placeHolder={'Имя'} value={name} />
-        <Input onChange={(props) => setLink(props)} placeHolder={'Ссылка на страницу'} value={link} />
+        <Input onChange={(props) => setSourceTraffic(props)} placeHolder={'Источник трафика'} value={sourceTraffic} />
         <textarea
           placeholder={'Описание'}
           onChange={(event) => setDescription(event.target.value)}
@@ -70,7 +69,7 @@ const Links: React.FC<IStatisticProps> = ({ user, getRefUrls, refLinks }) => {
       <div className={'links__container'}>
         <div className={'links__container-header'}>
           <p>Имя</p>
-          <p>Ссылка</p>
+          <p>Источник трафика</p>
           <p>Описание</p>
           <p>Ссылка для трафика</p>
         </div>
