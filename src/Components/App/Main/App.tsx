@@ -199,6 +199,18 @@ function App() {
     )
   }
 
+  const CurrentPage = () => (
+    <>
+      {currentPage === 'settings' && logged && <Settings updateUserState={updateUserState} user={currentUser} />}
+      {currentPage === 'statistic' && logged && (
+        <Statistic fullStatistic={fullStatistic} onChangeDate={getFullStatistic} />
+      )}
+      {currentPage === 'links' && logged && <Links getRefUrls={getRefUrls} refLinks={refLinks} user={currentUser} />}
+      {currentPage === 'referral' && logged && <Referrals referents={refferends} />}
+      {currentPage === 'outs' && logged && <Outs outs={outs} />}
+    </>
+  )
+
   if (isMobile) {
     return (
       <div className={'mobile-app'}>
@@ -327,13 +339,7 @@ function App() {
           />
         )}
 
-        {currentPage === 'settings' && logged && <Settings updateUserState={updateUserState} user={currentUser} />}
-        {currentPage === 'statistic' && logged && (
-          <Statistic fullStatistic={fullStatistic} onChangeDate={getFullStatistic} />
-        )}
-        {currentPage === 'links' && logged && <Links getRefUrls={getRefUrls} refLinks={refLinks} user={currentUser} />}
-        {currentPage === 'referral' && logged && <Referrals referents={refferends} />}
-        {currentPage === 'outs' && logged && <Outs outs={outs} />}
+        <CurrentPage />
       </div>
     )
   }
@@ -410,13 +416,8 @@ function App() {
           setShowAuth={() => setShowAuth(false)}
         />
       )}
-      {currentPage === 'statistic' && logged && (
-        <Statistic onChangeDate={getFullStatistic} fullStatistic={fullStatistic} />
-      )}
-      {currentPage === 'links' && logged && <Links getRefUrls={getRefUrls} refLinks={refLinks} user={currentUser} />}
-      {currentPage === 'referral' && logged && <Referrals referents={refferends} />}
-      {currentPage === 'settings' && logged && <Settings updateUserState={updateUserState} user={currentUser} />}
-      {currentPage === 'outs' && logged && <Outs outs={outs} />}
+
+      <CurrentPage />
       <ToastContainer />
     </div>
   )
