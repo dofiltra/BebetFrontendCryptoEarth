@@ -16,7 +16,7 @@ export const ReferredTable = ({ refferends = [], hiddenCols = [], actionsCol }: 
           {!hiddenCols?.includes('status') && <TableCell align="center">Status</TableCell>}
           {!hiddenCols?.includes('refferend') && <TableCell align="center">Referrend</TableCell>}
           {!hiddenCols?.includes('date') && <TableCell align="center">Date</TableCell>}
-          {!hiddenCols?.includes('traffic') && <TableCell align="center">Traffic</TableCell>}
+          {/* {!hiddenCols?.includes('traffic') && <TableCell align="center">Traffic</TableCell>} */}
           {!hiddenCols?.includes('connection_date') && <TableCell align="center">Connection date</TableCell>}
           {!hiddenCols?.includes('depositsFirst') && <TableCell align="center">Deposits first</TableCell>}
           {!hiddenCols?.includes('depositsCount') && <TableCell align="center">Deposits count</TableCell>}

@@ -13,7 +13,7 @@ export const ReferredRow = (props: TReferredProps) => {
       {!hiddenCols?.includes('status') && <TableCell align="center">{refferend.status}</TableCell>}
       {!hiddenCols?.includes('refferend') && <TableCell align="center">{refferend.refferend}</TableCell>}
       {!hiddenCols?.includes('date') && <TableCell align="center">{getStringDate(statistics.date)}</TableCell>}
-      {!hiddenCols?.includes('traffic') && <TableCell align="center">{statistics.traffic}</TableCell>}
+      {/* {!hiddenCols?.includes('traffic') && <TableCell align="center">{statistics.traffic}</TableCell>} */}
       {!hiddenCols?.includes('connection_date') && (
         <TableCell align="center">{getStringDate(statistics.connection_date)}</TableCell>
       )}
