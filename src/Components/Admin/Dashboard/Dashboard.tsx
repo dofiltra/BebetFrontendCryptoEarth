@@ -20,7 +20,7 @@ function DashboardLaptop({ statistics }: { statistics: TFullStatistic }) {
         <DashboardItem data={statistics?.totalPartners} title={`Всего партнеров`} />
         <ActivePartnersCount data={statistics?.activePartnersCount} />
         <DashboardItem data={statistics?.totalReferals} title={`Привлечено рефералов`} />
-        <DashboardItem data={statistics?.partnersMoney} title={`Деньги партнеров`} />
+        <DashboardItem data={statistics?.partnersMoney} title={`Баланс партнеров`} />
       </div>
       <div className={'statistic__info-container-first'}>
         <Traffic data={statistics?.traffic} />
