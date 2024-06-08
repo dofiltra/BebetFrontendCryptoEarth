@@ -48,7 +48,8 @@ export const AdminPage = () => {
     // const date = getDateByFilter(filter)
     const d = createFormData({})
     const p = postFormData('/ref_user/getAdminDashboard', d)
-    toast.promise(p, { pending: 'Loading stats...', success: 'Got the data' })
+    
+    toast.promise(p, { pending: 'Loading stats...', success: 'Success' })
     const res = await p
 
     if (res) {
