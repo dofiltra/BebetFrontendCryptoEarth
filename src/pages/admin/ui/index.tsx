@@ -61,6 +61,8 @@ export const AdminPage = () => {
     return <></>
   }
 
+  const pagesCount = Math.max(1, data?.totalPages, Math.ceil(data?.total / data?.limit))
+
   return (
     <div
       className="app"
@@ -122,7 +124,7 @@ export const AdminPage = () => {
       <UserAdminTable users={data?.users || []} wallets={{ ...data?.walets }} refetch={refetch} />
       <div className={classes?.paginate_wrapper}>
         <Pagination
-          count={data?.totalPages || 1}
+          count={pagesCount}
           onChange={(_, page) => {
             setPage(page)
           }}
