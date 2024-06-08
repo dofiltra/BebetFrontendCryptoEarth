@@ -24,6 +24,7 @@ export interface ReferredDto {
 export interface StatisticsDto {
   date: string
   traffic: number
+  isPartner?: boolean
   connection_date: string
   depositsFirst: number
   depositsCount: number

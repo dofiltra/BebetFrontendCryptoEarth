@@ -1,6 +1,6 @@
 import type { TDashboardItemData } from './types'
 
-const getData = (value: TDashboardItemData): number | string => {
+export const getData = (value: TDashboardItemData, defaultValue = 'Нет данных'): number | string => {
   if (value || value === 0) {
     if (Array.isArray(value)) {
       value = value
@@ -13,7 +13,7 @@ const getData = (value: TDashboardItemData): number | string => {
       return value
     }
   }
-  return 'Нет данных'
+  return defaultValue
 }
 
 export function DashboardItem({

@@ -1,6 +1,7 @@
 import { TableCell, TableRow } from '@mui/material'
 import { getStringDate } from '@/shared/lib/date/get-string-date'
 import { TReferredProps } from './types'
+import { getData } from '@/shared/ui/dashboard/item'
 
 export const ReferredRow = (props: TReferredProps) => {
   const { refferend, hiddenCols = [], actionsCol } = props
@@ -8,7 +9,11 @@ export const ReferredRow = (props: TReferredProps) => {
 
   return (
     <TableRow>
-      {!hiddenCols?.includes('email') && <TableCell align="center">{refferend.email}</TableCell>}
+      {!hiddenCols?.includes('email') && (
+        <TableCell align="center" style={{ color: statistics?.isPartner ? '#cddc39' : '' }}>
+          {refferend.email}
+        </TableCell>
+      )}
       {!hiddenCols?.includes('is_removed') && <TableCell align="center">{refferend.is_removed}</TableCell>}
       {!hiddenCols?.includes('status') && <TableCell align="center">{refferend.status}</TableCell>}
       {!hiddenCols?.includes('refferend') && <TableCell align="center">{refferend.refferend}</TableCell>}
@@ -17,10 +22,18 @@ export const ReferredRow = (props: TReferredProps) => {
       {!hiddenCols?.includes('connection_date') && (
         <TableCell align="center">{getStringDate(statistics.connection_date)}</TableCell>
       )}
-      {!hiddenCols?.includes('depositsFirst') && <TableCell align="center">{statistics.depositsFirst}</TableCell>}
-      {!hiddenCols?.includes('depositsCount') && <TableCell align="center">{statistics.depositsCount}</TableCell>}
-      {!hiddenCols?.includes('depositsSummary') && <TableCell align="center">{statistics.depositsSummary}</TableCell>}
-      {!hiddenCols?.includes('depositsRepeat') && <TableCell align="center">{statistics.depositsRepeat}</TableCell>}
+      {!hiddenCols?.includes('depositsFirst') && (
+        <TableCell align="center">{getData(statistics.depositsFirst)}</TableCell>
+      )}
+      {!hiddenCols?.includes('depositsCount') && (
+        <TableCell align="center">{getData(statistics.depositsCount)}</TableCell>
+      )}
+      {!hiddenCols?.includes('depositsSummary') && (
+        <TableCell align="center">{getData(statistics.depositsSummary)}</TableCell>
+      )}
+      {!hiddenCols?.includes('depositsRepeat') && (
+        <TableCell align="center">{getData(statistics.depositsRepeat)}</TableCell>
+      )}
       {!hiddenCols?.includes('betsCount') && <TableCell align="center">{statistics.betsCount}</TableCell>}
       {!hiddenCols?.includes('betsSummary') && <TableCell align="center">{statistics.betsSummary}</TableCell>}
       {!hiddenCols?.includes('losedSummary') && <TableCell align="center">{statistics.losedSummary}</TableCell>}
