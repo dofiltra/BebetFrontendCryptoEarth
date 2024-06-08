@@ -54,6 +54,10 @@ export function Traf2Reg({ data }: { data?: TDashboardItemData }) {
   return <DashboardItem title={`Конверсия в регистрации`} data={data} formatter={percentFormatter} />
 }
 
+export function ActivePartnersCount({ data }: { data?: TDashboardItemData }) {
+  return <DashboardItem title={`Активных партнеров`} data={data} />
+}
+
 export function AvgTrafByDay({ data }: { data?: TDashboardItemData }) {
   return <DashboardItem title={`Среднее кол-во переходов в сутки`} data={data} />
 }

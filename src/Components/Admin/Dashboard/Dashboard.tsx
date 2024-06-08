@@ -1,5 +1,6 @@
 import { TFullStatistic } from '@/Components/App/Statistic/Statistic.types'
 import {
+  ActivePartnersCount,
   AvgIncome,
   DepositsCompleted,
   DepositsConversion,
@@ -18,6 +19,7 @@ function DashboardLaptop({ statistics }: { statistics: TFullStatistic }) {
         <Traffic data={statistics?.traffic} />
         <Reg data={statistics?.registractions} />
         <Traf2Reg data={statistics?.ratioTrafficRegistration} />
+        <ActivePartnersCount data={statistics?.activePartnersCount} />
       </div>
       <div className={'statistic__info-container-second'}>
         <FirstDeposits data={statistics?.depositsFirst} />

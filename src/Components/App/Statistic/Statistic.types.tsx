@@ -11,6 +11,7 @@ export type TFullStatistic = {
   depositsRatio?: TDashboardItemData
   depositsSummary?: TDashboardItemData
   income?: TDashboardItemData
+  activePartnersCount?: TDashboardItemData
 }
 
 export interface DataEntry {

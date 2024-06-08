@@ -14,7 +14,7 @@ import { HeaderLogo } from '@/Components/Ui/Header/Header'
 import { AdminDashboard } from '@/Components/Admin/Dashboard/Dashboard'
 import { createFormData, postFormData } from '@/services/api'
 import { isAdmin } from '@/shared/lib/validators/isAdmin'
-import { TFullStatistic } from '@/Components/App/Statistic/Statistic.types'
+import type { TFullStatistic } from '@/Components/App/Statistic/Statistic.types'
 
 const DEFAULT_USER_LIMIT = 10
 
@@ -48,7 +48,7 @@ export const AdminPage = () => {
     // const date = getDateByFilter(filter)
     const d = createFormData({})
     const p = postFormData('/ref_user/getAdminDashboard', d)
-    
+
     toast.promise(p, { pending: 'Loading stats...', success: 'Success' })
     const res = await p
 
