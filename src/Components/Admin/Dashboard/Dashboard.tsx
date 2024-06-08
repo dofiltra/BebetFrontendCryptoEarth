@@ -2,6 +2,7 @@ import type { TFullStatistic } from '@/Components/App/Statistic/Statistic.types'
 import {
   ActivePartnersCount,
   AvgIncome,
+  DashboardItem,
   DepositsCompleted,
   DepositsConversion,
   DepositsSum,
@@ -16,15 +17,21 @@ function DashboardLaptop({ statistics }: { statistics: TFullStatistic }) {
   return (
     <>
       <div className={'statistic__info-container-first'}>
+        <DashboardItem data={statistics?.totalPartners} title={`Всего партнеров`} />
+        <ActivePartnersCount data={statistics?.activePartnersCount} />
+        <DashboardItem data={statistics?.totalReferals} title={`Привлечено рефералов`} />
+        <DashboardItem data={statistics?.partnersMoney} title={`Деньги партнеров`} />
+      </div>
+      <div className={'statistic__info-container-first'}>
         <Traffic data={statistics?.traffic} />
         <Reg data={statistics?.registractions} />
         <Traf2Reg data={statistics?.ratioTrafficRegistration} />
-        <ActivePartnersCount data={statistics?.activePartnersCount} />
+        <DepositsConversion data={statistics?.depositsRatio} />
       </div>
       <div className={'statistic__info-container-second'}>
         <FirstDeposits data={statistics?.depositsFirst} />
         <DepositsCompleted data={statistics?.depositsCompleted} />
-        <DepositsConversion data={statistics?.depositsRatio} />
+
         <DepositsSum data={statistics?.depositsSummary} />
       </div>
       <div className={'statistic__info-container-third'}>
