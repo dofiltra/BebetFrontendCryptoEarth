@@ -1,4 +1,4 @@
-import { TFullStatistic } from '@/Components/App/Statistic/Statistic.types'
+import type { TFullStatistic } from '@/Components/App/Statistic/Statistic.types'
 import {
   ActivePartnersCount,
   AvgIncome,
