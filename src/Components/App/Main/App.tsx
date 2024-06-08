@@ -43,6 +43,8 @@ function App() {
   const [refLinks, setRefLinks] = useState([])
   const [outs, setOuts] = useState([])
 
+  const [filter, setFilter] = useState<TFilterDate>('all')
+
   const settingShow = () => {
     setCurrentPage('settings')
     setShowProfile(false)
@@ -58,6 +60,69 @@ function App() {
   }
 
   const isBlockedWallet = wallet?.status && wallet.status !== 'open'
+
+  const getReferent = async () => {
+    const p = get('/ref_user/getAllReferent')
+    toast.promise(p, { pending: `Загрузка рефералов...`, error: `Произошла ошибка` })
+    const res = await p
+
+    if (res) {
+      setReferends(res)
+    }
+  }
+
+  const getFullStatistic = async (filter?: TFilterDate) => {
+    const date = getDateByFilter(filter)
+    const d = createFormData({ start_date: date })
+    const p = postFormData('/ref_user/getDashboardByDate', d)
+
+    toast.promise(p, { pending: `Загрузка статистики...`, success: `Загружено`, error: `Ошибка...` })
+    const res = await p
+
+    if (res) {
+      setFullStatistic(res)
+    }
+  }
+
+  const updateUserState = async (props: any) => {
+    const data = createFormData({
+      data: {
+        email: props?.email || null,
+        password: props?.password || null,
+        name: props?.name || null,
+        communicationType: props?.communicationType || null,
+        partnershipType: props?.partnershipType || null,
+      },
+    })
+
+    const updatedData = await postFormData('/ref_user/updateData', data)
+
+    if (updatedData) {
+      getCurrentUser().then((user) => setCurrentUser(user))
+      setCurrentPage('statistic')
+    }
+  }
+
+  const getRefUrls = async () => {
+    const p = get('/ref_refs/GetByCurrentUser')
+    toast.promise(p, { pending: `Загрузка ссылок...`, error: `Произошла ошибка` })
+    const res = await p
+
+    if (res) {
+      const parsedData = res.map((item: any) => {
+        const newItem = { ...item, url: `${import.meta.env.VITE_FRONT_URL}?ref=${item.ref_string}` }
+        return newItem
+      })
+      setRefLinks(parsedData)
+    }
+  }
+
+  const getOuts = async () => {
+    let res = await get('/out_ref_transaction/getAllRequests')
+    if (res) {
+      setOuts(res)
+    }
+  }
 
   useEffect(() => {
     const auth = async () => {
@@ -90,75 +155,22 @@ function App() {
     }
   }, [logged])
 
-  const getReferent = async () => {
-    let res = await get('/ref_user/getAllReferent')
-    if (res) {
-      setReferends(res)
-    }
-  }
-
-  const getFullStatistic = async (filter?: TFilterDate) => {
-    const date = getDateByFilter(filter)
-    const d = createFormData({ start_date: date })
-    const res = await postFormData('/ref_user/getDashboardByDate', d)
-
-    if (res) {
-      setFullStatistic(res)
-    }
-  }
-
-  const updateUserState = async (props: any) => {
-    const data = createFormData({
-      data: {
-        email: props?.email || null,
-        password: props?.password || null,
-        name: props?.name || null,
-        communicationType: props?.communicationType || null,
-        partnershipType: props?.partnershipType || null,
-      },
-    })
-
-    const updatedData = await postFormData('/ref_user/updateData', data)
-
-    if (updatedData) {
-      getCurrentUser().then((user) => setCurrentUser(user))
-      setCurrentPage('statistic')
-    }
-  }
-
-  const getRefUrls = async () => {
-    const res = await get('/ref_refs/GetByCurrentUser')
-
-    if (res) {
-      const parsedData = res.map((item: any) => {
-        const newItem = { ...item, url: `${import.meta.env.VITE_FRONT_URL}?ref=${item.ref_string}` }
-        return newItem
-      })
-      setRefLinks(parsedData)
-    }
-  }
-
-  const getOuts = async () => {
-    let res = await get('/out_ref_transaction/getAllRequests')
-    if (res) {
-      setOuts(res)
-    }
-  }
-
   useEffect(() => {
-    if (logged) {
-      getCurrentUser().then((user) => {
-        setCurrentUser(user)
-
-        if (isAdmin(user) && !isDev()) {
-          router.navigate({ to: '/admin' })
-        }
-      })
-      getReferent()
-      getRefUrls()
-      getFullStatistic()
-      getOuts()
+    if (!logged) {
+      return
     }
+
+    getCurrentUser().then((user) => {
+      setCurrentUser(user)
+
+      if (isAdmin(user) && !isDev()) {
+        router.navigate({ to: '/admin' })
+      }
+    })
+    getReferent()
+    getRefUrls()
+    getFullStatistic()
+    getOuts()
   }, [logged])
 
   const moneyReauestPopup = () => {
@@ -220,7 +232,14 @@ function App() {
     <>
       {currentPage === 'settings' && logged && <Settings updateUserState={updateUserState} user={currentUser} />}
       {currentPage === 'statistic' && logged && (
-        <Statistic fullStatistic={fullStatistic} onChangeDate={getFullStatistic} />
+        <Statistic
+          fullStatistic={fullStatistic}
+          onChangeDate={(newFilter) => {
+            setFilter(newFilter)
+            getFullStatistic(newFilter)
+          }}
+          filter={filter}
+        />
       )}
       {currentPage === 'links' && logged && <Links getRefUrls={getRefUrls} refLinks={refLinks} user={currentUser} />}
       {currentPage === 'referral' && logged && <Referrals referents={refferends} />}

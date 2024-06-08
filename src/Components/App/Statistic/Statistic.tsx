@@ -10,6 +10,7 @@ import { TDashboardItemData } from '@/shared/ui/dashboard/types'
 interface Props {
   fullStatistic: TFullStatistic
   onChangeDate: (value: TFilterDate) => void
+  filter: TFilterDate
 }
 
 const getMonths = () => [
@@ -28,11 +29,10 @@ const getMonths = () => [
 ]
 
 const Statistic = (props: Props = {} as Props) => {
-  const { fullStatistic = {}, onChangeDate } = { ...props }
+  const { fullStatistic = {}, onChangeDate, filter } = { ...props }
   const chartRef = useRef<HTMLDivElement | null>(null)
   const { isMobile } = useIsMobile()
   const [width, setWidth] = useState(0)
-  const [filter, setFilter] = useState<TFilterDate>('all')
 
   useEffect(() => {
     const changeWidth = () => {
@@ -48,7 +48,6 @@ const Statistic = (props: Props = {} as Props) => {
 
   const handleFilterChange = (filterValue: TFilterDate) => {
     onChangeDate?.(filterValue)
-    setFilter(filterValue)
   }
 
   const months: string[] = getMonths()
