@@ -49,6 +49,12 @@ function percentFormatter({ value }: { value: string | number }) {
   }
   return `${(parseFloat((value || 0).toString() || '0') * 100).toFixed(2)}%`
 }
+function floatNumFormatter({ value }: { value: string | number }) {
+  if (value === undefined) {
+    return ''
+  }
+  return `${parseFloat((value || 0).toString() || '0').toFixed(2)}%`
+}
 
 export function Traf2Reg({ data }: { data?: TDashboardItemData }) {
   return <DashboardItem title={`Конверсия в регистрации`} data={data} formatter={percentFormatter} />
@@ -59,7 +65,7 @@ export function ActivePartnersCount({ data }: { data?: TDashboardItemData }) {
 }
 
 export function AvgTrafByDay({ data }: { data?: TDashboardItemData }) {
-  return <DashboardItem title={`Среднее кол-во переходов в сутки`} data={data} />
+  return <DashboardItem title={`Среднее кол-во переходов в сутки`} data={data} formatter={floatNumFormatter} />
 }
 
 export function AvgIncome({ data }: { data?: TDashboardItemData }) {
