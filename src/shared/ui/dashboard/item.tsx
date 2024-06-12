@@ -53,7 +53,10 @@ function floatNumFormatter({ value }: { value: string | number }) {
   if (value === undefined) {
     return ''
   }
-  return `${parseFloat((value || 0).toString() || '0').toFixed(2)}%`
+  if (isNaN(value as any)) {
+    return '0'
+  }
+  return `${parseFloat((value || 0).toString() || '0').toFixed(2)}`
 }
 
 export function Traf2Reg({ data }: { data?: TDashboardItemData }) {
