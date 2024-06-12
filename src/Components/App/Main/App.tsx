@@ -71,9 +71,9 @@ function App() {
     }
   }
 
-  const getFullStatistic = async (filter?: TFilterDate) => {
-    const date = getDateByFilter(filter)
-    const d = createFormData({ start_date: date })
+  const updateFullStatistic = async (filter?: TFilterDate) => {
+    const { startDate, endDate } = getDateByFilter(filter)
+    const d = createFormData({ startDate, endDate })
     const p = postFormData('/ref_user/getDashboardByDate', d)
 
     toast.promise(p, { pending: `Загрузка статистики...`, success: `Загружено`, error: `Ошибка...` })
@@ -169,7 +169,7 @@ function App() {
     })
     getReferent()
     getRefUrls()
-    getFullStatistic()
+    updateFullStatistic()
     getOuts()
   }, [logged])
 
@@ -236,7 +236,7 @@ function App() {
           fullStatistic={fullStatistic}
           onChangeDate={(newFilter) => {
             setFilter(newFilter)
-            getFullStatistic(newFilter)
+            updateFullStatistic(newFilter)
           }}
           filter={filter}
         />

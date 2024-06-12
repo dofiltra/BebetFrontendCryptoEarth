@@ -32,6 +32,7 @@ export async function post(
   customOptions = defautCustomOptions as any
 ) {
   const val = localStorage.getItem('token')
+
   if (val) {
     headers.authorization = val
   }
